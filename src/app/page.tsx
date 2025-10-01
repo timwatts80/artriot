@@ -270,8 +270,8 @@ export default function ArtRiotHomePage() {
             />
           </div>
           <p className="text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Where creativity rebels against the ordinary. Join our community of artists, makers, and dreamers 
-            who believe art should disrupt, inspire, and unite.
+            A playful rebellion against perfection.<br />
+            Create freely. Express mindfully. Connect with community.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a 
@@ -287,6 +287,23 @@ export default function ArtRiotHomePage() {
             >
               Upcoming Events
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary-500 mb-6">✨ About Art Riot</h2>
+          <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
+            <p>
+              Art Riot is a creative community where we break free from judgment and the "rules" of what art should be. 
+              Together we explore mindful art practices, creative meditation, and gentle movement—guided sessions that 
+              open the door to freedom, expression, and connection.
+            </p>
+            <p>
+              This isn't therapy—it's a safe, inspiring space for all ages and all experience levels to discover the joy of making.
+            </p>
           </div>
         </div>
       </section>
@@ -369,10 +386,9 @@ export default function ArtRiotHomePage() {
       {/* Newsletter Signup Section */}
       <section id="signup" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Join the ArtRiot Community</h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Ready to break free and create?</h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
-            Get exclusive access to events, artist features, workshops, and special offers. 
-            Be part of a community that celebrates creative rebellion.
+            This group is free to join, open to all ages, and no art skills are required. Just curiosity and a willingness to play.
           </p>
           
           <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-8">
@@ -421,53 +437,74 @@ export default function ArtRiotHomePage() {
       </section>
 
       {/* Art Kits Section */}
-      <section id="art-kits" className="py-16 px-4 sm:px-6 lg:px-8 bg-black/20">
-        <div className="max-w-7xl mx-auto">
+      <section id="art-kits" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Curated Art Kits</h2>
-            <p className="text-xl text-white/70 max-w-2xl mx-auto">
-              Handpicked supplies for every skill level. Start your creative journey with quality materials 
-              trusted by our community of artists.
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Handpicked supplies to support your creative journey. Quality materials 
+              trusted by our mindful art community.
             </p>
           </div>
 
-          {Object.entries(groupedKits).map(([category, kits]) => (
-            <div key={category} className="mb-12">
-              <h3 className="text-2xl font-semibold text-white mb-6 text-center">
-                {category} Level
-              </h3>
-              <div className="grid md:grid-cols-3 gap-6">
-                {kits.map((kit) => (
-                  <div key={kit.id} className="bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 hover:bg-white/15 transition-all duration-300">
-                    <div className="w-full h-48 bg-gradient-to-r from-yellow-400 to-orange-400 flex items-center justify-center">
-                      <span className="text-white font-medium">Kit Image</span>
-                    </div>
-                    <div className="p-6">
-                      <h4 className="text-lg font-semibold text-white mb-2">{kit.name}</h4>
-                      <p className="text-white/80 text-sm mb-4 leading-relaxed">{kit.description}</p>
-                      <div className="flex items-center justify-between mb-4">
-                        <span className="text-2xl font-bold text-green-400">{kit.price}</span>
-                        <span className="text-xs text-white/60 bg-white/10 px-2 py-1 rounded">
-                          {category}
-                        </span>
-                      </div>
-                      <a
-                        href={kit.amazonUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="block w-full bg-gradient-to-r from-orange-500 to-red-500 text-white text-center px-6 py-3 rounded-lg font-medium hover:from-orange-600 hover:to-red-600 transition-all duration-300"
-                      >
-                        Get on Amazon →
-                      </a>
-                      <p className="text-xs text-white/50 mt-2 text-center">
-                        As an Amazon Associate, we earn from qualifying purchases
-                      </p>
-                    </div>
-                  </div>
-                ))}
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Acrylic Painting Kit */}
+            <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
+              <div className="w-full h-48 bg-primary-500 flex items-center justify-center">
+                <span className="text-white font-medium text-lg">Acrylic Painting</span>
+              </div>
+              <div className="p-6">
+                <h4 className="text-xl font-semibold text-white mb-3">Acrylic Painting Kit</h4>
+                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  Vibrant acrylic colors, quality brushes, and canvas boards. Perfect for expressive, mindful painting sessions.
+                </p>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl font-bold text-primary-400">$34.99</span>
+                </div>
+                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                  Get Kit →
+                </button>
               </div>
             </div>
-          ))}
+
+            {/* Graphite Drawing Kit */}
+            <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
+              <div className="w-full h-48 bg-gray-600 flex items-center justify-center">
+                <span className="text-white font-medium text-lg">Graphite Drawing</span>
+              </div>
+              <div className="p-6">
+                <h4 className="text-xl font-semibold text-white mb-3">Graphite Drawing Kit</h4>
+                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  Professional graphite pencils, blending tools, and sketching paper for contemplative drawing practice.
+                </p>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl font-bold text-primary-400">$24.99</span>
+                </div>
+                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                  Get Kit →
+                </button>
+              </div>
+            </div>
+
+            {/* Mixed Media Kit */}
+            <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
+              <div className="w-full h-48 bg-gradient-to-r from-primary-500 to-purple-600 flex items-center justify-center">
+                <span className="text-white font-medium text-lg">Mixed Media</span>
+              </div>
+              <div className="p-6">
+                <h4 className="text-xl font-semibold text-white mb-3">Mixed Media Kit</h4>
+                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                  Explore multiple mediums with pastels, watercolors, charcoal, and textured papers for creative freedom.
+                </p>
+                <div className="flex items-center justify-between mb-4">
+                  <span className="text-2xl font-bold text-primary-400">$49.99</span>
+                </div>
+                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
+                  Get Kit →
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
