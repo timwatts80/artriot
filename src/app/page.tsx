@@ -391,13 +391,13 @@ export default function ArtRiotHomePage() {
             This group is free to join, open to all ages, and no art skills are required. Just curiosity and a willingness to play.
           </p>
           
-          <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-8">
+          <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                placeholder="Enter your email"
+                placeholder="Enter your email for session updates"
                 className="flex-1 px-6 py-4 bg-gray-800 text-white placeholder-gray-400 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 required
               />
@@ -406,31 +406,50 @@ export default function ArtRiotHomePage() {
                 className="bg-primary-500 hover:bg-primary-600 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
                 style={{ backgroundColor: '#f11568' }}
               >
-                Join Now
+                Join Updates
               </button>
             </div>
           </form>
           
           {isSubmitted && (
-            <p className="text-green-400 font-medium">Welcome to the ArtRiot community!</p>
+            <div className="mb-6">
+              <p className="text-green-400 font-medium mb-3">Welcome to the ArtRiot community!</p>
+              <p className="text-gray-400 text-sm">Check your email for updates, and don't forget to join our Facebook group below!</p>
+            </div>
           )}
+
+          {/* Facebook Group Secondary CTA */}
+          <div className="mb-8">
+            <p className="text-gray-400 text-sm mb-4">Plus connect with our daily community:</p>
+            <a 
+              href="https://www.facebook.com/groups/artriot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
+            >
+              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              Join Facebook Group
+            </a>
+          </div>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12 text-center">
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-white">500+</div>
-              <div className="text-gray-400 text-sm">Artists</div>
+              <div className="text-2xl font-bold text-white">100%</div>
+              <div className="text-gray-400 text-sm">Judgment-Free</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-white">50+</div>
-              <div className="text-gray-400 text-sm">Monthly Events</div>
+              <div className="text-2xl font-bold text-white">All</div>
+              <div className="text-gray-400 text-sm">Ages Welcome</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-white">1000+</div>
-              <div className="text-gray-400 text-sm">Artworks Shared</div>
+              <div className="text-2xl font-bold text-white">Free</div>
+              <div className="text-gray-400 text-sm">To Join</div>
             </div>
             <div className="bg-gray-800 rounded-lg p-4 border border-gray-700">
-              <div className="text-2xl font-bold text-white">24/7</div>
-              <div className="text-gray-400 text-sm">Community</div>
+              <div className="text-2xl font-bold text-white">All</div>
+              <div className="text-gray-400 text-sm">Skill Levels</div>
             </div>
           </div>
         </div>
@@ -450,58 +469,97 @@ export default function ArtRiotHomePage() {
           <div className="grid md:grid-cols-3 gap-8">
             {/* Acrylic Painting Kit */}
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
-              <div className="w-full h-48 bg-primary-500 flex items-center justify-center">
-                <span className="text-white font-medium text-lg">Acrylic Painting</span>
+              <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/Acrylic_Paint_Kit.png" 
+                  alt="Acrylic Painting Kit"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<span className="text-primary-500 font-medium text-lg">Acrylic Painting</span>';
+                  }}
+                />
               </div>
               <div className="p-6">
                 <h4 className="text-xl font-semibold text-white mb-3">Acrylic Painting Kit</h4>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   Vibrant acrylic colors, quality brushes, and canvas boards. Perfect for expressive, mindful painting sessions.
                 </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-primary-400">$34.99</span>
-                </div>
-                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
-                  Get Kit →
-                </button>
+                <a
+                  href="https://amzn.to/4gRtxbb"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  Get Kit on Amazon →
+                </a>
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  As an Amazon Associate, we earn from qualifying purchases
+                </p>
               </div>
             </div>
 
             {/* Graphite Drawing Kit */}
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
-              <div className="w-full h-48 bg-gray-600 flex items-center justify-center">
-                <span className="text-white font-medium text-lg">Graphite Drawing</span>
+              <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/kit-images/graphite-drawing-kit.jpg" 
+                  alt="Graphite Drawing Kit"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<span className="text-gray-600 font-medium text-lg">Graphite Drawing</span>';
+                  }}
+                />
               </div>
               <div className="p-6">
                 <h4 className="text-xl font-semibold text-white mb-3">Graphite Drawing Kit</h4>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   Professional graphite pencils, blending tools, and sketching paper for contemplative drawing practice.
                 </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-primary-400">$24.99</span>
-                </div>
-                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
-                  Get Kit →
-                </button>
+                <a
+                  href="https://amzn.to/3VMn73r"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  Get Kit on Amazon →
+                </a>
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  As an Amazon Associate, we earn from qualifying purchases
+                </p>
               </div>
             </div>
 
             {/* Mixed Media Kit */}
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
-              <div className="w-full h-48 bg-gradient-to-r from-primary-500 to-purple-600 flex items-center justify-center">
-                <span className="text-white font-medium text-lg">Mixed Media</span>
+              <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
+                <img 
+                  src="/kit-images/mixed-media-kit.jpg" 
+                  alt="Mixed Media Kit"
+                  className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
+                  onError={(e) => {
+                    const target = e.target as HTMLImageElement;
+                    target.style.display = 'none';
+                    target.parentElement!.innerHTML = '<span className="text-purple-600 font-medium text-lg">Mixed Media</span>';
+                  }}
+                />
               </div>
               <div className="p-6">
                 <h4 className="text-xl font-semibold text-white mb-3">Mixed Media Kit</h4>
-                <p className="text-gray-300 text-sm mb-4 leading-relaxed">
+                <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   Explore multiple mediums with pastels, watercolors, charcoal, and textured papers for creative freedom.
                 </p>
-                <div className="flex items-center justify-between mb-4">
-                  <span className="text-2xl font-bold text-primary-400">$49.99</span>
-                </div>
-                <button className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300">
-                  Get Kit →
+                <button className="block w-full bg-gray-600 text-white text-center px-6 py-3 rounded-lg font-medium cursor-not-allowed opacity-75">
+                  Coming Soon →
                 </button>
+                <p className="text-xs text-gray-500 mt-2 text-center">
+                  Kit details being finalized
+                </p>
               </div>
             </div>
           </div>
@@ -509,20 +567,31 @@ export default function ArtRiotHomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-white/20">
+      <footer className="py-12 px-4 sm:px-6 lg:px-8 border-t border-gray-800">
         <div className="max-w-4xl mx-auto text-center">
           <h3 className="text-2xl font-bold text-white mb-4">ArtRiot</h3>
-          <p className="text-white/60 mb-6 max-w-2xl mx-auto">
-            Disrupting the ordinary through creative expression. Join our community of artists, 
-            makers, and visionaries who believe art can change the world.
+          <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
+            A playful rebellion against perfection. Join our mindful creative community 
+            where art is about expression, connection, and joy.
           </p>
-          <div className="flex justify-center space-x-6 mb-6">
-            <a href="#" className="text-white/60 hover:text-white transition-colors">Facebook</a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">Twitter</a>
-            <a href="#" className="text-white/60 hover:text-white transition-colors">Discord</a>
+          
+          {/* Facebook Group CTA */}
+          <div className="mb-8">
+            <a 
+              href="https://www.facebook.com/groups/artriot"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105"
+            >
+              <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+              Join Our Facebook Group
+            </a>
+            <p className="text-gray-500 text-sm mt-2">Connect with fellow creators in our supportive community</p>
           </div>
-          <p className="text-white/40 text-sm">
+          
+          <p className="text-gray-500 text-sm">
             © 2025 ArtRiot. All rights reserved. | A Tim Watts Art Initiative
           </p>
         </div>
