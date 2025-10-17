@@ -39,10 +39,13 @@ interface NewsletterHighlight {
 }
 
 export default function ArtRiotHomePage() {
-  const [email, setEmail] = useState('');
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [events, setEvents] = useState<Event[]>([]);
-  const [loading, setLoading] = useState(true);
+  const [firstName, setFirstName] = useState('')
+  const [email, setEmail] = useState('')
+  const [date, setDate] = useState('')
+  const [submitMessage, setSubmitMessage] = useState('')
+  const [isRegistering, setIsRegistering] = useState(false)
+  const [events, setEvents] = useState<Event[]>([])
+  const [loading, setLoading] = useState(true)
 
   // Mock data for development - replace with actual API calls
   const mockEvents: Event[] = [
@@ -74,6 +77,8 @@ export default function ArtRiotHomePage() {
     }
   ];
 
+  // Newsletter highlights data (currently hidden)
+  /*
   const newsletterHighlights: NewsletterHighlight[] = [
     {
       id: 1,
@@ -97,6 +102,7 @@ export default function ArtRiotHomePage() {
       image: "/highlights/gallery-opening.jpg"
     }
   ];
+  */
 
   const artKits: ArtKit[] = [
     // Beginner Kits
@@ -191,8 +197,10 @@ export default function ArtRiotHomePage() {
       setEvents(mockEvents);
       setLoading(false);
     }, 1000);
-  }, []);
+  }, [mockEvents]);
 
+  // Email submission handler (currently not used since newsletter is hidden)
+  /*
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -208,9 +216,8 @@ export default function ArtRiotHomePage() {
       const data = await response.json();
 
       if (response.ok) {
-        setIsSubmitted(true);
-        setTimeout(() => setIsSubmitted(false), 5000);
         setEmail('');
+        // Could add success notification here if needed
       } else {
         alert(data.error || 'Signup failed. Please try again.');
       }
@@ -219,6 +226,7 @@ export default function ArtRiotHomePage() {
       alert('Signup failed. Please check your connection and try again.');
     }
   };
+  */
 
   const formatEventDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -241,7 +249,8 @@ export default function ArtRiotHomePage() {
     }, {} as Record<string, ArtKit[]>);
   };
 
-  const groupedKits = groupKitsByCategory(artKits);
+  // Art kit grouping (currently not used)
+  // const groupedKits = groupKitsByCategory(artKits);
 
   return (
     <main className="min-h-screen bg-black">
@@ -354,7 +363,9 @@ export default function ArtRiotHomePage() {
                     </div>
                   )}
                   <h3 className="text-xl font-semibold text-white mb-2">{event.name}</h3>
-                  <p className="text-gray-400 text-sm mb-3">{formatEventDate(event.start_time)}</p>
+                  {!event.name.includes('Coming Soon') && (
+                    <p className="text-gray-400 text-sm mb-3">{formatEventDate(event.start_time)}</p>
+                  )}
                   {event.description && (
                     <p className="text-gray-300 mb-4">{event.description}</p>
                   )}
@@ -377,11 +388,11 @@ export default function ArtRiotHomePage() {
                     >
                       Register Now
                     </a>
-                  ) : (
+                  ) : !event.name.includes('Coming Soon') ? (
                     <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300">
                       Learn More
                     </button>
-                  )}
+                  ) : null}
                 </div>
               ))}
             </div>
@@ -469,7 +480,7 @@ export default function ArtRiotHomePage() {
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
               Join Facebook Group
             </a>
@@ -544,15 +555,15 @@ export default function ArtRiotHomePage() {
 
             {/* Graphite Drawing Kit */}
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
-                            <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
+              <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/81Rgxg6QEBL._AC_SL1500_.jpg" 
+                  src="/Graphite_Kit.jpg" 
                   alt="Graphite Drawing Kit"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
-                    target.parentElement!.innerHTML = '<span className="text-gray-600 font-medium text-lg">Graphite Drawing</span>';
+                    target.parentElement!.innerHTML = '<span className="text-primary-500 font-medium text-lg">Graphite Drawing</span>';
                   }}
                 />
               </div>
@@ -580,13 +591,13 @@ export default function ArtRiotHomePage() {
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
               <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/81SXnw-qMQL._AC_SL1500_.jpg" 
+                  src="/Mixed_Media_Kit.jpg" 
                   alt="Mixed Media Kit"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
-                    target.parentElement!.innerHTML = '<span className="text-purple-600 font-medium text-lg">Mixed Media</span>';
+                    target.parentElement!.innerHTML = '<span className="text-primary-500 font-medium text-lg">Mixed Media</span>';
                   }}
                 />
               </div>

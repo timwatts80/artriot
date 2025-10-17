@@ -6,7 +6,6 @@
  */
 
 import React from 'react';
-import { getColor, getSpacing, theme, tw } from '../tokens/token-utils';
 
 interface ButtonProps {
   variant?: 'primary' | 'secondary' | 'success' | 'warning' | 'error';
