@@ -48,30 +48,27 @@ export default function ArtRiotHomePage() {
   const mockEvents: Event[] = [
     {
       id: '1',
-      name: 'ArtRiot Community Paint & Sip',
-      start_time: '2025-10-15T18:00:00',
-      description: 'Join us for an evening of creativity and community! All skill levels welcome.',
+      name: 'Art Meditation',
+      start_time: '2025-10-19T17:00:00',
+      description: 'A mindful art session combining meditation and creative expression. Connect with your inner artist in a peaceful, supportive virtual environment.',
       place: {
-        name: 'ArtRiot Studio',
+        name: 'Virtual Event',
         location: {
-          street: '123 Creative Ave',
-          city: 'Art District'
+          street: '',
+          city: 'Online'
         }
-      },
-      cover: {
-        source: '/events/paint-sip.jpg'
       }
     },
     {
       id: '2',
-      name: 'Mixed Media Workshop',
+      name: 'Coming Soon: In Person Art Flow',
       start_time: '2025-10-22T14:00:00',
-      description: 'Explore texture and layering techniques in this hands-on workshop.',
+      description: 'Stay tuned for our upcoming in-person art flow experience. Details coming soon!',
       place: {
-        name: 'Community Art Center',
+        name: 'Location TBA',
         location: {
-          street: '456 Maker St',
-          city: 'Creative Quarter'
+          street: '',
+          city: 'Details Coming Soon'
         }
       }
     }
@@ -196,12 +193,31 @@ export default function ArtRiotHomePage() {
     }, 1000);
   }, []);
 
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    setIsSubmitted(true);
-    setTimeout(() => setIsSubmitted(false), 3000);
-    setEmail('');
+    
+    try {
+      const response = await fetch('/api/newsletter-signup', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setIsSubmitted(true);
+        setTimeout(() => setIsSubmitted(false), 5000);
+        setEmail('');
+      } else {
+        alert(data.error || 'Signup failed. Please try again.');
+      }
+    } catch (error) {
+      console.error('Newsletter signup error:', error);
+      alert('Signup failed. Please check your connection and try again.');
+    }
   };
 
   const formatEventDate = (dateString: string) => {
@@ -239,7 +255,6 @@ export default function ArtRiotHomePage() {
             <div className="hidden md:block">
               <div className="flex items-center space-x-8">
                 <a href="#events" className="text-gray-300 hover:text-white transition-colors">Events</a>
-                <a href="#highlights" className="text-gray-300 hover:text-white transition-colors">Highlights</a>
                 <a href="#signup" className="text-gray-300 hover:text-white transition-colors">Join</a>
                 <a href="#art-kits" className="text-gray-300 hover:text-white transition-colors">Art Kits</a>
               </div>
@@ -297,12 +312,12 @@ export default function ArtRiotHomePage() {
           <h2 className="text-4xl lg:text-5xl font-bold text-primary-500 mb-6">✨ About Art Riot</h2>
           <div className="text-lg lg:text-xl text-gray-300 leading-relaxed space-y-6">
             <p>
-              Art Riot is a creative community where we break free from judgment and the "rules" of what art should be. 
+              Art Riot is a creative community where we break free from judgment and the &ldquo;rules&rdquo; of what art should be. 
               Together we explore mindful art practices, creative meditation, and gentle movement—guided sessions that 
               open the door to freedom, expression, and connection.
             </p>
             <p>
-              This isn't therapy—it's a safe, inspiring space for all ages and all experience levels to discover the joy of making.
+              This isn&rsquo;t therapy—it&rsquo;s a safe, inspiring space for all ages and all experience levels to discover the joy of making.
             </p>
           </div>
         </div>
@@ -326,7 +341,13 @@ export default function ArtRiotHomePage() {
           ) : (
             <div className="grid md:grid-cols-2 gap-6">
               {events.map((event) => (
-                <div key={event.id} className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all duration-300">
+                <div key={event.id} className="bg-gray-900 rounded-xl p-6 border border-gray-700 hover:border-primary-500 transition-all duration-300 relative">
+                  {event.name.includes('Coming Soon') && (
+                    <div className="absolute -top-2 -right-2 bg-primary-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg z-10"
+                         style={{ backgroundColor: '#f11568' }}>
+                      Coming Soon
+                    </div>
+                  )}
                   {event.cover && (
                     <div className="w-full h-48 bg-primary-500 rounded-lg mb-4 flex items-center justify-center">
                       <span className="text-white font-medium">Event Image</span>
@@ -340,12 +361,27 @@ export default function ArtRiotHomePage() {
                   {event.place && (
                     <div className="text-gray-400 text-sm">
                       <p className="font-medium">{event.place.name}</p>
-                      <p>{event.place.location.street}, {event.place.location.city}</p>
+                      {event.place.location.street && (
+                        <p>{event.place.location.street}, {event.place.location.city}</p>
+                      )}
+                      {!event.place.location.street && event.place.location.city && (
+                        <p>{event.place.location.city}</p>
+                      )}
                     </div>
                   )}
-                  <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300">
-                    Learn More
-                  </button>
+                  {event.name === 'Art Meditation' ? (
+                    <a 
+                      href="/register/art-meditation"
+                      className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                      style={{ backgroundColor: '#f11568' }}
+                    >
+                      Register Now
+                    </a>
+                  ) : (
+                    <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                      Learn More
+                    </button>
+                  )}
                 </div>
               ))}
             </div>
@@ -353,7 +389,8 @@ export default function ArtRiotHomePage() {
         </div>
       </section>
 
-      {/* Newsletter Highlights Section */}
+      {/* Newsletter Highlights Section - Hidden */}
+      {/* 
       <section id="highlights" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
@@ -382,6 +419,7 @@ export default function ArtRiotHomePage() {
           </div>
         </div>
       </section>
+      */}
 
       {/* Newsletter Signup Section */}
       <section id="signup" className="py-16 px-4 sm:px-6 lg:px-8">
@@ -391,6 +429,8 @@ export default function ArtRiotHomePage() {
             This group is free to join, open to all ages, and no art skills are required. Just curiosity and a willingness to play.
           </p>
           
+          {/* Newsletter Form - HIDDEN FOR NOW */}
+          {/*
           <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto mb-6">
             <div className="flex flex-col sm:flex-row gap-4">
               <input
@@ -414,13 +454,14 @@ export default function ArtRiotHomePage() {
           {isSubmitted && (
             <div className="mb-6">
               <p className="text-green-400 font-medium mb-3">Welcome to the ArtRiot community!</p>
-              <p className="text-gray-400 text-sm">Check your email for updates, and don't forget to join our Facebook group below!</p>
+              <p className="text-gray-400 text-sm">Check your email for a welcome message with next steps!</p>
             </div>
           )}
+          */}
 
-          {/* Facebook Group Secondary CTA */}
+          {/* Facebook Group CTA */}
           <div className="mb-8">
-            <p className="text-gray-400 text-sm mb-4">Plus connect with our daily community:</p>
+            <p className="text-gray-400 text-sm mb-4">Connect with our daily community:</p>
             <a 
               href="https://www.facebook.com/groups/artriot"
               target="_blank"
@@ -428,7 +469,7 @@ export default function ArtRiotHomePage() {
               className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-all duration-300"
             >
               <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                <path d="M24 12.073c0-6.627-5.373-12-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
               </svg>
               Join Facebook Group
             </a>
@@ -503,9 +544,9 @@ export default function ArtRiotHomePage() {
 
             {/* Graphite Drawing Kit */}
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
-              <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
+                            <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/kit-images/graphite-drawing-kit.jpg" 
+                  src="/81Rgxg6QEBL._AC_SL1500_.jpg" 
                   alt="Graphite Drawing Kit"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   onError={(e) => {
@@ -521,7 +562,7 @@ export default function ArtRiotHomePage() {
                   Professional graphite pencils, blending tools, and sketching paper for contemplative drawing practice.
                 </p>
                 <a
-                  href="https://amzn.to/3VMn73r"
+                  href="https://amzn.to/3KMInnD"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300"
@@ -539,7 +580,7 @@ export default function ArtRiotHomePage() {
             <div className="bg-gray-800 rounded-xl overflow-hidden border border-gray-700 hover:border-primary-500 transition-all duration-300">
               <div className="w-full h-48 bg-white flex items-center justify-center overflow-hidden">
                 <img 
-                  src="/kit-images/mixed-media-kit.jpg" 
+                  src="/81SXnw-qMQL._AC_SL1500_.jpg" 
                   alt="Mixed Media Kit"
                   className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
                   onError={(e) => {
@@ -554,11 +595,17 @@ export default function ArtRiotHomePage() {
                 <p className="text-gray-300 text-sm mb-6 leading-relaxed">
                   Explore multiple mediums with pastels, watercolors, charcoal, and textured papers for creative freedom.
                 </p>
-                <button className="block w-full bg-gray-600 text-white text-center px-6 py-3 rounded-lg font-medium cursor-not-allowed opacity-75">
-                  Coming Soon →
-                </button>
+                <a
+                  href="https://amzn.to/3KRVGTK"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full bg-primary-500 hover:bg-primary-600 text-white text-center px-6 py-3 rounded-lg font-medium transition-all duration-300"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  Get Kit on Amazon →
+                </a>
                 <p className="text-xs text-gray-500 mt-2 text-center">
-                  Kit details being finalized
+                  As an Amazon Associate, we earn from qualifying purchases
                 </p>
               </div>
             </div>
