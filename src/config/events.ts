@@ -3,6 +3,7 @@
  * 
  * This file contains all event details to ensure consistency across
  * the homepage, registration page, and email notifications.
+ * Last updated: October 19, 2025
  */
 
 export interface EventConfig {
@@ -20,7 +21,7 @@ export interface EventConfig {
 export const ART_MEDITATION_EVENT: EventConfig = {
   name: 'Art Meditation',
   date: 'Sunday, October 26, 2025',
-  isoDateTime: '2025-10-26T17:00:00', // 10 AM MST = 5 PM UTC
+  isoDateTime: '2025-10-26T10:00:00-07:00', // 10 AM MST (UTC-7)
   time: '10:00 AM MST',
   timezone: 'MST',
   duration: '60 minutes',

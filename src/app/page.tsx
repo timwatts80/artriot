@@ -366,9 +366,11 @@ export default function ArtRiotHomePage() {
                     </div>
                   )}
                   <h3 className="text-xl font-semibold text-white mb-2">{event.name}</h3>
-                  {!event.name.includes('Coming Soon') && (
+                  {event.name === ART_MEDITATION_EVENT.name ? (
+                    <p className="text-gray-400 text-sm mb-3">{ART_MEDITATION_EVENT.date} at {ART_MEDITATION_EVENT.time}</p>
+                  ) : !event.name.includes('Coming Soon') ? (
                     <p className="text-gray-400 text-sm mb-3">{formatEventDate(event.start_time)}</p>
-                  )}
+                  ) : null}
                   {event.description && (
                     <p className="text-gray-300 mb-4">{event.description}</p>
                   )}
