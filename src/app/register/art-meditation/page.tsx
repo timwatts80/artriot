@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
+import { ART_MEDITATION_EVENT, getShortDate } from '../../../config/events';
 
 export default function ArtMeditationRegistration() {
   const [formData, setFormData] = useState({
@@ -67,9 +68,9 @@ export default function ArtMeditationRegistration() {
             <div className="space-y-4">
               <div className="bg-gray-800 rounded-lg p-4 text-left">
                 <h3 className="text-white font-semibold mb-2">Event Details</h3>
-                <p className="text-gray-300 text-sm">📅 Sunday, October 19, 2025</p>
-                <p className="text-gray-300 text-sm">🕘 10:00 AM MST</p>
-                <p className="text-gray-300 text-sm">💻 Virtual Event (Google Meet link in email)</p>
+                <p className="text-gray-300 text-sm">📅 {ART_MEDITATION_EVENT.date}</p>
+                <p className="text-gray-300 text-sm">🕘 {ART_MEDITATION_EVENT.time}</p>
+                <p className="text-gray-300 text-sm">💻 {ART_MEDITATION_EVENT.format} (Google Meet link in email)</p>
               </div>
               <Link 
                 href="/"
@@ -127,11 +128,11 @@ export default function ArtMeditationRegistration() {
               <div className="grid grid-cols-3 gap-4 text-center text-sm">
                 <div>
                   <p className="text-gray-400 uppercase tracking-wide">Date</p>
-                  <p className="text-white font-medium">Oct 19</p>
+                  <p className="text-white font-medium">{getShortDate(ART_MEDITATION_EVENT)}</p>
                 </div>
                 <div>
                   <p className="text-gray-400 uppercase tracking-wide">Time</p>
-                  <p className="text-white font-medium">10 AM MST</p>
+                  <p className="text-white font-medium">{ART_MEDITATION_EVENT.time.replace(':00', '')}</p>
                 </div>
                 <div>
                   <p className="text-gray-400 uppercase tracking-wide">Format</p>

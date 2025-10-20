@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { ART_MEDITATION_EVENT } from '../../../config/events';
 
 interface RegistrationData {
   name: string;
@@ -185,14 +186,14 @@ function generateConfirmationEmailHTML(name: string): string {
     
     <div class="details">
       <h3>📅 Event Details</h3>
-      <p><strong>Date:</strong> Sunday, October 19, 2025</p>
-      <p><strong>Time:</strong> 10:00 AM MST</p>
-      <p><strong>Duration:</strong> 60 minutes</p>
-      <p><strong>Format:</strong> Virtual (Google Meet)</p>
+      <p><strong>Date:</strong> ${ART_MEDITATION_EVENT.date}</p>
+      <p><strong>Time:</strong> ${ART_MEDITATION_EVENT.time}</p>
+      <p><strong>Duration:</strong> ${ART_MEDITATION_EVENT.duration}</p>
+      <p><strong>Format:</strong> ${ART_MEDITATION_EVENT.format}</p>
     </div>
     
     <div style="text-align: center;">
-      <a href="https://meet.google.com/nns-gcnd-sso" class="meet-link">
+      <a href="${ART_MEDITATION_EVENT.googleMeetLink}" class="meet-link">
         🎥 Join Google Meet Session
       </a>
     </div>

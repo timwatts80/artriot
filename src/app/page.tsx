@@ -1,6 +1,9 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
+import { Button } from '../components/DesignTokensDemo';
+import { ART_MEDITATION_EVENT } from '../config/events';
 
 // Types for components
 interface Event {
@@ -51,9 +54,9 @@ export default function ArtRiotHomePage() {
   const mockEvents: Event[] = [
     {
       id: '1',
-      name: 'Art Meditation',
-      start_time: '2025-10-19T17:00:00',
-      description: 'A mindful art session combining meditation and creative expression. Connect with your inner artist in a peaceful, supportive virtual environment.',
+      name: ART_MEDITATION_EVENT.name,
+      start_time: ART_MEDITATION_EVENT.isoDateTime,
+      description: ART_MEDITATION_EVENT.description,
       place: {
         name: 'Virtual Event',
         location: {
@@ -65,7 +68,7 @@ export default function ArtRiotHomePage() {
     {
       id: '2',
       name: 'Coming Soon: In Person Art Flow',
-      start_time: '2025-10-22T14:00:00',
+      start_time: '2025-10-30T14:00:00',
       description: 'Stay tuned for our upcoming in-person art flow experience. Details coming soon!',
       place: {
         name: 'Location TBA',
