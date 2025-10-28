@@ -129,13 +129,13 @@ export default function InPersonEventsPage() {
                 >
                   View Upcoming Sessions
                 </button>
-                <Link 
-                  href="mailto:hello@artriot.com?subject=Art Riot Live Inquiry"
+                <button 
+                  onClick={() => document.getElementById('about-expressive-healing')?.scrollIntoView({ behavior: 'smooth' })}
                   className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 text-center"
                   style={{ borderColor: '#f11568', color: '#f11568' }}
                 >
                   Learn More
-                </Link>
+                </button>
               </div>
             </div>
 
@@ -352,7 +352,7 @@ export default function InPersonEventsPage() {
       </section>
 
       {/* About Section */}
-      <section className="py-20 bg-gray-900/50">
+      <section id="about-expressive-healing" className="py-20 bg-gray-900/50">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
