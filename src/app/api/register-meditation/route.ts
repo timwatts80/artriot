@@ -35,7 +35,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json({
       success: true,
-      message: 'Registration successful! Check your email for the Google Meet link.'
+      message: 'Registration successful! Check your email for the Zoom link.'
     });
 
   } catch (error) {
@@ -87,7 +87,7 @@ async function sendConfirmationEmail(name: string, email: string) {
   const emailData = {
     personalizations: [{
       to: [{ email: email, name: name }],
-      subject: 'Art Meditation Registration Confirmed - Google Meet Link Inside'
+      subject: 'Art Meditation Registration Confirmed - Zoom Link Inside'
     }],
     from: { 
       email: process.env.SENDGRID_FROM_EMAIL || 'hello@artriot.com',
@@ -192,10 +192,12 @@ function generateConfirmationEmailHTML(name: string): string {
       <p><strong>Format:</strong> ${ART_MEDITATION_EVENT.format}</p>
     </div>
     
-    <div style="text-align: center;">
-      <a href="${ART_MEDITATION_EVENT.googleMeetLink}" class="meet-link">
-        🎥 Join Google Meet Session
+    <div style="text-align: center; margin: 30px 0;">
+      <p style="margin-bottom: 15px; font-size: 18px; color: #333;"><strong>Join Here:</strong></p>
+      <a href="${ART_MEDITATION_EVENT.meetingLink}" style="color: #f11568; font-size: 16px; text-decoration: underline; word-break: break-all;">
+        ${ART_MEDITATION_EVENT.meetingLink}
       </a>
+      <p style="margin-top: 15px; font-size: 16px; color: #666;"><strong>Passcode:</strong> ${ART_MEDITATION_EVENT.passcode}</p>
     </div>
     
     <h3>🎨 What to Prepare</h3>

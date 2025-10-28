@@ -257,24 +257,6 @@ export default function ArtRiotHomePage() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-lg z-50 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
-              <h1 className="text-2xl font-bold text-white">ArtRiot</h1>
-            </div>
-            <div className="hidden md:block">
-              <div className="flex items-center space-x-8">
-                <a href="#events" className="text-gray-300 hover:text-white transition-colors">Events</a>
-                <a href="#signup" className="text-gray-300 hover:text-white transition-colors">Join</a>
-                <a href="#art-kits" className="text-gray-300 hover:text-white transition-colors">Art Kits</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section */}
       <section 
         className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative bg-cover bg-center bg-no-repeat"

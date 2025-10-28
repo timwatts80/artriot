@@ -63,14 +63,14 @@ export default function ArtMeditationRegistration() {
             </div>
             <h1 className="text-2xl font-bold text-white mb-4">Registration Confirmed!</h1>
             <p className="text-gray-300 mb-6">
-              Thank you for registering for Art Meditation. You&rsquo;ll receive a confirmation email with the Google Meet link and session details soon.
+              Thank you for registering for Art Meditation. You&rsquo;ll receive a confirmation email with the Zoom link and session details soon.
             </p>
             <div className="space-y-4">
               <div className="bg-gray-800 rounded-lg p-4 text-left">
                 <h3 className="text-white font-semibold mb-2">Event Details</h3>
                 <p className="text-gray-300 text-sm">📅 {ART_MEDITATION_EVENT.date}</p>
                 <p className="text-gray-300 text-sm">🕘 {ART_MEDITATION_EVENT.time}</p>
-                <p className="text-gray-300 text-sm">💻 {ART_MEDITATION_EVENT.format} (Google Meet link in email)</p>
+                <p className="text-gray-300 text-sm">💻 {ART_MEDITATION_EVENT.format} (Zoom link in email)</p>
               </div>
               <Link 
                 href="/"
@@ -88,23 +88,6 @@ export default function ArtMeditationRegistration() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-lg z-50 border-b border-gray-800">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
-            <Link href="/" className="flex items-center">
-              <h1 className="text-2xl font-bold text-white">ArtRiot</h1>
-            </Link>
-            <Link 
-              href="/"
-              className="text-gray-300 hover:text-white transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
-      </nav>
-
       {/* Hero Section with Logo */}
       <section className="pt-24 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg mx-auto text-center">
@@ -207,7 +190,7 @@ export default function ArtMeditationRegistration() {
             </form>
 
             <p className="text-gray-400 text-xs text-center mt-4">
-              You&rsquo;ll receive the Google Meet link and session details via email
+              You&rsquo;ll receive the Zoom link and session details via email
             </p>
           </div>
         </div>

@@ -1,0 +1,582 @@
+'use client';
+
+import { useState } from 'react';
+import Link from 'next/link';
+
+// Updated copy with new branding
+const TEMP_COPY = {
+  hero: {
+    title: "Art Riot Live",
+    subtitle: "Where movement, music, and art become medicine for the soul.",
+    tagline: "Reclaim your creative freedom. Reconnect with your body. Remember who you are.",
+    description: "Art Riot Live is an intermodal expressive arts experience that blends movement, meditation, music, and art into a single, transformative session.",
+    philosophy: "It's not a class. It's not performance.\nIt's a space to release, create, and reconnect—with yourself and others."
+  },
+  about: {
+    title: "What is Intermodal Expressive Art Healing?",
+    description: "Our sessions combine the healing benefits of movement, meditation, music, and visual art to create a holistic wellness experience. Each element works synergistically to unlock creativity, process emotions, and promote deep personal transformation.",
+    benefits: [
+      "Stress reduction through mindful movement",
+      "Emotional release via creative expression", 
+      "Community connection and support",
+      "Increased self-awareness and intuition",
+      "Physical and mental wellness integration",
+      "Safe space for authentic self-expression"
+    ]
+  }
+};
+
+// Placeholder upcoming sessions - replace with your actual events
+const UPCOMING_SESSIONS = [
+  {
+    id: 1,
+    title: "Frequencies + Flow: Creative Expression",
+    date: "TBD",
+    time: "TBD",
+    location: "Jade Bloom, Draper, UT",
+    price: "$85",
+    description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
+    capacity: "20 participants",
+    facilitator: "Tim Watts",
+    paymentLink: "#", // Replace with actual payment link
+    highlights: [
+      "Live musical performance throughout",
+      "Guided meditation and breathwork",
+      "Prompted art creation with supplies included",
+      "Music-guided creative expression",
+      "Community sharing and connection"
+    ]
+  },
+  {
+    id: 2,
+    title: "Body Wisdom: Somatic Art Journey",
+    date: "TBD", 
+    time: "TBD",
+    location: "Sage Canvas, Lehi, UT",
+    price: "$75",
+    description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
+    capacity: "20 participants",
+    facilitator: "Tim Watts",
+    paymentLink: "#", // Replace with actual payment link
+    highlights: [
+      "Gentle somatic body movement",
+      "Guided meditation and breathwork", 
+      "Prompted art creation with supplies included",
+      "Body-centered creative exploration",
+      "Safe space for authentic expression"
+    ]
+  },
+  {
+    id: 3,
+    title: "Breathe & Create: Deep Meditation Studio",
+    date: "TBD",
+    time: "TBD", 
+    location: "Workshop SLC, Salt Lake City, UT",
+    price: "$95",
+    description: "Dive deep into stillness and emerge with vibrant creativity! This immersive experience centers around extended meditation and breathwork practices, creating space for profound art creation from a place of inner calm and clarity.",
+    capacity: "15 participants",
+    facilitator: "Tim Watts", 
+    paymentLink: "#", // Replace with actual payment link
+    highlights: [
+      "Extended meditation and breathwork",
+      "Deep contemplative practices",
+      "Prompted art creation with supplies included",
+      "Mindful creative expression",
+      "Integration and reflection time"
+    ]
+  }
+];
+
+export default function InPersonEventsPage() {
+  const [selectedSession, setSelectedSession] = useState<number | null>(null);
+
+  return (
+    <main className="min-h-screen bg-black">
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-black"></div>
+        <div className="max-w-6xl mx-auto px-6 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Text Content */}
+            <div>
+              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 flex items-center gap-4">
+                <img 
+                  src="/Art_Riot_Logo_No_Splatter.svg" 
+                  alt="ArtRiot" 
+                  className="h-24 lg:h-32 w-auto"
+                />
+                <span>Live</span>
+              </h1>
+              <p className="text-xl lg:text-2xl text-gray-300 mb-8 font-light leading-relaxed">
+                {TEMP_COPY.hero.subtitle}
+              </p>
+              <p className="text-lg text-primary-400 mb-8 font-medium" style={{ color: '#f11568' }}>
+                {TEMP_COPY.hero.tagline}
+              </p>
+              <p className="text-lg text-gray-300 mb-6 leading-relaxed">
+                {TEMP_COPY.hero.description}
+              </p>
+              <div className="border-l-4 border-primary-500 pl-6 mb-8" style={{ borderColor: '#f11568' }}>
+                <p className="text-gray-300 italic leading-relaxed whitespace-pre-line">
+                  {TEMP_COPY.hero.philosophy}
+                </p>
+              </div>
+              <div className="flex flex-col sm:flex-row gap-4">
+                <button 
+                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  View Upcoming Sessions
+                </button>
+                <Link 
+                  href="mailto:hello@artriot.com?subject=Art Riot Live Inquiry"
+                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 text-center"
+                  style={{ borderColor: '#f11568', color: '#f11568' }}
+                >
+                  Learn More
+                </Link>
+              </div>
+            </div>
+
+            {/* Right Column - Visual Content */}
+            <div className="relative">
+              <div className="aspect-square rounded-2xl overflow-hidden relative">
+                <img 
+                  src="/Art-Riot-Live-Hero1.png" 
+                  alt="Art Riot Live - Intermodal expressive arts experience"
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
+                  Art Riot Live
+                </div>
+                {/* Decorative overlay elements */}
+                <div className="absolute top-4 left-4 w-16 h-16 bg-primary-500/20 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}></div>
+                <div className="absolute bottom-8 right-6 w-24 h-24 bg-purple-500/10 rounded-full backdrop-blur-sm"></div>
+                <div className="absolute top-1/2 right-4 w-8 h-8 bg-primary-500/30 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(241, 21, 104, 0.3)' }}></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What to Expect Section */}
+      <section className="py-20 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+              What to Expect
+            </h2>
+            <p className="text-xl text-gray-300 mb-12 leading-relaxed">
+              Each session is a carefully guided journey through the senses:
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+            {/* Movement */}
+            <div className="text-center group">
+              <div className="w-20 h-20 mx-auto mb-6 bg-primary-500/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/30 transition-colors duration-300" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}>
+                <svg className="w-8 h-8 text-primary-400" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+                  <circle cx="12" cy="9" r="1.5"/>
+                  <path d="M7 18c0-2 2-4 5-4s5 2 5 4v2H7v-2z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Movement</h3>
+              <p className="text-gray-400 leading-relaxed">
+                to awaken the body and energy
+              </p>
+            </div>
+
+            {/* Meditation */}
+            <div className="text-center group">
+              <div className="w-20 h-20 mx-auto mb-6 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 8c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c-3.31 0-6 2.69-6 6v2h12v-2c0-3.31-2.69-6-6-6z"/>
+                  <circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" strokeWidth="1"/>
+                  <path d="M8 16c0-2.21 1.79-4 4-4s4 1.79 4 4" fill="none" stroke="currentColor" strokeWidth="1"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Meditation</h3>
+              <p className="text-gray-400 leading-relaxed">
+                to calm the mind and open the heart
+              </p>
+            </div>
+
+            {/* Music */}
+            <div className="text-center group">
+              <div className="w-20 h-20 mx-auto mb-6 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                  <circle cx="10" cy="17" r="2"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Music</h3>
+              <p className="text-gray-400 leading-relaxed">
+                that carries you into flow and expression
+              </p>
+            </div>
+
+            {/* Art-making */}
+            <div className="text-center group">
+              <div className="w-20 h-20 mx-auto mb-6 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  <path d="M9 11H7l5 5 5-5h-2l-3 3-3-3z" fill="none"/>
+                  <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                  <path d="M5 20h14v1H5z"/>
+                </svg>
+              </div>
+              <h3 className="text-xl font-semibold text-white mb-3">Art-making</h3>
+              <p className="text-gray-400 leading-relaxed">
+                to ground what you feel into color, texture, and form
+              </p>
+            </div>
+          </div>
+
+          <div className="text-center max-w-3xl mx-auto">
+            <div className="bg-gray-800/50 rounded-2xl p-8 mb-8">
+              <p className="text-lg text-gray-300 leading-relaxed mb-6">
+                Every event is unique, hosted in community spaces, studios, and creative venues—each one designed to invite connection, healing, and self-expression.
+              </p>
+              <div className="border-l-4 border-primary-500 pl-6" style={{ borderColor: '#f11568' }}>
+                <p className="text-lg text-primary-300 font-medium italic" style={{ color: '#f11568' }}>
+                  You don&apos;t need to be an artist, dancer, or meditator. You just need curiosity and a willingness to feel.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why It Matters Section */}
+      <section className="py-20 bg-gradient-to-r from-primary-900/10 to-purple-900/10">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center max-w-4xl mx-auto mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-8">
+              Why It Matters
+            </h2>
+            <p className="text-xl text-gray-300 leading-relaxed mb-8">
+              In a world that tells us to perform, perfect, and produce,<br />
+              <span className="text-primary-400 font-medium" style={{ color: '#f11568' }}>
+                Art Riot Live gives you permission to pause, express, and release.
+              </span>
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left Column - Benefits */}
+            <div>
+              <h3 className="text-2xl font-semibold text-white mb-8">
+                Through movement and creative flow, participants often describe feeling:
+              </h3>
+              
+              <div className="space-y-6">
+                <div className="flex items-start space-x-4 group">
+                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    <span className="text-white font-medium">Lighter and more grounded</span> in their bodies
+                  </p>
+                </div>
+                
+                <div className="flex items-start space-x-4 group">
+                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    <span className="text-white font-medium">Free from perfectionism</span> or self-judgment
+                  </p>
+                </div>
+                
+                <div className="flex items-start space-x-4 group">
+                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    <span className="text-white font-medium">Deeply connected</span> to emotion, intuition, and presence
+                  </p>
+                </div>
+                
+                <div className="flex items-start space-x-4 group">
+                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
+                  <p className="text-lg text-gray-300 leading-relaxed">
+                    <span className="text-white font-medium">Inspired to create</span> long after the event ends
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Visual/Quote */}
+            <div className="relative">
+              <div className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-24 h-24 bg-primary-500/10 rounded-full -translate-y-8 translate-x-8"></div>
+                <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full translate-y-12 -translate-x-12"></div>
+                
+                <div className="relative z-10">
+                  <div className="text-center mb-6">
+                    <div className="w-16 h-16 mx-auto mb-4 bg-primary-500/20 rounded-full flex items-center justify-center" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}>
+                      <span className="text-3xl">✨</span>
+                    </div>
+                  </div>
+                  
+                  <blockquote className="text-center">
+                    <p className="text-lg text-gray-300 leading-relaxed mb-4 italic">
+                      &quot;This is creative healing in community—a space where art becomes a tool for wellness and self-expression.&quot;
+                    </p>
+                  </blockquote>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* CTA Section */}
+          <div className="text-center mt-16">
+            <div className="bg-gray-800/50 rounded-2xl p-8 border border-gray-700">
+              <h3 className="text-2xl font-bold text-white mb-4">Ready to Experience Art Riot Live?</h3>
+              <p className="text-gray-300 mb-6">Explore our three unique sessions, each with its own healing modality and creative focus.</p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <button 
+                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  View All Sessions
+                </button>
+                <button 
+                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
+                  style={{ borderColor: '#f11568', color: '#f11568' }}
+                >
+                  Learn More
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* About Section */}
+      <section className="py-20 bg-gray-900/50">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                {TEMP_COPY.about.title}
+              </h2>
+              <p className="text-gray-300 text-lg leading-relaxed mb-8">
+                {TEMP_COPY.about.description}
+              </p>
+              <div className="grid sm:grid-cols-2 gap-4">
+                {TEMP_COPY.about.benefits.map((benefit, index) => (
+                  <div key={index} className="flex items-start space-x-3">
+                    <div className="w-2 h-2 rounded-full bg-primary-500 mt-2 flex-shrink-0" style={{ backgroundColor: '#f11568' }}></div>
+                    <p className="text-gray-300">{benefit}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="relative">
+              <div className="aspect-square rounded-2xl overflow-hidden">
+                <img 
+                  src="/Art-Riot-Live-Hero3.png" 
+                  alt="Art Riot Live - Intermodal expressive arts healing session"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+          
+          {/* Simple CTA */}
+          <div className="mt-12 text-center">
+            <button 
+              onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+              style={{ backgroundColor: '#f11568' }}
+            >
+              View Our Sessions
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Upcoming Sessions */}
+      <section id="upcoming-sessions" className="py-20">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">
+              Upcoming Sessions
+            </h2>
+            <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              Join us for transformative in-person experiences that nurture your creative spirit and promote deep healing.
+            </p>
+          </div>
+
+          <div className="space-y-6">
+            {UPCOMING_SESSIONS.map((session) => (
+              <div 
+                key={session.id}
+                className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-primary-500/50 transition-all duration-300"
+              >
+                <div className="grid lg:grid-cols-3 gap-6">
+                  {/* Calendar Icon */}
+                  <div className="aspect-video lg:aspect-[4/3] bg-gray-800 relative flex items-center justify-center">
+                    <div className="text-center">
+                      <svg className="w-12 h-12 mx-auto mb-1 text-primary-500" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                      </svg>
+                      <p className="text-gray-400 text-xs font-medium">Upcoming Session</p>
+                    </div>
+                  </div>
+
+                  {/* Session Details */}
+                  <div className="lg:col-span-2 p-6">
+                    <div className="flex justify-between items-start mb-4">
+                      <div>
+                        <h3 className="text-xl font-bold text-white mb-2">{session.title}</h3>
+                        <div className="flex flex-wrap gap-4 text-sm text-gray-400 mb-3">
+                          <span>📅 {session.date}</span>
+                          <span>🕐 {session.time}</span>
+                          <span>📍 {session.location}</span>
+                        </div>
+                      </div>
+                      <button 
+                        disabled
+                        className="bg-gray-600 text-gray-400 font-medium py-2 px-6 rounded-lg cursor-not-allowed whitespace-nowrap"
+                      >
+                        Coming Soon
+                      </button>
+                    </div>
+                    
+                    <p className="text-gray-300 text-sm leading-relaxed mb-4">
+                      {session.description}
+                    </p>
+
+                    <div className="flex justify-between items-center text-sm">
+                      <div className="flex gap-4 text-gray-400">
+                        <span>👥 {session.capacity}</span>
+                      </div>
+                      <div className="text-gray-400">
+                        Includes: {session.highlights.slice(0, 2).join(", ")} + more
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Registration Modal/Popup (placeholder) */}
+      {selectedSession && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-lg z-50 flex items-center justify-center p-6">
+          <div className="bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-8">
+              <div className="flex justify-between items-start mb-6">
+                <h3 className="text-2xl font-bold text-white">
+                  Registration Coming Soon
+                </h3>
+                <button 
+                  onClick={() => setSelectedSession(null)}
+                  className="text-gray-400 hover:text-white"
+                >
+                  ✕
+                </button>
+              </div>
+              
+              <div className="bg-gray-800 rounded-lg p-6 mb-6">
+                <p className="text-gray-300 mb-4">
+                  Registration and payment integration will be added here. This could include:
+                </p>
+                <ul className="space-y-2 text-gray-400">
+                  <li>• Stripe payment integration</li>
+                  <li>• Registration form with participant details</li>
+                  <li>• Email confirmation system</li>
+                  <li>• Calendar integration</li>
+                  <li>• Waitlist functionality for sold-out sessions</li>
+                </ul>
+              </div>
+              
+              <div className="flex space-x-4">
+                <button 
+                  onClick={() => setSelectedSession(null)}
+                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 px-6 rounded-lg transition-colors"
+                >
+                  Close
+                </button>
+                <button 
+                  className="flex-1 bg-primary-500 hover:bg-primary-600 text-white py-3 px-6 rounded-lg transition-colors"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  Contact for Registration
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Call to Action Section */}
+      <section className="py-20 bg-gradient-to-r from-primary-900/20 to-purple-900/20">
+        <div className="max-w-4xl mx-auto text-center px-6">
+          <h2 className="text-4xl font-bold text-white mb-6">
+            Ready to Begin Your Healing Journey?
+          </h2>
+          <p className="text-xl text-gray-300 mb-8">
+            Join our community of creative healers and experience the transformative power of intermodal expressive arts.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link 
+              href="/contact"
+              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+              style={{ backgroundColor: '#f11568' }}
+            >
+              Contact for More Info
+            </Link>
+            <Link 
+              href="/"
+              className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
+              style={{ borderColor: '#f11568', color: '#f11568' }}
+            >
+              Explore Virtual Events
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Disclaimer Section */}
+      <section className="py-12 bg-gray-800/30">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="bg-gray-900/50 rounded-lg p-6 border border-gray-700">
+            <h3 className="text-lg font-semibold text-white mb-4 flex items-center">
+              <span className="mr-2">ℹ️</span>
+              Important Note
+            </h3>
+            <p className="text-gray-300 text-sm leading-relaxed">
+              Art Riot Live sessions are designed for creative expression, community connection, and personal wellness. 
+              These experiences are <strong>not a substitute for professional therapy, medical treatment, or mental health services</strong>. 
+              If you are experiencing mental health concerns, please consult with a qualified healthcare professional. 
+              Our facilitators are not licensed healthcare providers, and these sessions are not intended to diagnose, treat, or cure any medical or psychological condition.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="bg-black border-t border-gray-800 py-12">
+        <div className="max-w-6xl mx-auto px-6 text-center">
+          <div className="mb-8">
+            <Link href="/" className="text-3xl font-bold text-white">
+              Art<span style={{ color: '#f11568' }}>Riot</span>
+            </Link>
+          </div>
+          <div className="flex flex-wrap justify-center space-x-6 mb-8 text-gray-400">
+            <Link href="/" className="hover:text-white transition-colors">Home</Link>
+            <Link href="/register/art-meditation" className="hover:text-white transition-colors">Virtual Events</Link>
+            <Link href="/in-person-events" className="hover:text-white transition-colors">In-Person Events</Link>
+            <Link href="mailto:hello@artriot.com" className="hover:text-white transition-colors">Contact</Link>
+          </div>
+          <p className="text-gray-500 text-sm">
+            © 2025 ArtRiot. All rights reserved. | A Tim Watts Art Initiative
+          </p>
+        </div>
+      </footer>
+    </main>
+  );
+}

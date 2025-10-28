@@ -14,19 +14,21 @@ export interface EventConfig {
   timezone: string;
   duration: string;
   format: string;
-  googleMeetLink: string;
+  meetingLink: string; // Virtual meeting link (Zoom, Google Meet, etc.)
+  passcode?: string; // Optional passcode for private sharing
   description: string;
 }
 
 export const ART_MEDITATION_EVENT: EventConfig = {
   name: 'Art Meditation',
-  date: 'Sunday, October 26, 2025',
-  isoDateTime: '2025-10-26T10:00:00-07:00', // 10 AM MST (UTC-7)
+  date: 'Sunday, November 2, 2025',
+  isoDateTime: '2025-11-02T10:00:00-07:00', // 10 AM MST (UTC-7)
   time: '10:00 AM MST',
   timezone: 'MST',
   duration: '60 minutes',
-  format: 'Virtual (Google Meet)',
-  googleMeetLink: 'https://meet.google.com/ueh-zwzn-wcg',
+  format: 'Virtual (Zoom)',
+  meetingLink: 'https://us04web.zoom.us/j/76416461563?pwd=zzx4UsQvVBMRoKM1CAiXoPA5ljhdpb.1',
+  passcode: 'RQK4ND',
   description: 'A mindful art session combining meditation and creative expression. Connect with your inner artist in a peaceful, supportive virtual environment.',
 };
 
