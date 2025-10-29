@@ -34,7 +34,7 @@ const UPCOMING_SESSIONS = [
     date: "November 21, 2024",
     time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
-    price: "$1",
+    price: "$55",
     description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
     facilitator: "Tim Watts",
     highlights: [
