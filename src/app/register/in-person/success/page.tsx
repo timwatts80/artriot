@@ -126,6 +126,12 @@ function SuccessPageContent() {
           </div>
         </div>
 
+        <div className="mt-8">
+          <p className="text-gray-400 leading-relaxed">
+            <span className="font-medium text-gray-300">Important Reminder:</span> This experience is not therapy or medical treatment. Our sessions are designed for educational, creative, and wellness purposes only. Please consult with healthcare professionals for any medical or mental health concerns.
+          </p>
+        </div>
+
         <div className="mt-12 text-center">
           <div className="bg-gray-900/50 rounded-xl p-6 border border-gray-800 mb-8">
             <h3 className="text-xl font-bold text-white mb-3">Join Our Community</h3>

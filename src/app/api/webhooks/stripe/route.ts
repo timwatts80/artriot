@@ -332,6 +332,13 @@ function generateParticipantEmailHTML(data: {
     </a>
   </div>
   
+  <div style="background: #2d1810; padding: 20px; border-radius: 8px; margin: 30px 0; border-left: 4px solid #f59e0b;">
+    <h3 style="color: #f59e0b; margin-top: 0;">Important Notice:</h3>
+    <p style="color: #fbbf24; line-height: 1.6; margin: 0;">
+      This experience is not therapy or medical treatment. Our sessions are designed for educational, creative, and wellness purposes only. Please consult with healthcare professionals for any medical or mental health concerns.
+    </p>
+  </div>
+  
   <p style="color: #ccc; line-height: 1.6; margin-top: 30px;">
     Questions? Reply to this email or contact us at info@artriot.live
   </p>

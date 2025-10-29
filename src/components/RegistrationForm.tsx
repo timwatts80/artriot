@@ -365,6 +365,13 @@ export default function RegistrationForm({
           </div>
         </div>
 
+        {/* Important Disclaimer */}
+        <div className="mb-4">
+          <p className="text-gray-400 text-sm leading-relaxed">
+            <span className="font-medium text-gray-300">Important Notice:</span> This is not therapy or medical treatment. This experience is for educational, creative, and wellness purposes only. Please consult with healthcare professionals for any medical or mental health concerns.
+          </p>
+        </div>
+
         {/* Terms and Conditions */}
         <div className="space-y-4">
           <div className="flex items-start space-x-3">

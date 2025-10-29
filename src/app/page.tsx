@@ -67,14 +67,14 @@ export default function ArtRiotHomePage() {
     },
     {
       id: '2',
-      name: 'Coming Soon: In Person Art Flow',
+      name: 'In Person Art Meditation',
       start_time: '2025-10-30T14:00:00',
-      description: 'Stay tuned for our upcoming in-person art flow experience. Details coming soon!',
+      description: 'Experience transformative in-person sessions combining art, movement, meditation, and music. Nurture your creative spirit and promote deep healing.',
       place: {
-        name: 'Location TBA',
+        name: 'Various Locations',
         location: {
           street: '',
-          city: 'Details Coming Soon'
+          city: 'Salt Lake City Area'
         }
       }
     }
@@ -300,6 +300,119 @@ export default function ArtRiotHomePage() {
         </div>
       </section>
 
+      {/* In Person Art Meditation Marketing Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-r from-primary-900/10 to-purple-900/10">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-6xl font-bold text-white mb-6">
+              Experience Art<span className="text-primary-500" style={{ color: '#f11568' }}>Riot</span> Live
+            </h2>
+            <p className="text-xl lg:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
+              Step into transformative in-person sessions where art, movement, meditation, and music unite to create something extraordinary.
+            </p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-white mb-6">What Makes Our Sessions Unique?</h3>
+              
+              <div className="space-y-4">
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f11568' }}>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">Integrated Energy Healing</h4>
+                    <p className="text-gray-300">Experience breathwork, sound healing, guided meditation, and musical frequencies designed to shift energy and promote deep relaxation.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f11568' }}>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">Mindful Movement Integration</h4>
+                    <p className="text-gray-300">Gentle somatic practices prepare your body and mind for deeper creative flow.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f11568' }}>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">All Materials Included</h4>
+                    <p className="text-gray-300">Professional art supplies, yoga mats, and refreshments—just bring your curiosity.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f11568' }}>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">Safe, Supportive Community</h4>
+                    <p className="text-gray-300">No experience required—perfect for beginners and seasoned artists alike.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="relative max-w-md mx-auto">
+              <div className="aspect-[4/3] rounded-2xl overflow-hidden border border-primary-500/30">
+                <img 
+                  src="/Art-Riot-Live-Hero2.png" 
+                  alt="Art Riot Live Experience" 
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex items-end">
+                  <div className="p-6 text-center w-full">
+                    <h4 className="text-xl font-bold text-white mb-2">Join the Experience</h4>
+                    <p className="text-gray-200 text-sm">
+                      Limited spaces available for intimate, transformative sessions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-900/50 rounded-2xl p-8 mb-12 border border-gray-800">
+            <div className="text-center max-w-4xl mx-auto">
+              <h3 className="text-2xl font-bold text-white mb-4">What Participants Are Saying</h3>
+              <blockquote className="text-lg text-gray-300 italic mb-6 leading-relaxed">
+                "I've never felt so free to express myself. The combination of music, movement, and art created this magical space where I could just... be. It's not therapy, but it's deeply healing in its own way."
+              </blockquote>
+              <div className="flex justify-center space-x-8 text-sm text-gray-400">
+                <span>✨ Non-judgmental space</span>
+                <span>🎨 All skill levels welcome</span>
+                <span>🧘‍♀️ Mindful & meditative</span>
+                <span>🎵 Live music experience</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="text-center">
+            <a 
+              href="/in-person-events"
+              className="inline-block bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-12 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 shadow-lg"
+              style={{ backgroundColor: '#f11568' }}
+            >
+              Explore In-Person Events
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
         <div className="max-w-4xl mx-auto text-center">
@@ -374,6 +487,14 @@ export default function ArtRiotHomePage() {
                       style={{ backgroundColor: '#f11568' }}
                     >
                       Register Now
+                    </a>
+                  ) : event.name === 'In Person Art Meditation' ? (
+                    <a 
+                      href="/in-person-events"
+                      className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                      style={{ backgroundColor: '#f11568' }}
+                    >
+                      View Events
                     </a>
                   ) : !event.name.includes('Coming Soon') ? (
                     <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300">

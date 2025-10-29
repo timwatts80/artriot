@@ -52,7 +52,7 @@ export default function FrequenciesFlowRegistration() {
     date: 'December 7, 2024',
     time: '7:00 PM - 8:30 PM',
     location: 'Jade Bloom, Draper, UT',
-    price: '$55',
+    price: '$1',
     maxCapacity: availability?.availability.total || 20,
     currentRegistrations: availability?.event.soldTickets || 0,
     availableSpots: availability?.availability.available || 0,

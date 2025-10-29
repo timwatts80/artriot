@@ -34,7 +34,7 @@ const UPCOMING_SESSIONS = [
     date: "November 21, 2024",
     time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
-    price: "$55",
+    price: "$1",
     description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
     facilitator: "Tim Watts",
     highlights: [
@@ -407,9 +407,9 @@ export default function InPersonEventsPage() {
                 key={session.id}
                 className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-primary-500/50 transition-all duration-300"
               >
-                <div className="grid lg:grid-cols-3 gap-6">
+                <div className="grid lg:grid-cols-3 gap-0">
                   {/* Calendar Icon */}
-                  <div className="aspect-video lg:aspect-[4/3] bg-gray-800 relative flex items-center justify-center">
+                  <div className="min-h-[200px] lg:min-h-full bg-gray-800 relative flex items-center justify-center">
                     <div className="text-center">
                       <svg className="w-12 h-12 mx-auto mb-1 text-primary-500" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
                         <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
@@ -451,9 +451,13 @@ export default function InPersonEventsPage() {
                       {session.description}
                     </p>
 
+                    <p className="text-gray-400 text-xs leading-relaxed mb-4">
+                      <span className="font-medium">Notice:</span> This is not therapy or medical treatment. This experience is for educational, creative, and wellness purposes only.
+                    </p>
+
                     <div className="flex justify-between items-center text-sm">
                       <div className="text-gray-400">
-                        � {session.price}
+                        💰 {session.price}
                       </div>
                       <div className="text-gray-400">
                         Includes: {session.highlights.slice(0, 2).join(", ")} + more
