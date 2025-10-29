@@ -25,7 +25,7 @@ export default function Header() {
             <Link 
               href="/register/art-meditation" 
               className={`transition-colors ${
-                pathname.includes('/register') ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
+                pathname.includes('/register') && !pathname.includes('/in-person') ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
               }`}
             >
               Virtual Events
@@ -33,7 +33,7 @@ export default function Header() {
             <Link 
               href="/in-person-events" 
               className={`transition-colors ${
-                pathname === '/in-person-events' ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
+                pathname === '/in-person-events' || pathname.includes('/register/in-person') ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
               }`}
             >
               In-Person Events

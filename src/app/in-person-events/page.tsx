@@ -1,6 +1,5 @@
 'use client';
 
-import { useState } from 'react';
 import Link from 'next/link';
 
 // Updated copy with new branding
@@ -30,15 +29,14 @@ const TEMP_COPY = {
 const UPCOMING_SESSIONS = [
   {
     id: 1,
+    eventType: "frequencies-flow",
     title: "Frequencies + Flow: Creative Expression",
-    date: "TBD",
-    time: "TBD",
+    date: "November 21, 2024",
+    time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
-    price: "$85",
+    price: "$55",
     description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
-    capacity: "20 participants",
     facilitator: "Tim Watts",
-    paymentLink: "#", // Replace with actual payment link
     highlights: [
       "Live musical performance throughout",
       "Guided meditation and breathwork",
@@ -49,15 +47,14 @@ const UPCOMING_SESSIONS = [
   },
   {
     id: 2,
+    eventType: "somatic-movement",
     title: "Body Wisdom: Somatic Art Journey",
     date: "TBD", 
     time: "TBD",
     location: "Sage Canvas, Lehi, UT",
-    price: "$75",
+    price: "$55",
     description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
-    capacity: "20 participants",
     facilitator: "Tim Watts",
-    paymentLink: "#", // Replace with actual payment link
     highlights: [
       "Gentle somatic body movement",
       "Guided meditation and breathwork", 
@@ -68,15 +65,14 @@ const UPCOMING_SESSIONS = [
   },
   {
     id: 3,
+    eventType: "meditation",
     title: "Breathe & Create: Deep Meditation Studio",
     date: "TBD",
     time: "TBD", 
     location: "Workshop SLC, Salt Lake City, UT",
-    price: "$95",
+    price: "$55",
     description: "Dive deep into stillness and emerge with vibrant creativity! This immersive experience centers around extended meditation and breathwork practices, creating space for profound art creation from a place of inner calm and clarity.",
-    capacity: "15 participants",
-    facilitator: "Tim Watts", 
-    paymentLink: "#", // Replace with actual payment link
+    facilitator: "Tim Watts",
     highlights: [
       "Extended meditation and breathwork",
       "Deep contemplative practices",
@@ -88,8 +84,6 @@ const UPCOMING_SESSIONS = [
 ];
 
 export default function InPersonEventsPage() {
-  const [selectedSession, setSelectedSession] = useState<number | null>(null);
-
   return (
     <main className="min-h-screen bg-black">
       {/* Hero Section */}
@@ -435,12 +429,22 @@ export default function InPersonEventsPage() {
                           <span>📍 {session.location}</span>
                         </div>
                       </div>
-                      <button 
-                        disabled
-                        className="bg-gray-600 text-gray-400 font-medium py-2 px-6 rounded-lg cursor-not-allowed whitespace-nowrap"
-                      >
-                        Coming Soon
-                      </button>
+                      {session.eventType === 'frequencies-flow' ? (
+                        <Link 
+                          href={`/register/in-person/${session.eventType}`}
+                          className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap"
+                          style={{ backgroundColor: '#f11568' }}
+                        >
+                          Register Now
+                        </Link>
+                      ) : (
+                        <button 
+                          disabled
+                          className="bg-gray-600 text-gray-300 font-medium py-2 px-6 rounded-lg cursor-not-allowed whitespace-nowrap"
+                        >
+                          Coming Soon
+                        </button>
+                      )}
                     </div>
                     
                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
@@ -448,8 +452,8 @@ export default function InPersonEventsPage() {
                     </p>
 
                     <div className="flex justify-between items-center text-sm">
-                      <div className="flex gap-4 text-gray-400">
-                        <span>👥 {session.capacity}</span>
+                      <div className="text-gray-400">
+                        � {session.price}
                       </div>
                       <div className="text-gray-400">
                         Includes: {session.highlights.slice(0, 2).join(", ")} + more
@@ -463,54 +467,7 @@ export default function InPersonEventsPage() {
         </div>
       </section>
 
-      {/* Registration Modal/Popup (placeholder) */}
-      {selectedSession && (
-        <div className="fixed inset-0 bg-black/80 backdrop-blur-lg z-50 flex items-center justify-center p-6">
-          <div className="bg-gray-900 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
-            <div className="p-8">
-              <div className="flex justify-between items-start mb-6">
-                <h3 className="text-2xl font-bold text-white">
-                  Registration Coming Soon
-                </h3>
-                <button 
-                  onClick={() => setSelectedSession(null)}
-                  className="text-gray-400 hover:text-white"
-                >
-                  ✕
-                </button>
-              </div>
-              
-              <div className="bg-gray-800 rounded-lg p-6 mb-6">
-                <p className="text-gray-300 mb-4">
-                  Registration and payment integration will be added here. This could include:
-                </p>
-                <ul className="space-y-2 text-gray-400">
-                  <li>• Stripe payment integration</li>
-                  <li>• Registration form with participant details</li>
-                  <li>• Email confirmation system</li>
-                  <li>• Calendar integration</li>
-                  <li>• Waitlist functionality for sold-out sessions</li>
-                </ul>
-              </div>
-              
-              <div className="flex space-x-4">
-                <button 
-                  onClick={() => setSelectedSession(null)}
-                  className="flex-1 bg-gray-700 hover:bg-gray-600 text-white py-3 px-6 rounded-lg transition-colors"
-                >
-                  Close
-                </button>
-                <button 
-                  className="flex-1 bg-primary-500 hover:bg-primary-600 text-white py-3 px-6 rounded-lg transition-colors"
-                  style={{ backgroundColor: '#f11568' }}
-                >
-                  Contact for Registration
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
+      {/* About Section */}
 
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-r from-primary-900/20 to-purple-900/20">
@@ -523,18 +480,18 @@ export default function InPersonEventsPage() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link 
-              href="/contact"
+              href="/register/in-person"
               className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
               style={{ backgroundColor: '#f11568' }}
             >
-              Contact for More Info
+              Register for Events
             </Link>
             <Link 
-              href="/"
+              href="/contact"
               className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
               style={{ borderColor: '#f11568', color: '#f11568' }}
             >
-              Explore Virtual Events
+              Contact for More Info
             </Link>
           </div>
         </div>
