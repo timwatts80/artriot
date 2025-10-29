@@ -390,7 +390,7 @@ export default function ArtRiotHomePage() {
             <div className="text-center max-w-4xl mx-auto">
               <h3 className="text-2xl font-bold text-white mb-4">What Participants Are Saying</h3>
               <blockquote className="text-lg text-gray-300 italic mb-6 leading-relaxed">
-                "I've never felt so free to express myself. The combination of music, movement, and art created this magical space where I could just... be. It's not therapy, but it's deeply healing in its own way."
+                &ldquo;I&apos;ve never felt so free to express myself. The combination of music, movement, and art created this magical space where I could just... be. It&apos;s not therapy, but it&apos;s deeply healing in its own way.&rdquo;
               </blockquote>
               <div className="flex justify-center space-x-8 text-sm text-gray-400">
                 <span>✨ Non-judgmental space</span>
