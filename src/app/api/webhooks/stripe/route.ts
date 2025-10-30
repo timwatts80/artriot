@@ -116,7 +116,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
               console.error('Error updating existing contact:', updateErr);
             }
           }
-        } catch (parseErr) {
+        } catch {
           console.error('Could not parse Brevo error response:', errorData);
         }
       }
@@ -198,7 +198,6 @@ export async function POST(request: NextRequest) {
           participantLastName,
           participantEmail,
           participantPhone,
-          participantDateOfBirth,
           emergencyContactName,
           emergencyContactPhone,
           emergencyContactRelation,

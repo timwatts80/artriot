@@ -23,7 +23,6 @@ interface EventAvailability {
 export default function FrequenciesFlowRegistration() {
   const [availability, setAvailability] = useState<EventAvailability | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function fetchAvailability() {
@@ -33,10 +32,9 @@ export default function FrequenciesFlowRegistration() {
           const data = await response.json();
           setAvailability(data);
         } else {
-          setError('Failed to load event availability');
+          console.error('Failed to load event availability');
         }
       } catch (err) {
-        setError('Failed to load event availability');
         console.error('Error fetching availability:', err);
       } finally {
         setLoading(false);

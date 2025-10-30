@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { loadStripe } from '@stripe/stripe-js';
 
 interface RegistrationFormProps {
   eventType: string;
@@ -40,8 +39,7 @@ export default function RegistrationForm({
   maxCapacity,
   currentRegistrations = 0,
   availableSpots = 0,
-  soldOut = false,
-  loading = false
+  soldOut = false
 }: RegistrationFormProps) {
   const [participantInfo, setParticipantInfo] = useState<ParticipantInfo>({
     firstName: '',
@@ -109,7 +107,7 @@ export default function RegistrationForm({
         }),
       });
 
-      const { sessionId, url, error: apiError } = await response.json();
+      const { url, error: apiError } = await response.json();
 
       if (apiError) {
         throw new Error(apiError);

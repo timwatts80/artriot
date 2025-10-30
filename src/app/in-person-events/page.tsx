@@ -450,13 +450,13 @@ export default function InPersonEventsPage() {
                   Through Art Riot Live, Tim combines elements of meditation, somatic movement, live music, and visual art creation to offer a unique intermodal approach to wellness and creative expression. Each session is designed to be a safe, non-judgmental space where participants can explore, release, and reconnect with their authentic selves.
                 </p>
                 <p>
-                  Tim's approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
+                  Tim&apos;s approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
                 </p>
               </div>
               
               <div className="mt-8 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
                 <p className="text-sm text-gray-400 italic">
-                  "Art Riot Live isn't about creating perfect art. It's about creating space for perfect authenticity. Every mark, every movement, every breath is an invitation to remember who you really are."
+                  &ldquo;Art Riot Live isn&rsquo;t about creating perfect art. It&rsquo;s about creating space for perfect authenticity. Every mark, every movement, every breath is an invitation to remember who you really are.&rdquo;
                 </p>
                 <p className="text-sm text-gray-500 mt-2">— Tim Watts</p>
               </div>

@@ -1,8 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { Button } from '../components/DesignTokensDemo';
+import { useState, useEffect } from 'react';
 import { ART_MEDITATION_EVENT } from '../config/events';
 
 // Types for components
@@ -23,62 +21,9 @@ interface Event {
   };
 }
 
-interface ArtKit {
-  id: number;
-  name: string;
-  description: string;
-  amazonUrl: string;
-  price: string;
-  image: string;
-  category: string;
-}
-
-interface NewsletterHighlight {
-  id: number;
-  title: string;
-  excerpt: string;
-  date: string;
-  image: string;
-}
-
 export default function ArtRiotHomePage() {
-  const [firstName, setFirstName] = useState('')
-  const [email, setEmail] = useState('')
-  const [date, setDate] = useState('')
-  const [submitMessage, setSubmitMessage] = useState('')
-  const [isRegistering, setIsRegistering] = useState(false)
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
-
-  // Mock data for development - replace with actual API calls
-  const mockEvents: Event[] = [
-    {
-      id: '1',
-      name: ART_MEDITATION_EVENT.name,
-      start_time: ART_MEDITATION_EVENT.isoDateTime,
-      description: ART_MEDITATION_EVENT.description,
-      place: {
-        name: 'Virtual Event',
-        location: {
-          street: '',
-          city: 'Online'
-        }
-      }
-    },
-    {
-      id: '2',
-      name: 'In Person Art Meditation',
-      start_time: '2025-10-30T14:00:00',
-      description: 'Experience transformative in-person sessions combining art, movement, meditation, and music. Nurture your creative spirit and promote deep healing.',
-      place: {
-        name: 'Various Locations',
-        location: {
-          street: '',
-          city: 'Salt Lake City Area'
-        }
-      }
-    }
-  ];
 
   // Newsletter highlights data (currently hidden)
   /*
@@ -107,100 +52,30 @@ export default function ArtRiotHomePage() {
   ];
   */
 
-  const artKits: ArtKit[] = [
-    // Beginner Kits
-    {
-      id: 1,
-      name: "Essential Acrylic Starter Set",
-      description: "Perfect for beginners: 12 vibrant acrylic colors, brushes, and canvas boards",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE1",
-      price: "$29.99",
-      image: "/kits/acrylic-starter.jpg",
-      category: "Beginner"
-    },
-    {
-      id: 2,
-      name: "Watercolor Discovery Kit",
-      description: "High-quality watercolor paints, brushes, and premium watercolor paper",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE2",
-      price: "$34.99",
-      image: "/kits/watercolor-beginner.jpg",
-      category: "Beginner"
-    },
-    {
-      id: 3,
-      name: "Drawing Fundamentals Set",
-      description: "Pencils, charcoal, blending tools, and sketching paper for drawing basics",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE3",
-      price: "$19.99",
-      image: "/kits/drawing-basics.jpg",
-      category: "Beginner"
-    },
-    // Intermediate Kits
-    {
-      id: 4,
-      name: "Professional Acrylic Paint Set",
-      description: "Artist-grade acrylics with extended working time and rich pigmentation",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE4",
-      price: "$67.99",
-      image: "/kits/acrylic-pro.jpg",
-      category: "Intermediate"
-    },
-    {
-      id: 5,
-      name: "Mixed Media Explorer Kit",
-      description: "Combine techniques with pastels, charcoal, watercolor, and textured papers",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE5",
-      price: "$89.99",
-      image: "/kits/mixed-media.jpg",
-      category: "Intermediate"
-    },
-    {
-      id: 6,
-      name: "Oil Painting Starter Kit",
-      description: "Traditional oil paints, solvents, brushes, and canvas for classical techniques",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE6",
-      price: "$124.99",
-      image: "/kits/oil-starter.jpg",
-      category: "Intermediate"
-    },
-    // Advanced Kits
-    {
-      id: 7,
-      name: "Master Artist Oil Set",
-      description: "Premium pigments, finest brushes, and archival canvas for serious artists",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE7",
-      price: "$299.99",
-      image: "/kits/oil-master.jpg",
-      category: "Advanced"
-    },
-    {
-      id: 8,
-      name: "Professional Watercolor Studio",
-      description: "Artist-grade tubes, natural hair brushes, and handmade watercolor papers",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE8",
-      price: "$189.99",
-      image: "/kits/watercolor-pro.jpg",
-      category: "Advanced"
-    },
-    {
-      id: 9,
-      name: "Digital Art Creation Kit",
-      description: "Graphics tablet, stylus, and premium digital art software bundle",
-      amazonUrl: "https://amazon.com/dp/B08EXAMPLE9",
-      price: "$249.99",
-      image: "/kits/digital-art.jpg",
-      category: "Advanced"
-    }
-  ];
-
   useEffect(() => {
+    // Mock data for development - replace with actual API calls
+    const mockEvents: Event[] = [
+      {
+        id: '1',
+        name: ART_MEDITATION_EVENT.name,
+        start_time: ART_MEDITATION_EVENT.isoDateTime,
+        description: ART_MEDITATION_EVENT.description,
+        place: {
+          name: ART_MEDITATION_EVENT.format,
+          location: {
+            street: "Virtual",
+            city: "Online"
+          }
+        }
+      },
+    ];
+
     // Simulate loading events
     setTimeout(() => {
       setEvents(mockEvents);
       setLoading(false);
     }, 1000);
-  }, [mockEvents]);
+  }, []);
 
   // Email submission handler (currently not used since newsletter is hidden)
   /*
@@ -240,16 +115,6 @@ export default function ArtRiotHomePage() {
       hour: 'numeric',
       minute: '2-digit',
     });
-  };
-
-  const groupKitsByCategory = (kits: ArtKit[]) => {
-    return kits.reduce((acc, kit) => {
-      if (!acc[kit.category]) {
-        acc[kit.category] = [];
-      }
-      acc[kit.category].push(kit);
-      return acc;
-    }, {} as Record<string, ArtKit[]>);
   };
 
   // Art kit grouping (currently not used)
