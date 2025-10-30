@@ -127,7 +127,7 @@ export default function ArtRiotHomePage() {
       <PageMeta
         title="ArtRiot - Where Creativity Rebels Against the Ordinary"
         description="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Experience transformative art meditation events, workshops, and creative inspiration."
-        image="/Art_Riot_Horizontal.png"
+        image="/Art_Riot_Banner.jpg"
         url="https://artriot.com"
         type="website"
       />

@@ -6,10 +6,10 @@ export default function Debug() {
       <pre>{`
 <meta property="og:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
 <meta property="og:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
-<meta property="og:image" content="https://artriot.com/Art_Riot_Horizontal.png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="630" />
-<meta property="og:image:type" content="image/png" />
+<meta property="og:image" content="https://artriot.com/Art_Riot_Banner.jpg" />
+<meta property="og:image:width" content="1641" />
+<meta property="og:image:height" content="857" />
+<meta property="og:image:type" content="image/jpeg" />
 <meta property="og:url" content="https://artriot.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ArtRiot" />
@@ -20,7 +20,7 @@ export default function Debug() {
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
 <meta name="twitter:description" content="Experience transformative art meditation events combining creativity, movement, and healing." />
-<meta name="twitter:image" content="https://artriot.com/Art_Riot_Horizontal.png" />
+<meta name="twitter:image" content="https://artriot.com/Art_Riot_Banner.jpg" />
 <meta name="twitter:creator" content="@artriot" />
 <meta name="twitter:site" content="@artriot" />
       `}</pre>
@@ -34,7 +34,9 @@ export default function Debug() {
 
       <h2>Image URLs to test:</h2>
       <ul>
-        <li><a href="https://artriot.com/Art_Riot_Horizontal.png" target="_blank">Main OG Image</a></li>
+        <li><a href="https://artriot.com/Art_Riot_Banner.jpg" target="_blank">Main OG Image (Banner)</a></li>
+        <li><a href="https://artriot.com/Art_Riot_Horizontal.png" target="_blank">Horizontal Logo</a></li>
+        <li><a href="https://artriot.com/Art-Riot-Live-Hero1.png" target="_blank">Events Hero Image</a></li>
         <li><a href="https://artriot.com/opengraph-image" target="_blank">Generated OG Image</a></li>
         <li><a href="https://artriot.com/in-person-events/opengraph-image" target="_blank">Events OG Image</a></li>
       </ul>

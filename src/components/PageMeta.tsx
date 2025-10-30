@@ -11,7 +11,7 @@ interface PageMetaProps {
 export default function PageMeta({
   title = "ArtRiot - Where Creativity Rebels Against the Ordinary",
   description = "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite.",
-  image = "/Art_Riot_Horizontal.png",
+  image = "/Art_Riot_Banner.jpg",
   url = "https://artriot.com",
   type = "website"
 }: PageMetaProps) {
