@@ -51,9 +51,12 @@ async function initializeDatabase() {
       INSERT INTO events (event_type, event_name, event_date, total_tickets, price_cents)
       VALUES 
         ('frequencies-flow', 'Frequencies Flow: Sound Healing Experience', 'December 7, 2024 at 7:00 PM', 20, 5500),
+        ('somatic-movement', 'Body Wisdom: Somatic Art Journey', 'TBD', 20, 5500),
+        ('meditation', 'Breathe & Create: Deep Meditation Studio', 'TBD', 15, 5500),
         ('art-riot-live', 'Art Riot Live Experience', 'Coming Soon', 20, 5500)
       ON CONFLICT (event_type) DO UPDATE SET 
-        price_cents = EXCLUDED.price_cents
+        price_cents = EXCLUDED.price_cents,
+        total_tickets = EXCLUDED.total_tickets
     `);
 
     console.log('Database initialized successfully!');

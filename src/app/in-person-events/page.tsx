@@ -1,6 +1,20 @@
 'use client';
 
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+interface EventAvailability {
+  event: {
+    eventType: string;
+    totalTickets: number;
+    soldTickets: number;
+  };
+  availability: {
+    total: number;
+    available: number;
+    soldOut: boolean;
+  };
+}
 
 // Updated copy with new branding
 const TEMP_COPY = {
@@ -84,6 +98,42 @@ const UPCOMING_SESSIONS = [
 ];
 
 export default function InPersonEventsPage() {
+  const [availabilities, setAvailabilities] = useState<{[key: string]: EventAvailability}>({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAllAvailabilities() {
+      try {
+        const eventTypes = ['frequencies-flow', 'somatic-movement', 'meditation'];
+        const promises = eventTypes.map(async (eventType) => {
+          const response = await fetch(`/api/events/availability?eventType=${eventType}`);
+          if (response.ok) {
+            const data = await response.json();
+            return { eventType, data };
+          }
+          return null;
+        });
+
+        const results = await Promise.all(promises);
+        const availabilityMap: {[key: string]: EventAvailability} = {};
+        
+        results.forEach((result) => {
+          if (result) {
+            availabilityMap[result.eventType] = result.data;
+          }
+        });
+
+        setAvailabilities(availabilityMap);
+      } catch (err) {
+        console.error('Error fetching availabilities:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchAllAvailabilities();
+  }, []);
+
   return (
     <main className="min-h-screen bg-black">
       {/* Hero Section */}
@@ -456,11 +506,23 @@ export default function InPersonEventsPage() {
                     </p>
 
                     <div className="flex justify-between items-center text-sm">
-                      <div className="text-gray-400">
-                        💰 {session.price}
+                      <div className="text-white text-lg font-bold">
+                        {session.price}
                       </div>
                       <div className="text-gray-400">
-                        Includes: {session.highlights.slice(0, 2).join(", ")} + more
+                        {availabilities[session.eventType] && !loading ? (
+                          availabilities[session.eventType].availability.soldOut ? (
+                            <span className="text-red-400 font-medium">Sold Out</span>
+                          ) : (
+                            <span className="text-green-400 font-medium">
+                              {availabilities[session.eventType].availability.available} spots available
+                            </span>
+                          )
+                        ) : loading ? (
+                          <span className="text-gray-500">Loading availability...</span>
+                        ) : (
+                          `Includes: ${session.highlights.slice(0, 2).join(", ")} + more`
+                        )}
                       </div>
                     </div>
                   </div>
