@@ -395,6 +395,62 @@ export default function InPersonEventsPage() {
         </div>
       </section>
 
+      {/* Facilitator Section */}
+      <section className="py-20 bg-gray-900/30">
+        <div className="max-w-6xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Facilitator Image */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative">
+                {/* Pink oblong glow shape - offset behind image */}
+                <div 
+                  className="absolute top-4 -left-8 w-96 h-80 lg:w-[28rem] lg:h-96 blur-3xl opacity-90 rotate-12"
+                  style={{ 
+                    background: 'linear-gradient(135deg, rgba(241, 21, 104, 0.6) 0%, rgba(241, 21, 104, 0.4) 30%, rgba(241, 21, 104, 0.2) 60%, transparent 100%)',
+                    borderRadius: '50% 40% 60% 30%',
+                    transform: 'rotate(-15deg) translateX(-20px) translateY(10px)'
+                  }}
+                ></div>
+                <img 
+                  src="/SLC_Trish_Headshot_250919 1.jpg"
+                  alt="Tim Watts - Art Riot Live Facilitator"
+                  className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl z-10"
+                />
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent z-20"></div>
+              </div>
+            </div>
+            
+            {/* Facilitator Content */}
+            <div>
+              <h2 className="text-4xl font-bold text-white mb-6">
+                About the Facilitator
+              </h2>
+              <h3 className="text-2xl font-semibold text-primary-400 mb-4" style={{ color: '#f11568' }}>
+                Tim Watts
+              </h3>
+              <div className="space-y-4 text-gray-300 leading-relaxed">
+                <p>
+                  Tim is dedicated to creating transformative spaces where creativity, movement, and healing intersect. With a deep belief in the power of expressive arts to unlock authentic self-expression and community connection, Tim guides participants through immersive experiences that honor both individual and collective healing.
+                </p>
+                <p>
+                  Through Art Riot Live, Tim combines elements of meditation, somatic movement, live music, and visual art creation to offer a unique intermodal approach to wellness and creative expression. Each session is designed to be a safe, non-judgmental space where participants can explore, release, and reconnect with their authentic selves.
+                </p>
+                <p>
+                  Tim's approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
+                </p>
+              </div>
+              
+              <div className="mt-8 p-4 bg-gray-800/50 rounded-lg border border-gray-700">
+                <p className="text-sm text-gray-400 italic">
+                  "Art Riot Live isn't about creating perfect art. It's about creating space for perfect authenticity. Every mark, every movement, every breath is an invitation to remember who you really are."
+                </p>
+                <p className="text-sm text-gray-500 mt-2">— Tim Watts</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* About Section */}
       <section id="about-expressive-healing" className="py-20 bg-gray-900/50">
         <div className="max-w-6xl mx-auto px-6">
@@ -514,8 +570,10 @@ export default function InPersonEventsPage() {
                           availabilities[session.eventType].availability.soldOut ? (
                             <span className="text-red-400 font-medium">Sold Out</span>
                           ) : (
-                            <span className="text-green-400 font-medium">
-                              {availabilities[session.eventType].availability.available} spots available
+                            <span className="text-sm">
+                              <span className="text-gray-400">{availabilities[session.eventType].availability.total} spots</span>
+                              <span className="text-gray-400"> / </span>
+                              <span className="text-green-400">{availabilities[session.eventType].availability.available} remaining</span>
                             </span>
                           )
                         ) : loading ? (
@@ -532,8 +590,6 @@ export default function InPersonEventsPage() {
           </div>
         </div>
       </section>
-
-      {/* About Section */}
 
       {/* Call to Action Section */}
       <section className="py-20 bg-gradient-to-r from-primary-900/20 to-purple-900/20">
