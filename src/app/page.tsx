@@ -73,7 +73,7 @@ export default function ArtRiotHomePage() {
       {
         id: '2',
         name: 'In Person Art Meditation',
-        start_time: '2024-12-10T19:00:00',
+        start_time: '2025-11-21T19:00:00',
         description: 'Experience transformative in-person sessions combining art, movement, meditation, and music. Nurture your creative spirit and promote deep healing in beautiful Utah venues.',
         place: {
           name: 'Various Locations',

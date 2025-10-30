@@ -47,7 +47,7 @@ const UPCOMING_SESSIONS = [
     id: 1,
     eventType: "frequencies-flow",
     title: "Frequencies + Flow: Creative Expression",
-    date: "November 21, 2024",
+    date: "November 21, 2025",
     time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
     price: "$55",
@@ -165,8 +165,8 @@ export default function InPersonEventsPage() {
         data={{
           name: "Art Riot Live - In-Person Art Meditation Events",
           description: "Experience transformative in-person art meditation events combining movement, music, and art for healing and creativity.",
-          startDate: "2024-12-10T19:00:00-07:00",
-          endDate: "2024-12-14T12:00:00-07:00",
+          startDate: "2025-11-21T19:00:00-07:00",
+          endDate: "2025-12-14T12:00:00-07:00",
           location: {
             "@type": "Place",
             name: "Various Venues",

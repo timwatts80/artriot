@@ -47,7 +47,7 @@ export default function FrequenciesFlowRegistration() {
   const eventData = {
     id: 'frequencies-flow',
     name: 'Frequencies + Flow: Creative Expression',
-    date: 'December 7, 2024',
+    date: 'November 21, 2025',
     time: '7:00 PM - 8:30 PM',
     location: 'Jade Bloom, Draper, UT',
     price: '$55',
