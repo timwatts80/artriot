@@ -13,7 +13,20 @@ export default function Debug() {
 <meta property="og:url" content="https://artriot.com" />
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="ArtRiot" />
+<meta property="fb:app_id" content="YOUR_FACEBOOK_APP_ID" />
       `}</pre>
+
+      <h2>Facebook App ID Setup:</h2>
+      <div style={{ background: '#f5f5f5', padding: '16px', borderRadius: '8px', marginBottom: '16px' }}>
+        <p><strong>To fix the fb:app_id error:</strong></p>
+        <ol>
+          <li>Go to <a href="https://developers.facebook.com/apps/" target="_blank">Facebook Developers</a></li>
+          <li>Click &ldquo;Create App&rdquo; → Choose &ldquo;Business&rdquo; → Fill out basic info</li>
+          <li>Copy your App ID from the dashboard</li>
+          <li>Replace &ldquo;YOUR_FACEBOOK_APP_ID&rdquo; in the meta tags with your actual App ID</li>
+        </ol>
+        <p><em>Note: You can test without App ID, but Facebook prefers it for better analytics and features.</em></p>
+      </div>
       
       <h2>Twitter Card Tags:</h2>
       <pre>{`

@@ -59,10 +59,11 @@ export default function PageMeta({
     updateMeta('og:type', type);
     updateMeta('og:url', url);
     updateMeta('og:image', imageUrl);
-    updateMeta('og:image:width', '1200');
-    updateMeta('og:image:height', '630');
+    updateMeta('og:image:width', '1641');
+    updateMeta('og:image:height', '857');
     updateMeta('og:image:alt', title);
     updateMeta('og:locale', 'en_US');
+    updateMeta('fb:app_id', '123456789012345');
 
     // Twitter Card Meta Tags
     updateMeta('twitter:card', 'summary_large_image', false);

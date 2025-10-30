@@ -115,8 +115,19 @@ export default function RootLayout({
         <meta property="og:image:width" content="1641" />
         <meta property="og:image:height" content="857" />
         <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image:alt" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
+        <meta property="og:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
+        <meta property="og:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
+        <meta property="og:url" content="https://artriot.com" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="ArtRiot" />
+        <meta property="fb:app_id" content="123456789012345" />
         <meta name="twitter:image" content="https://artriot.com/Art_Riot_Banner.jpg" />
         <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
+        <meta name="twitter:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
+        <meta name="twitter:site" content="@artriot" />
+        <meta name="twitter:creator" content="@artriot" />
         
         <script
           type="application/ld+json"
