@@ -50,14 +50,14 @@ export const metadata: Metadata = {
     siteName: "ArtRiot",
     images: [
       {
-        url: "/Art_Riot_Horizontal.png",
+        url: "https://artriot.com/Art_Riot_Horizontal.png",
         width: 1200,
         height: 630,
         alt: "ArtRiot - Where Creativity Rebels Against the Ordinary - Art Meditation Events",
         type: "image/png",
       },
       {
-        url: "/Art_Riot_Banner.jpg",
+        url: "https://artriot.com/Art_Riot_Banner.jpg",
         width: 1641,
         height: 857,
         alt: "ArtRiot Community - Creative Events and Workshops",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     description: "Experience transformative art meditation events combining creativity, movement, and healing. Join our community of artists and dreamers.",
     images: [
       {
-        url: "/Art_Riot_Horizontal.png",
+        url: "https://artriot.com/Art_Riot_Horizontal.png",
         alt: "ArtRiot - Art Meditation Events",
       }
     ],
@@ -110,6 +110,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Explicit Open Graph meta tags for better social media compatibility */}
+        <meta property="og:image" content="https://artriot.com/Art_Riot_Horizontal.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
+        <meta name="twitter:image" content="https://artriot.com/Art_Riot_Horizontal.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
