@@ -101,6 +101,20 @@ export default function InPersonEventsPage() {
   const [availabilities, setAvailabilities] = useState<{[key: string]: EventAvailability}>({});
   const [loading, setLoading] = useState(true);
 
+  // Function to get venue logo based on event type
+  const getVenueLogo = (eventType: string) => {
+    switch (eventType) {
+      case 'frequencies-flow':
+        return '/JadeBloomLogo.jpeg';
+      case 'somatic-movement':
+        return '/SageCanvasLogo.webp';
+      case 'meditation':
+        return '/WorkshopSLCLogo.webp';
+      default:
+        return null;
+    }
+  };
+
   useEffect(() => {
     async function fetchAllAvailabilities() {
       try {
@@ -514,14 +528,38 @@ export default function InPersonEventsPage() {
                 className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-primary-500/50 transition-all duration-300"
               >
                 <div className="grid lg:grid-cols-3 gap-0">
-                  {/* Calendar Icon */}
-                  <div className="min-h-[200px] lg:min-h-full bg-gray-800 relative flex items-center justify-center">
-                    <div className="text-center">
-                      <svg className="w-12 h-12 mx-auto mb-1 text-primary-500" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
-                        <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
-                      </svg>
-                      <p className="text-gray-400 text-xs font-medium">Upcoming Session</p>
-                    </div>
+                  {/* Venue Logo & Calendar Icon */}
+                  <div className="min-h-[200px] lg:min-h-full bg-gray-800 relative overflow-hidden">
+                    {getVenueLogo(session.eventType) ? (
+                      <div className="relative w-full h-full">
+                        {/* Full background logo */}
+                        <div className={`absolute inset-0 ${session.eventType === 'meditation' ? 'bg-white' : ''}`}>
+                          <img 
+                            src={getVenueLogo(session.eventType)!}
+                            alt={`${session.location} logo`}
+                            className="absolute inset-0 w-full h-full object-cover"
+                          />
+                        </div>
+                        {/* Dark overlay for text readability */}
+                        <div className="absolute inset-0 bg-black/60"></div>
+                        {/* Overlay content */}
+                        <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                          <svg className="w-8 h-8 mb-2 text-primary-500" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                          </svg>
+                          <p className="text-white text-xs font-medium drop-shadow-lg">Upcoming Session</p>
+                        </div>
+                      </div>
+                    ) : (
+                      <div className="flex items-center justify-center h-full">
+                        <div className="text-center">
+                          <svg className="w-12 h-12 mx-auto mb-1 text-primary-500" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+                          </svg>
+                          <p className="text-gray-400 text-xs font-medium">Upcoming Session</p>
+                        </div>
+                      </div>
+                    )}
                   </div>
 
                   {/* Session Details */}
