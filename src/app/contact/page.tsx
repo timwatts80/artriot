@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import PageMeta from '@/components/PageMeta';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -56,6 +57,14 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-black pt-20">
+      <PageMeta
+        title="Contact ArtRiot"
+        description="Get in touch with ArtRiot. Questions about events, workshops, or collaborations? We'd love to hear from you. Contact us today."
+        image="/Art_Riot_Horizontal.png"
+        url="https://artriot.com/contact"
+        type="website"
+      />
+      
       {/* Hero Section */}
       <section className="py-12 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-black"></div>

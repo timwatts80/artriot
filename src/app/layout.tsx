@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "ArtRiot - Where Creativity Rebels Against the Ordinary",
-  description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Discover events, workshops, and creative inspiration.",
-  keywords: ["art", "artists", "creative community", "workshops", "events", "art supplies", "creativity", "art meditation", "online events"],
+  description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Discover transformative art meditation events, in-person workshops, and creative inspiration.",
+  keywords: ["art", "artists", "creative community", "workshops", "events", "art supplies", "creativity", "art meditation", "online events", "Utah", "Salt Lake City", "healing arts", "somatic movement", "frequencies flow"],
   authors: [{ name: "ArtRiot" }],
   creator: "ArtRiot",
   publisher: "ArtRiot",
@@ -43,25 +43,38 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: "ArtRiot - Where Creativity Rebels Against the Ordinary",
-    description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite.",
+    description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Experience transformative art meditation events combining creativity, movement, and healing.",
     type: "website",
     locale: "en_US",
     url: "https://artriot.com",
     siteName: "ArtRiot",
     images: [
       {
+        url: "/Art_Riot_Horizontal.png",
+        width: 1200,
+        height: 630,
+        alt: "ArtRiot - Where Creativity Rebels Against the Ordinary - Art Meditation Events",
+        type: "image/png",
+      },
+      {
         url: "/Art_Riot_Banner.jpg",
         width: 1641,
         height: 857,
-        alt: "ArtRiot - Where Creativity Rebels Against the Ordinary",
+        alt: "ArtRiot Community - Creative Events and Workshops",
+        type: "image/jpeg",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
     title: "ArtRiot - Where Creativity Rebels Against the Ordinary",
-    description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite.",
-    images: ["/Art_Riot_Banner.jpg"],
+    description: "Experience transformative art meditation events combining creativity, movement, and healing. Join our community of artists and dreamers.",
+    images: [
+      {
+        url: "/Art_Riot_Horizontal.png",
+        alt: "ArtRiot - Art Meditation Events",
+      }
+    ],
     creator: "@artriot",
     site: "@artriot",
   },

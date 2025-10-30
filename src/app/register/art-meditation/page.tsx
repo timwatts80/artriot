@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { ART_MEDITATION_EVENT, getShortDate } from '../../../config/events';
+import PageMeta from '@/components/PageMeta';
 
 export default function ArtMeditationRegistration() {
   const [formData, setFormData] = useState({
@@ -88,6 +89,14 @@ export default function ArtMeditationRegistration() {
 
   return (
     <main className="min-h-screen bg-black">
+      <PageMeta
+        title="Art Meditation Registration - Virtual Event"
+        description="Join our transformative virtual art meditation event. Experience guided meditation combined with creative expression from the comfort of your home. All materials included."
+        image="/Art_Riot_Horizontal.png"
+        url="https://artriot.com/register/art-meditation"
+        type="website"
+      />
+      
       {/* Hero Section with Logo */}
       <section className="pt-24 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg mx-auto text-center">

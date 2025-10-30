@@ -2,6 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
+import PageMeta from '@/components/PageMeta';
+import StructuredData from '@/components/StructuredData';
 
 interface EventAvailability {
   event: {
@@ -150,6 +152,49 @@ export default function InPersonEventsPage() {
 
   return (
     <main className="min-h-screen bg-black">
+      <PageMeta
+        title="Art Riot Live - In-Person Art Meditation Events"
+        description="Experience transformative in-person art meditation events in Utah. Combining movement, music, and art for healing and creativity. Join frequencies & flow, somatic movement, and meditation sessions."
+        image="/Art-Riot-Live-Hero1.png"
+        url="https://artriot.com/in-person-events"
+        type="website"
+      />
+      
+      <StructuredData
+        type="Event"
+        data={{
+          name: "Art Riot Live - In-Person Art Meditation Events",
+          description: "Experience transformative in-person art meditation events combining movement, music, and art for healing and creativity.",
+          startDate: "2024-12-10T19:00:00-07:00",
+          endDate: "2024-12-14T12:00:00-07:00",
+          location: {
+            "@type": "Place",
+            name: "Various Venues",
+            address: {
+              "@type": "PostalAddress",
+              addressLocality: "Salt Lake City",
+              addressRegion: "UT",
+              addressCountry: "US"
+            }
+          },
+          organizer: {
+            "@type": "Organization",
+            name: "ArtRiot",
+            url: "https://artriot.com"
+          },
+          offers: {
+            "@type": "Offer",
+            price: "55",
+            priceCurrency: "USD",
+            availability: "https://schema.org/InStock",
+            url: "https://artriot.com/in-person-events"
+          },
+          eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
+          eventStatus: "https://schema.org/EventScheduled",
+          image: "https://artriot.com/Art-Riot-Live-Hero1.png"
+        }}
+      />
+      
       {/* Hero Section */}
       <section className="pt-32 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-black"></div>

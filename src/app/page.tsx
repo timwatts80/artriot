@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from 'react';
 import { ART_MEDITATION_EVENT } from '../config/events';
+import PageMeta from '@/components/PageMeta';
+import StructuredData from '@/components/StructuredData';
 
 // Types for components
 interface Event {
@@ -122,6 +124,40 @@ export default function ArtRiotHomePage() {
 
   return (
     <main className="min-h-screen bg-black">
+      <PageMeta
+        title="ArtRiot - Where Creativity Rebels Against the Ordinary"
+        description="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Experience transformative art meditation events, workshops, and creative inspiration."
+        image="/Art_Riot_Horizontal.png"
+        url="https://artriot.com"
+        type="website"
+      />
+
+      <StructuredData
+        type="Organization"
+        data={{
+          name: "ArtRiot",
+          description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite.",
+          url: "https://artriot.com",
+          logo: "https://artriot.com/Art_Riot_Horizontal.png",
+          sameAs: [
+            "https://twitter.com/artriot",
+            "https://instagram.com/artriot",
+            "https://facebook.com/artriot"
+          ],
+          contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer service",
+            url: "https://artriot.com/contact"
+          },
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "Salt Lake City",
+            addressRegion: "UT",
+            addressCountry: "US"
+          }
+        }}
+      />
+      
       {/* Hero Section */}
       <section 
         className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative bg-cover bg-center bg-no-repeat"
