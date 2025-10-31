@@ -365,7 +365,7 @@ export default function InPersonEventsPage() {
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               In a world that tells us to perform, perfect, and produce,<br />
               <span className="text-primary-400 font-medium" style={{ color: '#f11568' }}>
-                Art Riot Live creates a sacred space where your soul can speak through color, texture, and form—no artistic experience required. Whether you've never held a paintbrush or consider yourself an artist, this is about authentic expression, not technical skill.
+                Art Riot Live creates a sacred space where your soul can speak through color, texture, and form—no artistic experience required. Whether you&apos;ve never held a paintbrush or consider yourself an artist, this is about authentic expression, not technical skill.
               </span>
             </p>
           </div>
@@ -423,7 +423,7 @@ export default function InPersonEventsPage() {
                   
                   <blockquote className="text-center">
                     <p className="text-lg text-gray-300 leading-relaxed mb-4 italic">
-                      &quot;I had never considered myself artistic, but this experience showed me that my soul has its own creative language. It's not about making 'good' art—it's about letting your truth flow onto the canvas.&quot;
+                      &quot;I had never considered myself artistic, but this experience showed me that my soul has its own creative language. It&apos;s not about making &apos;good&apos; art—it&apos;s about letting your truth flow onto the canvas.&quot;
                     </p>
                   </blockquote>
                 </div>
