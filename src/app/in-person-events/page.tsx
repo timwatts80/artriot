@@ -244,19 +244,81 @@ export default function InPersonEventsPage() {
 
             {/* Right Column - Visual Content */}
             <div className="relative">
-              <div className="aspect-square rounded-2xl overflow-hidden relative">
+              <div className="aspect-square rounded-2xl relative">
                 <img 
                   src="/ArtRiot-ArtSession-Image.png" 
                   alt="Art Riot Live - Art-making session with creative expression"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover rounded-2xl"
                 />
                 <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
                   Art Riot Live
                 </div>
                 {/* Decorative overlay elements */}
-                <div className="absolute top-4 left-4 w-16 h-16 bg-primary-500/20 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}></div>
-                <div className="absolute bottom-8 right-6 w-24 h-24 bg-purple-500/10 rounded-full backdrop-blur-sm"></div>
-                <div className="absolute top-1/2 right-4 w-8 h-8 bg-primary-500/30 rounded-full backdrop-blur-sm" style={{ backgroundColor: 'rgba(241, 21, 104, 0.3)' }}></div>
+                <div 
+                  className="absolute top-4 left-4 w-16 h-16 md:w-32 md:h-32 bg-primary-500/20 rounded-full backdrop-blur-sm"
+                  style={{ 
+                    backgroundColor: 'rgba(241, 21, 104, 0.2)',
+                    animation: 'float1 12s ease-in-out infinite'
+                  }}
+                ></div>
+                <div 
+                  className="absolute bottom-8 right-6 w-20 h-20 md:w-40 md:h-40 bg-purple-500/10 rounded-full backdrop-blur-sm"
+                  style={{ 
+                    animation: 'float2 16s ease-in-out infinite'
+                  }}
+                ></div>
+                <div 
+                  className="absolute top-1/2 right-4 w-12 h-12 md:w-24 md:h-24 bg-primary-500/30 rounded-full backdrop-blur-sm"
+                  style={{ 
+                    backgroundColor: 'rgba(241, 21, 104, 0.3)',
+                    animation: 'float3 14s ease-in-out infinite'
+                  }}
+                ></div>
+                <div 
+                  className="absolute top-16 right-1/3 w-14 h-14 md:w-28 md:h-28 bg-blue-500/15 rounded-full backdrop-blur-sm"
+                  style={{ 
+                    animation: 'float4 18s ease-in-out infinite'
+                  }}
+                ></div>
+                <div 
+                  className="absolute bottom-1/4 left-8 w-10 h-10 md:w-20 md:h-20 bg-yellow-500/20 rounded-full backdrop-blur-sm"
+                  style={{ 
+                    animation: 'float5 10s ease-in-out infinite'
+                  }}
+                ></div>
+
+                {/* CSS animations */}
+                <style jsx>{`
+                  @keyframes float1 {
+                    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                    33% { transform: translate(45px, -50px) rotate(120deg); }
+                    66% { transform: translate(-35px, 40px) rotate(240deg); }
+                  }
+                  
+                  @keyframes float2 {
+                    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                    25% { transform: translate(-50px, -35px) rotate(90deg); }
+                    50% { transform: translate(40px, -45px) rotate(180deg); }
+                    75% { transform: translate(60px, 25px) rotate(270deg); }
+                  }
+                  
+                  @keyframes float3 {
+                    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                    50% { transform: translate(-30px, 55px) rotate(180deg); }
+                  }
+                  
+                  @keyframes float4 {
+                    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                    40% { transform: translate(50px, 45px) rotate(144deg); }
+                    80% { transform: translate(-40px, -30px) rotate(288deg); }
+                  }
+                  
+                  @keyframes float5 {
+                    0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
+                    25% { transform: translate(35px, -50px) rotate(90deg); }
+                    75% { transform: translate(-25px, 40px) rotate(270deg); }
+                  }
+                `}</style>
               </div>
             </div>
           </div>
