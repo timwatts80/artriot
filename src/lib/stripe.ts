@@ -5,7 +5,7 @@ export const stripePromise = loadStripe(
 );
 
 export const STRIPE_CONFIG = {
-  FREQUENCIES_FLOW_PRICE_ID: 'price_1SNaPGGFD0K8TqkA5pSktiIy', // Live price ID
+  FREQUENCIES_FLOW_PRICE_ID: 'price_1SOPuhGFD0K8TqkA1Nij4wnV', // $35 Live price ID
   SOMATIC_MOVEMENT_PRICE_ID: 'price_1SNaRPGFD0K8TqkAqt9pMtEb', // Replace with actual price ID
   MEDITATION_PRICE_ID: 'price_1SNaSSGFD0K8TqkAnH11uc4S', // Replace with actual price ID
 } as const;

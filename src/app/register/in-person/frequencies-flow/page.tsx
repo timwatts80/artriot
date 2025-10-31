@@ -50,14 +50,14 @@ export default function FrequenciesFlowRegistration() {
     date: 'November 21, 2025',
     time: '7:00 PM - 8:30 PM',
     location: 'Jade Bloom, Draper, UT',
-    price: '$55',
+    price: '$35',
     maxCapacity: availability?.availability.total || 20,
     currentRegistrations: availability?.event.soldTickets || 0,
     availableSpots: availability?.availability.available || 0,
     soldOut: availability?.availability.soldOut || false,
-    description: 'Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance.',
+    description: 'Experience the magic of creating art that speaks from your soul. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.',
     highlights: [
-      'Live musical performance throughout',
+      'Musical performance throughout',
       'Guided meditation and breathwork',
       'Prompted art creation with supplies included',
       'Music-guided creative expression',
@@ -125,7 +125,7 @@ export default function FrequenciesFlowRegistration() {
           <div className="bg-gray-800/50 rounded-lg p-4">
             <p className="text-gray-300 leading-relaxed">
               {eventData.description} Each brushstroke flows with the rhythm as music, meditation, 
-              and art creation unite in perfect harmony. This unique experience combines live musical 
+              and art creation unite in perfect harmony. This unique experience combines musical 
               performance with guided creative expression, creating a transformative journey for both 
               mind and spirit.
             </p>
@@ -140,18 +140,35 @@ export default function FrequenciesFlowRegistration() {
             {/* Tim Watts */}
             <div className="text-center">
               <div className="relative mb-4">
-                <img 
-                  src="/SLC_Trish_Headshot_250919 1.jpg" 
-                  alt="Tim Watts - Co-Facilitator" 
-                  className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50"
-                  style={{ borderColor: '#f11568' }}
-                />
+                <a 
+                  href="https://www.facebook.com/TimWattsArt" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img 
+                    src="/SLC_Trish_Headshot_250919 1.jpg" 
+                    alt="Tim Watts - Co-Facilitator" 
+                    className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50 hover:border-primary-400"
+                    style={{ borderColor: '#f11568' }}
+                  />
+                </a>
                 <div 
-                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl"
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl pointer-events-none"
                   style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
                 ></div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Tim Watts</h3>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <a 
+                  href="https://www.facebook.com/TimWattsArt" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-400 transition-colors duration-200"
+                  style={{ color: 'inherit' }}
+                >
+                  Tim Watts
+                </a>
+              </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Tim&apos;s approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
               </p>
@@ -160,18 +177,35 @@ export default function FrequenciesFlowRegistration() {
             {/* Sarah McClellan */}
             <div className="text-center">
               <div className="relative mb-4">
-                <img 
-                  src="/Sarah-Headshot.jpg" 
-                  alt="Sarah McClellan - Co-Facilitator" 
-                  className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50"
-                  style={{ borderColor: '#f11568' }}
-                />
+                <a 
+                  href="https://www.instagram.com/sarahgirlstrong/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img 
+                    src="/Sarah-Headshot.jpg" 
+                    alt="Sarah McClellan - Co-Facilitator" 
+                    className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50 hover:border-primary-400"
+                    style={{ borderColor: '#f11568' }}
+                  />
+                </a>
                 <div 
-                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl"
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl pointer-events-none"
                   style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
                 ></div>
               </div>
-              <h3 className="text-xl font-bold text-white mb-2">Sarah McClellan</h3>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <a 
+                  href="https://www.instagram.com/sarahgirlstrong/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-400 transition-colors duration-200"
+                  style={{ color: 'inherit' }}
+                >
+                  Sarah McClellan
+                </a>
+              </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
                 Self Mastery Coach B.S. Exercise Science Building strength: 💪🏼physically 🧠mentally ☺️emotionally ❤️relationally FLOW, FITNESS, FASHION, FUN, FAMILY
               </p>

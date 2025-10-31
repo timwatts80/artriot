@@ -222,7 +222,7 @@ export default function ArtRiotHomePage() {
               Experience Art<span className="text-primary-500" style={{ color: '#f11568' }}>Riot</span> Live
             </h2>
             <p className="text-xl lg:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Step into transformative in-person sessions where art, movement, meditation, and music unite to create something extraordinary.
+              Step into transformative in-person sessions where art creation takes center stage, supported by mindful movement and energy healing practices.
             </p>
           </div>
 
@@ -238,8 +238,8 @@ export default function ArtRiotHomePage() {
                     </svg>
                   </div>
                   <div>
-                    <h4 className="text-lg font-semibold text-white">Integrated Energy Healing</h4>
-                    <p className="text-gray-300">Experience breathwork, sound healing, guided meditation, and musical frequencies designed to shift energy and promote deep relaxation.</p>
+                    <h4 className="text-lg font-semibold text-white">Art as Medicine</h4>
+                    <p className="text-gray-300">Creative expression that speaks from your soul - painting, drawing, and mixed media creation with professional supplies provided.</p>
                   </div>
                 </div>
 
@@ -252,6 +252,18 @@ export default function ArtRiotHomePage() {
                   <div>
                     <h4 className="text-lg font-semibold text-white">Mindful Movement Integration</h4>
                     <p className="text-gray-300">Gentle somatic practices prepare your body and mind for deeper creative flow.</p>
+                  </div>
+                </div>
+
+                <div className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-primary-500 rounded-full flex items-center justify-center flex-shrink-0 mt-1" style={{ backgroundColor: '#f11568' }}>
+                    <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold text-white">Integrated Energy Healing</h4>
+                    <p className="text-gray-300">Experience breathwork, sound healing, guided meditation, and musical frequencies designed to shift energy and promote deep relaxation.</p>
                   </div>
                 </div>
 
@@ -310,7 +322,7 @@ export default function ArtRiotHomePage() {
                 <span>✨ Non-judgmental space</span>
                 <span>🎨 All skill levels welcome</span>
                 <span>🧘‍♀️ Mindful & meditative</span>
-                <span>🎵 Live music experience</span>
+                <span>🎵 Music experience</span>
               </div>
             </div>
           </div>

@@ -22,21 +22,21 @@ interface EventAvailability {
 const TEMP_COPY = {
   hero: {
     title: "Art Riot Live",
-    subtitle: "Where movement, music, and art become medicine for the soul.",
+    subtitle: "Where art becomes medicine for the soul.",
     tagline: "Reclaim your creative freedom. Reconnect with your body. Remember who you are.",
-    description: "Art Riot Live is an intermodal expressive arts experience that blends movement, meditation, music, and art into a single, transformative session.",
+    description: "Art Riot Live is a transformative art-making experience where your soul speaks through color, texture, and form. Enhanced by movement, meditation, and music, each session creates sacred space for authentic creative expression and healing.",
     philosophy: "It's not a class. It's not performance.\nIt's a space to release, create, and reconnect—with yourself and others."
   },
   about: {
     title: "What is Intermodal Expressive Art Healing?",
-    description: "Our sessions combine the healing benefits of movement, meditation, music, and visual art to create a holistic wellness experience. Each element works synergistically to unlock creativity, process emotions, and promote deep personal transformation.",
+    description: "Art becomes the primary language of healing in our sessions. Through painting, drawing, and mixed media creation, your soul expresses what words cannot. Movement, meditation, and music support this creative process, helping you access deeper layers of authentic self-expression and emotional release.",
     benefits: [
-      "Stress reduction through mindful movement",
-      "Emotional release via creative expression", 
-      "Community connection and support",
-      "Increased self-awareness and intuition",
-      "Physical and mental wellness integration",
-      "Safe space for authentic self-expression"
+      "Art creation as a pathway to inner wisdom",
+      "Soul-centered creative expression without judgment", 
+      "Community connection through shared artistic exploration",
+      "Increased self-awareness through visual storytelling",
+      "Emotional processing through color, texture, and form",
+      "Safe space for authentic artistic voice to emerge"
     ]
   }
 };
@@ -50,11 +50,11 @@ const UPCOMING_SESSIONS = [
     date: "November 21, 2025",
     time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
-    price: "$55",
-    description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
+    price: "$35",
+    description: "Experience the magic of creating art that speaks from your soul. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
     facilitator: "Co-facilitated by Tim Watts and Sarah McClellan",
     highlights: [
-      "Live musical performance throughout",
+      "Musical performance throughout",
       "Guided meditation and breathwork",
       "Prompted art creation with supplies included",
       "Music-guided creative expression",
@@ -154,8 +154,8 @@ export default function InPersonEventsPage() {
     <main className="min-h-screen bg-black">
       <PageMeta
         title="Art Riot Live - In-Person Art Meditation Events"
-        description="Experience transformative in-person art meditation events in Utah. Combining movement, music, and art for healing and creativity. Join frequencies & flow, somatic movement, and meditation sessions."
-        image="/Art-Riot-Live-Hero1.png"
+        description="Experience transformative in-person art healing events in Utah. Where art becomes medicine for the soul through creative expression, music, and mindful movement. Join frequencies & flow, somatic movement, and meditation sessions."
+        image="/ArtRiot-ArtSession-Image.png"
         url="https://artriot.com/in-person-events"
         type="website"
       />
@@ -164,7 +164,7 @@ export default function InPersonEventsPage() {
         type="Event"
         data={{
           name: "Art Riot Live - In-Person Art Meditation Events",
-          description: "Experience transformative in-person art meditation events combining movement, music, and art for healing and creativity.",
+          description: "Experience transformative in-person art healing events where art becomes medicine for the soul through creative expression, music, and mindful movement.",
           startDate: "2025-11-21T19:00:00-07:00",
           endDate: "2025-12-14T12:00:00-07:00",
           location: {
@@ -191,7 +191,7 @@ export default function InPersonEventsPage() {
           },
           eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
           eventStatus: "https://schema.org/EventScheduled",
-          image: "https://artriot.com/Art-Riot-Live-Hero1.png"
+          image: "https://artriot.com/ArtRiot-ArtSession-Image.png"
         }}
       />
       
@@ -246,8 +246,8 @@ export default function InPersonEventsPage() {
             <div className="relative">
               <div className="aspect-square rounded-2xl overflow-hidden relative">
                 <img 
-                  src="/Art-Riot-Live-Hero1.png" 
-                  alt="Art Riot Live - Intermodal expressive arts experience"
+                  src="/ArtRiot-ArtSession-Image.png" 
+                  alt="Art Riot Live - Art-making session with creative expression"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute top-4 right-4 bg-black/80 text-white px-3 py-1 rounded-full text-sm font-medium backdrop-blur-sm">
@@ -275,14 +275,33 @@ export default function InPersonEventsPage() {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                    {/* Art-making - Prominent focal point */}
+          <div className="flex justify-center mb-16">
+            <div className="text-center group max-w-md">
+              <div className="w-32 h-32 mx-auto mb-8 bg-primary-500/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/30 transition-colors duration-300" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}>
+                <svg className="w-16 h-16 text-primary-400" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  <path d="M9 11H7l5 5 5-5h-2l-3 3-3-3z" fill="none"/>
+                  <circle cx="18" cy="6" r="2" fill="currentColor"/>
+                  <path d="M5 20h14v1H5z"/>
+                </svg>
+              </div>
+              <h3 className="text-3xl font-bold text-white mb-4">Art-making</h3>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                The heart of our practice - grounding what you feel into color, texture, and form. Where your soul speaks through creative expression.
+              </p>
+            </div>
+          </div>
+
+          {/* Supporting modalities */}
+          <div className="grid md:grid-cols-3 gap-8 mb-12 max-w-4xl mx-auto">
             {/* Movement */}
             <div className="text-center group">
-              <div className="w-20 h-20 mx-auto mb-6 bg-primary-500/20 rounded-full flex items-center justify-center group-hover:bg-primary-500/30 transition-colors duration-300" style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}>
-                <svg className="w-8 h-8 text-primary-400" style={{ color: '#f11568' }} fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                  <circle cx="12" cy="9" r="1.5"/>
-                  <path d="M7 18c0-2 2-4 5-4s5 2 5 4v2H7v-2z"/>
+              <div className="w-20 h-20 mx-auto mb-6 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-purple-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5" fill="none"/>
+                  <path d="M8 12l4-4 4 4" stroke="currentColor" strokeWidth="2" fill="none"/>
+                  <path d="M8 12l4 4 4-4" stroke="currentColor" strokeWidth="2" fill="none"/>
                 </svg>
               </div>
               <h3 className="text-xl font-semibold text-white mb-3">Movement</h3>
@@ -293,9 +312,9 @@ export default function InPersonEventsPage() {
 
             {/* Meditation */}
             <div className="text-center group">
-              <div className="w-20 h-20 mx-auto mb-6 bg-purple-500/20 rounded-full flex items-center justify-center group-hover:bg-purple-500/30 transition-colors duration-300">
-                <svg className="w-8 h-8 text-purple-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 8c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c-3.31 0-6 2.69-6 6v2h12v-2c0-3.31-2.69-6-6-6z"/>
+              <div className="w-20 h-20 mx-auto mb-6 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C10.9 2 10 2.9 10 4s.9 2 2 2 2-.9 2-2-.9-2-2-2zm8 8c0-1.1-.9-2-2-2s-2 .9-2 2 .9 2 2 2 2-.9 2-2zM6 10c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm6 4c-3.31 0-6 2.69-6 6v2h12v-2c0-3.31-2.69-6-6z"/>
                   <circle cx="12" cy="8" r="3" fill="none" stroke="currentColor" strokeWidth="1"/>
                   <path d="M8 16c0-2.21 1.79-4 4-4s4 1.79 4 4" fill="none" stroke="currentColor" strokeWidth="1"/>
                 </svg>
@@ -308,8 +327,8 @@ export default function InPersonEventsPage() {
 
             {/* Music */}
             <div className="text-center group">
-              <div className="w-20 h-20 mx-auto mb-6 bg-blue-500/20 rounded-full flex items-center justify-center group-hover:bg-blue-500/30 transition-colors duration-300">
-                <svg className="w-8 h-8 text-blue-400" fill="currentColor" viewBox="0 0 24 24">
+              <div className="w-20 h-20 mx-auto mb-6 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
+                <svg className="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
                   <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
                   <circle cx="10" cy="17" r="2"/>
                 </svg>
@@ -317,22 +336,6 @@ export default function InPersonEventsPage() {
               <h3 className="text-xl font-semibold text-white mb-3">Music</h3>
               <p className="text-gray-400 leading-relaxed">
                 that carries you into flow and expression
-              </p>
-            </div>
-
-            {/* Art-making */}
-            <div className="text-center group">
-              <div className="w-20 h-20 mx-auto mb-6 bg-green-500/20 rounded-full flex items-center justify-center group-hover:bg-green-500/30 transition-colors duration-300">
-                <svg className="w-8 h-8 text-green-400" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-                  <path d="M9 11H7l5 5 5-5h-2l-3 3-3-3z" fill="none"/>
-                  <circle cx="18" cy="6" r="2" fill="currentColor"/>
-                  <path d="M5 20h14v1H5z"/>
-                </svg>
-              </div>
-              <h3 className="text-xl font-semibold text-white mb-3">Art-making</h3>
-              <p className="text-gray-400 leading-relaxed">
-                to ground what you feel into color, texture, and form
               </p>
             </div>
           </div>
@@ -362,7 +365,7 @@ export default function InPersonEventsPage() {
             <p className="text-xl text-gray-300 leading-relaxed mb-8">
               In a world that tells us to perform, perfect, and produce,<br />
               <span className="text-primary-400 font-medium" style={{ color: '#f11568' }}>
-                Art Riot Live gives you permission to pause, express, and release.
+                Art Riot Live creates a sacred space where your soul can speak through color, texture, and form—no artistic experience required. Whether you've never held a paintbrush or consider yourself an artist, this is about authentic expression, not technical skill.
               </span>
             </p>
           </div>
@@ -371,35 +374,35 @@ export default function InPersonEventsPage() {
             {/* Left Column - Benefits */}
             <div>
               <h3 className="text-2xl font-semibold text-white mb-8">
-                Through movement and creative flow, participants often describe feeling:
+                When you create art from your soul in this safe container, participants often describe feeling:
               </h3>
               
               <div className="space-y-6">
                 <div className="flex items-start space-x-4 group">
                   <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
                   <p className="text-lg text-gray-300 leading-relaxed">
-                    <span className="text-white font-medium">Lighter and more grounded</span> in their bodies
+                    <span className="text-white font-medium">Safe to be vulnerable</span> and express their authentic truth
                   </p>
                 </div>
                 
                 <div className="flex items-start space-x-4 group">
                   <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
                   <p className="text-lg text-gray-300 leading-relaxed">
-                    <span className="text-white font-medium">Free from perfectionism</span> or self-judgment
+                    <span className="text-white font-medium">Free from creative perfectionism</span> and self-criticism
                   </p>
                 </div>
                 
                 <div className="flex items-start space-x-4 group">
                   <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
                   <p className="text-lg text-gray-300 leading-relaxed">
-                    <span className="text-white font-medium">Deeply connected</span> to emotion, intuition, and presence
+                    <span className="text-white font-medium">Deeply connected</span> to their inner wisdom and creativity
                   </p>
                 </div>
                 
                 <div className="flex items-start space-x-4 group">
-                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transform duration-300" style={{ backgroundColor: '#f11568' }}></div>
+                  <div className="w-3 h-3 rounded-full bg-primary-500 mt-2 flex-shrink-0 group-hover:scale-125 transition-transformation duration-300" style={{ backgroundColor: '#f11568' }}></div>
                   <p className="text-lg text-gray-300 leading-relaxed">
-                    <span className="text-white font-medium">Inspired to create</span> long after the event ends
+                    <span className="text-white font-medium">Inspired to honor</span> their creative voice in daily life
                   </p>
                 </div>
               </div>
@@ -420,7 +423,7 @@ export default function InPersonEventsPage() {
                   
                   <blockquote className="text-center">
                     <p className="text-lg text-gray-300 leading-relaxed mb-4 italic">
-                      &quot;This is creative healing in community—a space where art becomes a tool for wellness and self-expression.&quot;
+                      &quot;I had never considered myself artistic, but this experience showed me that my soul has its own creative language. It's not about making 'good' art—it's about letting your truth flow onto the canvas.&quot;
                     </p>
                   </blockquote>
                 </div>
@@ -470,12 +473,19 @@ export default function InPersonEventsPage() {
                     transform: 'rotate(-15deg) translateX(-20px) translateY(10px)'
                   }}
                 ></div>
-                <img 
-                  src="/SLC_Trish_Headshot_250919 1.jpg"
-                  alt="Tim Watts - Art Riot Live Facilitator"
-                  className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl z-10"
-                />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent z-20"></div>
+                <a 
+                  href="https://www.facebook.com/TimWattsArt" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img 
+                    src="/SLC_Trish_Headshot_250919 1.jpg"
+                    alt="Tim Watts - Art Riot Live Facilitator"
+                    className="relative w-80 h-80 lg:w-96 lg:h-96 object-cover rounded-2xl shadow-2xl z-10"
+                  />
+                </a>
+                <div className="absolute inset-0 rounded-2xl bg-gradient-to-t from-black/20 to-transparent z-20 pointer-events-none"></div>
               </div>
             </div>
             
@@ -492,7 +502,7 @@ export default function InPersonEventsPage() {
                   Tim is dedicated to creating transformative spaces where creativity, movement, and healing intersect. With a deep belief in the power of expressive arts to unlock authentic self-expression and community connection, Tim guides participants through immersive experiences that honor both individual and collective healing.
                 </p>
                 <p>
-                  Through Art Riot Live, Tim combines elements of meditation, somatic movement, live music, and visual art creation to offer a unique intermodal approach to wellness and creative expression. Each session is designed to be a safe, non-judgmental space where participants can explore, release, and reconnect with their authentic selves.
+                  Through Art Riot Live, Tim combines elements of meditation, somatic movement, music, and visual art creation to offer a unique intermodal approach to wellness and creative expression. Each session is designed to be a safe, non-judgmental space where participants can explore, release, and reconnect with their authentic selves.
                 </p>
                 <p>
                   Tim&apos;s approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
@@ -646,21 +656,35 @@ export default function InPersonEventsPage() {
                         <span className="text-gray-400 text-xs font-medium">Co-facilitated by:</span>
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-2">
-                            <img 
-                              src="/SLC_Trish_Headshot_250919 1.jpg" 
-                              alt="Tim Watts" 
-                              className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50"
-                              style={{ borderColor: '#f11568' }}
-                            />
+                            <a 
+                              href="https://www.facebook.com/TimWattsArt" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/SLC_Trish_Headshot_250919 1.jpg" 
+                                alt="Tim Watts" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
                             <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
                           </div>
                           <div className="flex items-center gap-2">
-                            <img 
-                              src="/Sarah-Headshot.jpg" 
-                              alt="Sarah McClellan" 
-                              className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50"
-                              style={{ borderColor: '#f11568' }}
-                            />
+                            <a 
+                              href="https://www.instagram.com/sarahgirlstrong/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/Sarah-Headshot.jpg" 
+                                alt="Sarah McClellan" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
                             <span className="text-gray-300 text-xs font-medium">Sarah McClellan</span>
                           </div>
                         </div>
@@ -672,9 +696,15 @@ export default function InPersonEventsPage() {
                     </p>
 
                     <div className="flex justify-between items-center text-sm">
-                      <div className="text-white text-lg font-bold">
-                        {session.price}
-                      </div>
+                      {/* Only show price for frequencies-flow event */}
+                      {session.eventType === 'frequencies-flow' && (
+                        <div className="text-white text-lg font-bold">
+                          {session.price}
+                        </div>
+                      )}
+                      {session.eventType !== 'frequencies-flow' && (
+                        <div></div>
+                      )}
                       <div className="text-gray-400">
                         {availabilities[session.eventType] && !loading ? (
                           availabilities[session.eventType].availability.soldOut ? (
