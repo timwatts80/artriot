@@ -288,7 +288,7 @@ export default function InPersonEventsPage() {
               </div>
               <h3 className="text-3xl font-bold text-white mb-4">Art-making</h3>
               <p className="text-lg text-gray-300 leading-relaxed">
-                The heart of our practice - grounding what you feel into color, texture, and form. Where your soul speaks through creative expression.
+                The heart of our practice - grounding what you feel into color, texture, and form. Where your soul speaks through creative expression. <span className="text-primary-400 font-medium" style={{ color: '#f11568' }}>Take home your unique creation as a tangible reminder of your healing journey.</span>
               </p>
             </div>
           </div>

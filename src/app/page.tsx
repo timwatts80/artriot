@@ -222,7 +222,7 @@ export default function ArtRiotHomePage() {
               Experience Art<span className="text-primary-500" style={{ color: '#f11568' }}>Riot</span> Live
             </h2>
             <p className="text-xl lg:text-2xl text-gray-300 mb-8 max-w-4xl mx-auto leading-relaxed">
-              Step into transformative in-person sessions where art creation takes center stage, supported by mindful movement and energy healing practices.
+              Step into transformative in-person sessions where art creation takes center stage, supported by mindful movement and energy healing practices. <span className="text-primary-400 font-medium" style={{ color: '#f11568' }}>Take home your unique creation as a lasting reminder of your healing journey.</span>
             </p>
           </div>
 
@@ -275,7 +275,7 @@ export default function ArtRiotHomePage() {
                   </div>
                   <div>
                     <h4 className="text-lg font-semibold text-white">All Materials Included</h4>
-                    <p className="text-gray-300">Professional art supplies, yoga mats, and refreshments—just bring your curiosity.</p>
+                    <p className="text-gray-300">Professional art supplies and yoga mats—just bring your curiosity.</p>
                   </div>
                 </div>
 

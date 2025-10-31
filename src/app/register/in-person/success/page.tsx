@@ -118,7 +118,6 @@ function SuccessPageContent() {
                 <ul className="text-gray-300 text-sm space-y-1">
                   <li>• All art supplies</li>
                   <li>• Yoga mats and props</li>
-                  <li>• Light refreshments</li>
                   <li>• Professional guidance</li>
                 </ul>
               </div>
