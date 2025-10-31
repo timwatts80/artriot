@@ -52,7 +52,7 @@ const UPCOMING_SESSIONS = [
     location: "Jade Bloom, Draper, UT",
     price: "$55",
     description: "Let live music guide your creative spirit! Experience the magic of creating art while immersed in live musical performance. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
-    facilitator: "Tim Watts",
+    facilitator: "Co-facilitated by Tim Watts and Sarah McClellan",
     highlights: [
       "Live musical performance throughout",
       "Guided meditation and breathwork",
@@ -639,6 +639,33 @@ export default function InPersonEventsPage() {
                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
                       {session.description}
                     </p>
+
+                    {/* Co-Facilitators for Frequencies & Flow */}
+                    {session.eventType === 'frequencies-flow' && (
+                      <div className="flex items-center gap-3 mb-4 p-3 bg-gray-800/30 rounded-lg">
+                        <span className="text-gray-400 text-xs font-medium">Co-facilitated by:</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2">
+                            <img 
+                              src="/SLC_Trish_Headshot_250919 1.jpg" 
+                              alt="Tim Watts" 
+                              className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50"
+                              style={{ borderColor: '#f11568' }}
+                            />
+                            <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <img 
+                              src="/Sarah-Headshot.jpg" 
+                              alt="Sarah McClellan" 
+                              className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50"
+                              style={{ borderColor: '#f11568' }}
+                            />
+                            <span className="text-gray-300 text-xs font-medium">Sarah McClellan</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     <p className="text-gray-400 text-xs leading-relaxed mb-4">
                       <span className="font-medium">Notice:</span> This is not therapy or medical treatment. This experience is for educational, creative, and wellness purposes only.

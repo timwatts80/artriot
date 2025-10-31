@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { recordRegistration } from '@/lib/db';
+import { recordRegistration, reserveTicket } from '@/lib/db';
 
 // Function to add contact to Brevo list
 async function addToBrevoList(email: string, firstName: string, lastName: string = '', confirmationNumber: string = '', phone: string = '') {
@@ -206,8 +206,20 @@ export async function POST(request: NextRequest) {
           experience,
         } = session.metadata!;
 
-        // Record registration in database
+        // Record registration in database AND reserve the ticket
         try {
+          // First, try to reserve the ticket (increment sold_tickets)
+          const reserved = await reserveTicket(eventType);
+          
+          if (!reserved) {
+            console.error('Failed to reserve ticket - event is sold out');
+            // Still continue with registration recording since payment was successful
+            // This is a rare edge case where payment succeeded but we ran out of spots
+          } else {
+            console.log('Ticket reserved for successful payment:', confirmationNumber);
+          }
+
+          // Record the registration details
           await recordRegistration({
             eventType,
             confirmationNumber,

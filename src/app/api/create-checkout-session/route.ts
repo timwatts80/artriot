@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { checkTicketAvailability, reserveTicket } from '@/lib/db';
+import { checkTicketAvailability } from '@/lib/db';
 import { STRIPE_CONFIG } from '@/lib/stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
         );
     }
 
-    // Check ticket availability
+    // Check ticket availability (but don't reserve yet - only check)
     try {
       const availability = await checkTicketAvailability(eventType);
       
@@ -52,31 +52,11 @@ export async function POST(request: NextRequest) {
         );
       }
       
-      console.log(`Event ${eventType}: ${availability.available}/${availability.total} tickets available`);
+      console.log(`Event ${eventType}: ${availability.available}/${availability.total} tickets available - proceeding to checkout`);
     } catch (error) {
       console.error('Error checking ticket availability:', error);
       return NextResponse.json(
         { error: 'Unable to check ticket availability. Please try again.' },
-        { status: 500 }
-      );
-    }
-
-    // Reserve a ticket (this will atomically check and decrement if available)
-    try {
-      const reserved = await reserveTicket(eventType);
-      
-      if (!reserved) {
-        return NextResponse.json(
-          { error: 'Sorry, the last ticket was just sold. Please try another event.' },
-          { status: 400 }
-        );
-      }
-      
-      console.log(`Ticket reserved for ${eventType}`);
-    } catch (error) {
-      console.error('Error reserving ticket:', error);
-      return NextResponse.json(
-        { error: 'Unable to reserve ticket. Please try again.' },
         { status: 500 }
       );
     }

@@ -132,6 +132,53 @@ export default function FrequenciesFlowRegistration() {
           </div>
         </div>
 
+        {/* Co-Facilitators Section */}
+        <div className="bg-gray-900/50 rounded-2xl p-6 border border-gray-800 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Co-Facilitators</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Tim Watts */}
+            <div className="text-center">
+              <div className="relative mb-4">
+                <img 
+                  src="/SLC_Trish_Headshot_250919 1.jpg" 
+                  alt="Tim Watts - Co-Facilitator" 
+                  className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50"
+                  style={{ borderColor: '#f11568' }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl"
+                  style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
+                ></div>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Tim Watts</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Tim&apos;s approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration.
+              </p>
+            </div>
+
+            {/* Sarah McClellan */}
+            <div className="text-center">
+              <div className="relative mb-4">
+                <img 
+                  src="/Sarah-Headshot.jpg" 
+                  alt="Sarah McClellan - Co-Facilitator" 
+                  className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50"
+                  style={{ borderColor: '#f11568' }}
+                />
+                <div 
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl"
+                  style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
+                ></div>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">Sarah McClellan</h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Self Mastery Coach B.S. Exercise Science Building strength: 💪🏼physically 🧠mentally ☺️emotionally ❤️relationally FLOW, FITNESS, FASHION, FUN, FAMILY
+              </p>
+            </div>
+          </div>
+        </div>
+
         <RegistrationForm
           eventType={eventData.id}
           eventName={eventData.name}
