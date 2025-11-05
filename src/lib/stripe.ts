@@ -5,9 +5,9 @@ export const stripePromise = loadStripe(
 );
 
 export const STRIPE_CONFIG = {
-  FREQUENCIES_FLOW_PRICE_ID: 'price_1SOPuhGFD0K8TqkA1Nij4wnV', // $35 Live price ID
-  SOMATIC_MOVEMENT_PRICE_ID: 'price_1SNaRPGFD0K8TqkAqt9pMtEb', // Replace with actual price ID
-  MEDITATION_PRICE_ID: 'price_1SNaSSGFD0K8TqkAnH11uc4S', // Replace with actual price ID
+  FREQUENCIES_FLOW_PRICE_ID: process.env.STRIPE_FREQUENCIES_FLOW_PRICE_ID!,
+  SOMATIC_MOVEMENT_PRICE_ID: process.env.STRIPE_SOMATIC_MOVEMENT_PRICE_ID!,
+  MEDITATION_PRICE_ID: process.env.STRIPE_MEDITATION_PRICE_ID!,
 } as const;
 
 export const REGISTRATION_LIMITS = {

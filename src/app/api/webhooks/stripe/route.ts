@@ -3,10 +3,27 @@ import Stripe from 'stripe';
 import { recordRegistration, reserveTicket } from '@/lib/db';
 
 // Function to add contact to Brevo list
-async function addToBrevoList(email: string, firstName: string, lastName: string = '', confirmationNumber: string = '', phone: string = '') {
+async function addToBrevoList(email: string, firstName: string, lastName: string = '', confirmationNumber: string = '', phone: string = '', eventType: string = '') {
   if (!process.env.BREVO_API_KEY) {
     console.warn('Brevo API key not configured, skipping Brevo integration');
     return;
+  }
+
+  // Determine which Brevo list to use based on event type
+  let listId: number;
+  switch (eventType) {
+    case 'frequencies-flow':
+      listId = 8; // Frequencies + Flow list
+      break;
+    case 'somatic-movement':
+      listId = 9; // Body Wisdom list
+      break;
+    case 'meditation':
+      listId = 10; // Breathe & Create list
+      break;
+    default:
+      listId = 8; // Default to list #8 for unknown event types
+      console.warn(`Unknown event type: ${eventType}, defaulting to list #8`);
   }
 
   try {
@@ -21,7 +38,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
         FIRSTNAME: firstName,
         LASTNAME: lastName
       },
-      listIds: [8], // Add to list ID #8
+      listIds: [listId], // Use event-specific list ID
       updateEnabled: true // Update if contact already exists
     };
 
@@ -43,7 +60,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
       contactData.attributes.EXT_ID = confirmationNumber; // Also store in EXT_ID field
     }
 
-    console.log('Sending to Brevo:', JSON.stringify(contactData, null, 2));
+    console.log(`Sending to Brevo list #${listId} for event ${eventType}:`, JSON.stringify(contactData, null, 2));
 
     const response = await fetch('https://api.brevo.com/v3/contacts', {
       method: 'POST',
@@ -57,7 +74,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
 
     if (response.ok) {
       const responseData = await response.json();
-      console.log('Contact added to Brevo list #8:', email, 'with confirmation:', confirmationNumber, 'phone:', contactData.attributes.SMS);
+      console.log(`Contact added to Brevo list #${listId}:`, email, 'with confirmation:', confirmationNumber, 'phone:', contactData.attributes.SMS);
       console.log('Brevo response:', responseData);
       
       // Try to fetch the contact back to verify the extId was set
@@ -107,7 +124,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
               });
               
               if (updateResponse.ok) {
-                console.log('Successfully updated existing contact in Brevo with confirmation:', confirmationNumber);
+                console.log(`Successfully updated existing contact in Brevo list #${listId} with confirmation:`, confirmationNumber);
               } else {
                 const updateError = await updateResponse.text();
                 console.error('Failed to update existing contact:', updateError);
@@ -275,8 +292,8 @@ export async function POST(request: NextRequest) {
           sendBrevoEmail('info@artriot.live', `New Registration: ${eventName}`, adminEmailHTML)
         ]);
 
-        // Add participant to Brevo list #8
-        await addToBrevoList(participantEmail, participantFirstName, participantLastName, confirmationNumber, participantPhone);
+        // Add participant to event-specific Brevo list
+        await addToBrevoList(participantEmail, participantFirstName, participantLastName, confirmationNumber, participantPhone, eventType);
 
         console.log('Registration emails sent successfully');
 

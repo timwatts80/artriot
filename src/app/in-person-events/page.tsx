@@ -65,10 +65,10 @@ const UPCOMING_SESSIONS = [
     id: 2,
     eventType: "somatic-movement",
     title: "Body Wisdom: Somatic Art Journey",
-    date: "TBD", 
-    time: "TBD",
+    date: "December 6, 2025", 
+    time: "7:00 - 8:30 PM",
     location: "Sage Canvas, Lehi, UT",
-    price: "$55",
+    price: "$35",
     description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
     facilitator: "Tim Watts",
     highlights: [
@@ -83,10 +83,10 @@ const UPCOMING_SESSIONS = [
     id: 3,
     eventType: "meditation",
     title: "Breathe & Create: Deep Meditation Studio",
-    date: "TBD",
-    time: "TBD", 
+    date: "November 23, 2025",
+    time: "10:00 AM - 11:30 AM", 
     location: "Workshop SLC, Salt Lake City, UT",
-    price: "$55",
+    price: "$35",
     description: "Dive deep into stillness and emerge with vibrant creativity! This immersive experience centers around extended meditation and breathwork practices, creating space for profound art creation from a place of inner calm and clarity.",
     facilitator: "Tim Watts",
     highlights: [
@@ -690,22 +690,13 @@ export default function InPersonEventsPage() {
                           <span>📍 {session.location}</span>
                         </div>
                       </div>
-                      {session.eventType === 'frequencies-flow' ? (
-                        <Link 
-                          href={`/register/in-person/${session.eventType}`}
-                          className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap"
-                          style={{ backgroundColor: '#f11568' }}
-                        >
-                          Register Now
-                        </Link>
-                      ) : (
-                        <button 
-                          disabled
-                          className="bg-gray-600 text-gray-300 font-medium py-2 px-6 rounded-lg cursor-not-allowed whitespace-nowrap"
-                        >
-                          Coming Soon
-                        </button>
-                      )}
+                      <Link 
+                        href={`/register/in-person/${session.eventType}`}
+                        className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap"
+                        style={{ backgroundColor: '#f11568' }}
+                      >
+                        Register Now
+                      </Link>
                     </div>
                     
                     <p className="text-gray-300 text-sm leading-relaxed mb-4">
@@ -753,20 +744,80 @@ export default function InPersonEventsPage() {
                       </div>
                     )}
 
+                    {/* Co-Facilitators for Body Wisdom */}
+                    {session.eventType === 'somatic-movement' && (
+                      <div className="flex items-center gap-3 mb-4 p-3 bg-gray-800/30 rounded-lg">
+                        <span className="text-gray-400 text-xs font-medium">Co-facilitated by:</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.facebook.com/TimWattsArt" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/SLC_Trish_Headshot_250919 1.jpg" 
+                                alt="Tim Watts" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.instagram.com/crystallineinitiations/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/Kangie-Headshot.png" 
+                                alt="Kangie" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Kangie</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Facilitator for Breathe & Create */}
+                    {session.eventType === 'meditation' && (
+                      <div className="flex items-center gap-3 mb-4 p-3 bg-gray-800/30 rounded-lg">
+                        <span className="text-gray-400 text-xs font-medium">Facilitated by:</span>
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.facebook.com/TimWattsArt" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/SLC_Trish_Headshot_250919 1.jpg" 
+                                alt="Tim Watts" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
                     <p className="text-gray-400 text-xs leading-relaxed mb-4">
                       <span className="font-medium">Notice:</span> This is not therapy or medical treatment. This experience is for educational, creative, and wellness purposes only.
                     </p>
 
                     <div className="flex justify-between items-center text-sm">
-                      {/* Only show price for frequencies-flow event */}
-                      {session.eventType === 'frequencies-flow' && (
-                        <div className="text-white text-lg font-bold">
-                          {session.price}
-                        </div>
-                      )}
-                      {session.eventType !== 'frequencies-flow' && (
-                        <div></div>
-                      )}
+                      <div className="text-white text-lg font-bold">
+                        {session.price}
+                      </div>
                       <div className="text-gray-400">
                         {availabilities[session.eventType] && !loading ? (
                           availabilities[session.eventType].availability.soldOut ? (

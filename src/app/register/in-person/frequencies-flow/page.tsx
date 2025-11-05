@@ -70,7 +70,7 @@ export default function FrequenciesFlowRegistration() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="mb-8">
           <Link
-            href="/in-person-events"
+            href="/in-person-events#upcoming-sessions"
             className="flex items-center text-primary-500 hover:text-primary-400 mb-4 transition-colors"
             style={{ color: '#f11568' }}
           >
@@ -103,7 +103,6 @@ export default function FrequenciesFlowRegistration() {
                   <span className="ml-2">{eventData.location}</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="w-6">💰</span>
                   <span className="ml-2">{eventData.price}</span>
                 </div>
               </div>

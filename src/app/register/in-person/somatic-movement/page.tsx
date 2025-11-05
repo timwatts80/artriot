@@ -2,18 +2,60 @@
 
 import RegistrationForm from '@/components/RegistrationForm';
 import Link from 'next/link';
+import { useState, useEffect } from 'react';
+
+interface EventAvailability {
+  event: {
+    eventType: string;
+    eventName: string;
+    eventDate: string;
+    priceInCents: number;
+    totalTickets: number;
+    soldTickets: number;
+  };
+  availability: {
+    available: number;
+    total: number;
+    soldOut: boolean;
+  };
+}
 
 export default function SomaticMovementRegistration() {
+  const [availability, setAvailability] = useState<EventAvailability | null>(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function fetchAvailability() {
+      try {
+        const response = await fetch('/api/events/availability?eventType=somatic-movement');
+        if (response.ok) {
+          const data = await response.json();
+          setAvailability(data);
+        } else {
+          console.error('Failed to load event availability');
+        }
+      } catch (err) {
+        console.error('Error fetching availability:', err);
+      } finally {
+        setLoading(false);
+      }
+    }
+
+    fetchAvailability();
+  }, []);
+
   const eventData = {
     id: 'somatic-movement',
     name: 'Body Wisdom: Somatic Art Journey',
-    date: 'TBD',
-    time: 'TBD',
+    date: 'December 6, 2025',
+    time: '7:00 - 8:30 PM',
     location: 'Sage Canvas, Lehi, UT',
-    price: '$55',
-    maxCapacity: 20,
-    currentRegistrations: 0, // This would be fetched from database in production
-    description: 'Move, feel, create! This gentle somatic experience invites you to listen to your body&apos;s wisdom through mindful movement, meditation, and intuitive art creation.',
+    price: '$35',
+    maxCapacity: availability?.availability.total || 20,
+    currentRegistrations: availability?.event.soldTickets || 0,
+    availableSpots: availability?.availability.available || 0,
+    soldOut: availability?.availability.soldOut || false,
+    description: 'Move, feel, create! This gentle somatic experience invites you to listen to your body\'s wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.',
     highlights: [
       'Gentle somatic body movement',
       'Guided meditation and breathwork',
@@ -28,7 +70,7 @@ export default function SomaticMovementRegistration() {
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="mb-8">
           <Link
-            href="/in-person-events"
+            href="/in-person-events#upcoming-sessions"
             className="flex items-center text-primary-500 hover:text-primary-400 mb-4 transition-colors"
             style={{ color: '#f11568' }}
           >
@@ -61,7 +103,6 @@ export default function SomaticMovementRegistration() {
                   <span className="ml-2">{eventData.location}</span>
                 </div>
                 <div className="flex items-center">
-                  <span className="w-6">💰</span>
                   <span className="ml-2">{eventData.price}</span>
                 </div>
               </div>
@@ -82,11 +123,92 @@ export default function SomaticMovementRegistration() {
 
           <div className="bg-gray-800/50 rounded-lg p-4">
             <p className="text-gray-300 leading-relaxed">
-              {eventData.description} Let your body lead the way to creative discovery through gentle 
-              movement practices that honor your body&apos;s natural wisdom. This experience creates 
-              space for authentic self-expression through the integration of somatic awareness and 
-              artistic creation.
+              {eventData.description} This experience creates space for authentic self-expression 
+              through the integration of somatic awareness and artistic creation. Through gentle 
+              movement practices that honor your body&apos;s natural wisdom, you&apos;ll discover 
+              new pathways to creative expression and healing.
             </p>
+          </div>
+        </div>
+
+        {/* Facilitators Section */}
+        <div className="bg-gray-900/50 rounded-2xl p-6 border border-gray-800 mb-8">
+          <h2 className="text-2xl font-bold text-white mb-6 text-center">Co-Facilitators</h2>
+          
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Tim Watts */}
+            <div className="text-center">
+              <div className="relative mb-4">
+                <a 
+                  href="https://www.facebook.com/TimWattsArt" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img 
+                    src="/SLC_Trish_Headshot_250919 1.jpg" 
+                    alt="Tim Watts - Co-Facilitator" 
+                    className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50 hover:border-primary-400"
+                    style={{ borderColor: '#f11568' }}
+                  />
+                </a>
+                <div 
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl pointer-events-none"
+                  style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
+                ></div>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <a 
+                  href="https://www.facebook.com/TimWattsArt" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-400 transition-colors duration-200"
+                  style={{ color: 'inherit' }}
+                >
+                  Tim Watts
+                </a>
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Tim&apos;s approach is rooted in the understanding that creativity is medicine. A pathway to processing emotions, building community, and discovering new aspects of ourselves through artistic exploration and somatic awareness.
+              </p>
+            </div>
+
+            {/* Kangie */}
+            <div className="text-center">
+              <div className="relative mb-4">
+                <a 
+                  href="https://www.instagram.com/crystallineinitiations/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="block hover:scale-105 transition-transform duration-300"
+                >
+                  <img 
+                    src="/Kangie-Headshot.png" 
+                    alt="Kangie - Co-Facilitator" 
+                    className="w-32 h-32 rounded-full mx-auto object-cover border-4 border-primary-500/50 hover:border-primary-400"
+                    style={{ borderColor: '#f11568' }}
+                  />
+                </a>
+                <div 
+                  className="absolute inset-0 rounded-full bg-primary-500/20 blur-xl pointer-events-none"
+                  style={{ backgroundColor: 'rgba(241, 21, 104, 0.2)' }}
+                ></div>
+              </div>
+              <h3 className="text-xl font-bold text-white mb-2">
+                <a 
+                  href="https://www.instagram.com/crystallineinitiations/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="hover:text-primary-400 transition-colors duration-200"
+                  style={{ color: 'inherit' }}
+                >
+                  Kangie
+                </a>
+              </h3>
+              <p className="text-gray-300 text-sm leading-relaxed">
+                Kangie brings deep wisdom in somatic practices and body-centered healing, creating sacred space for authentic expression and transformation through movement and creative exploration.
+              </p>
+            </div>
           </div>
         </div>
 
@@ -97,6 +219,9 @@ export default function SomaticMovementRegistration() {
           price={eventData.price}
           maxCapacity={eventData.maxCapacity}
           currentRegistrations={eventData.currentRegistrations}
+          availableSpots={eventData.availableSpots}
+          soldOut={eventData.soldOut}
+          loading={loading}
         />
       </div>
     </main>

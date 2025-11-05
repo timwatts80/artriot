@@ -34,6 +34,14 @@ export async function POST(request: NextRequest) {
         priceId = STRIPE_CONFIG.FREQUENCIES_FLOW_PRICE_ID;
         eventName = 'Frequencies + Flow: Creative Expression';
         break;
+      case 'somatic-movement':
+        priceId = STRIPE_CONFIG.SOMATIC_MOVEMENT_PRICE_ID;
+        eventName = 'Body Wisdom: Somatic Art Journey';
+        break;
+      case 'meditation':
+        priceId = STRIPE_CONFIG.MEDITATION_PRICE_ID;
+        eventName = 'Breathe & Create: Deep Meditation Studio';
+        break;
       default:
         return NextResponse.json(
           { error: 'Invalid event type' },
