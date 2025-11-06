@@ -21,14 +21,14 @@ export interface EventConfig {
 
 export const ART_MEDITATION_EVENT: EventConfig = {
   name: 'Art Meditation',
-  date: 'Sunday, November 2, 2025',
-  isoDateTime: '2025-11-02T10:00:00-07:00', // 10 AM MST (UTC-7)
+  date: 'Saturday, November 9, 2025',
+  isoDateTime: '2025-11-09T10:00:00-07:00', // 10 AM MST (UTC-7)
   time: '10:00 AM MST',
   timezone: 'MST',
   duration: '60 minutes',
   format: 'Virtual (Zoom)',
-  meetingLink: 'https://us04web.zoom.us/j/76416461563?pwd=zzx4UsQvVBMRoKM1CAiXoPA5ljhdpb.1',
-  passcode: 'RQK4ND',
+  meetingLink: 'https://us06web.zoom.us/j/88022506297?pwd=cibLxWX0aDVbx1AK6HWDcHbxQ6gJbh.1',
+  passcode: '681022',
   description: 'A mindful art session combining meditation and creative expression. Connect with your inner artist in a peaceful, supportive virtual environment.',
 };
 
