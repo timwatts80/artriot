@@ -83,15 +83,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/icon?size=32', sizes: '32x32', type: 'image/png' },
-      { url: '/icon?size=16', sizes: '16x16', type: 'image/png' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.png', sizes: '32x32', type: 'image/png' },
+      { url: '/favicon.png', sizes: '16x16', type: 'image/png' },
     ],
     apple: [
-      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+      { url: '/favicon.png', sizes: '180x180', type: 'image/png' },
     ],
-    other: [
-      { url: '/icon-192', sizes: '192x192', type: 'image/png', rel: 'icon' },
-    ],
+    shortcut: '/favicon.png',
   },
 };
 
@@ -123,10 +122,11 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Custom Favicon Links */}
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon?size=32" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/icon?size=16" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon" />
-        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon.png" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
+        <link rel="shortcut icon" href="/favicon.png" />
         
         {/* Explicit Open Graph meta tags for better social media compatibility */}
         <meta property="og:image" content="https://artriot.com/social-share.png" />
