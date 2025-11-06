@@ -20,7 +20,7 @@ function SuccessPageContent() {
 
   if (loading) {
     return (
-      <main className="min-h-screen bg-black pt-20 flex items-center justify-center">
+      <main className="min-h-screen bg-black pt-36 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
           <p className="text-white">Confirming your registration...</p>
@@ -31,7 +31,7 @@ function SuccessPageContent() {
 
   if (error) {
     return (
-      <main className="min-h-screen bg-black pt-20">
+      <main className="min-h-screen bg-black pt-36">
         <div className="max-w-2xl mx-auto px-6 py-12 text-center">
           <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-8">
             <h1 className="text-2xl font-bold text-red-400 mb-4">Payment Verification Failed</h1>
@@ -50,7 +50,7 @@ function SuccessPageContent() {
   }
 
   return (
-    <main className="min-h-screen bg-black pt-20">
+    <main className="min-h-screen bg-black pt-36">
       <div className="max-w-4xl mx-auto px-6 py-12">
         <div className="text-center mb-12">
           <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
@@ -174,7 +174,7 @@ export default function PaymentSuccessPage() {
   return (
     <Suspense 
       fallback={
-        <main className="min-h-screen bg-black pt-20 flex items-center justify-center">
+        <main className="min-h-screen bg-black pt-36 flex items-center justify-center">
           <div className="text-center">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
             <p className="text-white">Loading...</p>

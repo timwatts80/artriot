@@ -63,24 +63,6 @@ const UPCOMING_SESSIONS = [
   },
   {
     id: 2,
-    eventType: "somatic-movement",
-    title: "Body Wisdom: Somatic Art Journey",
-    date: "December 6, 2025", 
-    time: "7:00 - 8:30 PM",
-    location: "Sage Canvas, Lehi, UT",
-    price: "$35",
-    description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
-    facilitator: "Tim Watts",
-    highlights: [
-      "Gentle somatic body movement",
-      "Guided meditation and breathwork", 
-      "Prompted art creation with supplies included",
-      "Body-centered creative exploration",
-      "Safe space for authentic expression"
-    ]
-  },
-  {
-    id: 3,
     eventType: "meditation",
     title: "Breathe & Create: Deep Meditation Studio",
     date: "November 23, 2025",
@@ -95,6 +77,24 @@ const UPCOMING_SESSIONS = [
       "Prompted art creation with supplies included",
       "Mindful creative expression",
       "Integration and reflection time"
+    ]
+  },
+  {
+    id: 3,
+    eventType: "somatic-movement",
+    title: "Body Wisdom: Somatic Art Journey",
+    date: "December 6, 2025", 
+    time: "7:00 - 8:30 PM",
+    location: "Sage Canvas, Lehi, UT",
+    price: "$35",
+    description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
+    facilitator: "Tim Watts",
+    highlights: [
+      "Gentle somatic body movement",
+      "Guided meditation and breathwork", 
+      "Prompted art creation with supplies included",
+      "Body-centered creative exploration",
+      "Safe space for authentic expression"
     ]
   }
 ];
@@ -196,7 +196,7 @@ export default function InPersonEventsPage() {
       />
       
       {/* Hero Section */}
-      <section className="pt-32 pb-20 relative overflow-hidden">
+      <section className="pt-48 pb-20 relative overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-primary-900/20 to-black"></div>
         <div className="max-w-6xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -627,7 +627,7 @@ export default function InPersonEventsPage() {
       </section>
 
       {/* Upcoming Sessions */}
-      <section id="upcoming-sessions" className="py-20">
+      <section id="events" className="py-20">
         <div className="max-w-6xl mx-auto px-6">
           <div className="text-center mb-16">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">

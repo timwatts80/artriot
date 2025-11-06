@@ -56,7 +56,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-black pt-20">
+    <main className="min-h-screen bg-black pt-36">
       <PageMeta
         title="Contact ArtRiot"
         description="Get in touch with ArtRiot. Questions about events, workshops, or collaborations? We'd love to hear from you. Contact us today."

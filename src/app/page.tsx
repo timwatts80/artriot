@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { ART_MEDITATION_EVENT } from '../config/events';
+import { getPagePadding, SHOW_BANNER } from '@/utils/banner';
 import PageMeta from '@/components/PageMeta';
 import StructuredData from '@/components/StructuredData';
 
@@ -173,7 +174,7 @@ export default function ArtRiotHomePage() {
       
       {/* Hero Section */}
       <section 
-        className="pt-24 pb-16 px-4 sm:px-6 lg:px-8 relative bg-cover bg-center bg-no-repeat"
+        className={`${getPagePadding(SHOW_BANNER)} pb-16 px-4 sm:px-6 lg:px-8 relative bg-cover bg-center bg-no-repeat`}
         style={{ 
           backgroundImage: 'url(/grey-abstract-art-background.png)',
           backgroundSize: 'cover',

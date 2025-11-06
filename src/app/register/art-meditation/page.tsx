@@ -98,7 +98,7 @@ export default function ArtMeditationRegistration() {
       />
       
       {/* Hero Section with Logo */}
-      <section className="pt-24 pb-8 px-4 sm:px-6 lg:px-8">
+      <section className="pt-40 pb-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-lg mx-auto text-center">
           <div className="mb-8">
             <img 

@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useState } from 'react';
+import { SHOW_BANNER } from '@/utils/banner';
 
 export default function Header() {
   const pathname = usePathname();
@@ -17,7 +18,39 @@ export default function Header() {
   };
 
   return (
-    <nav className="fixed top-0 w-full bg-black/80 backdrop-blur-lg z-50 border-b border-gray-800">
+    <>
+      {/* Marketing Banner */}
+      {SHOW_BANNER && (
+        <div 
+          className="fixed top-0 w-full h-12 flex items-center justify-center px-4 z-50 opacity-100" 
+          style={{ 
+            backgroundColor: '#f11568',
+            backgroundImage: 'none',
+            background: '#f11568'
+          }}
+        >
+          <div className="max-w-7xl mx-auto flex items-center justify-center w-full">
+            {/* Banner Content - Centered */}
+            <div className="flex items-center gap-3">
+              <p className="text-white font-medium text-sm sm:text-base">
+                <span className="font-semibold">Live Art Riot Events</span> - Join us for transformative in-person experiences!
+              </p>
+              
+              {/* CTA Button */}
+              <Link 
+                href="/in-person-events#events"
+                className="bg-white px-4 py-2 rounded-lg font-semibold text-sm hover:bg-gray-50 transition-colors duration-200 whitespace-nowrap shadow-sm"
+                style={{ color: '#f11568' }}
+              >
+                Register Now
+              </Link>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Header/Navigation */}
+      <nav className={`fixed w-full bg-black/80 backdrop-blur-lg z-40 border-b border-gray-800 ${SHOW_BANNER ? 'top-12' : 'top-0'}`}>
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link href="/" className="text-2xl font-bold text-white hover:scale-105 transition-transform duration-200" onClick={closeMobileMenu}>
@@ -117,5 +150,6 @@ export default function Header() {
         </div>
       </div>
     </nav>
+    </>
   );
 }
