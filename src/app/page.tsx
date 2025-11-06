@@ -184,13 +184,13 @@ export default function ArtRiotHomePage() {
         {/* Dark gradient overlay from bottom to top */}
         <div className="absolute inset-0 bg-gradient-to-t from-black via-black/70 to-black/0"></div>
         
-        <div className="max-w-4xl mx-auto text-center relative z-10">
+        <div className="max-w-4xl mx-auto text-center relative z-10 pt-8 mt-8">
           <div className="mb-6">
             <img 
-              src="/Art_Riot_Horizontal.png" 
+              src="/Art_Riot_Logo_No_Splatter.svg" 
               alt="ArtRiot" 
               className="mx-auto max-w-full h-auto"
-              style={{ maxHeight: '400px' }}
+              style={{ maxHeight: '240px' }}
             />
           </div>
           <p className="text-xl lg:text-2xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">

@@ -102,7 +102,7 @@ export default function ArtMeditationRegistration() {
         <div className="max-w-lg mx-auto text-center">
           <div className="mb-8">
             <img 
-              src="/Art_Riot_Horizontal.png" 
+              src="/Art_Riot_Logo_No_Splatter.svg" 
               alt="ArtRiot" 
               className="mx-auto max-w-full h-auto"
               style={{ maxHeight: '200px' }}
