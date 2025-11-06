@@ -152,7 +152,7 @@ export default function InPersonEventsPage() {
       <PageMeta
         title="Art Riot Live - In-Person Art Meditation Events"
         description="Experience transformative in-person art healing events in Utah. Where art becomes medicine for the soul through creative expression, music, and mindful movement. Join frequencies & flow, somatic movement, and meditation sessions."
-        image="/ArtRiot-ArtSession-Image.png"
+        image="/social-share.png"
         url="https://artriot.com/in-person-events"
         type="website"
       />

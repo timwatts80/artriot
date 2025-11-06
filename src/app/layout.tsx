@@ -50,11 +50,11 @@ export const metadata: Metadata = {
     siteName: "ArtRiot",
     images: [
       {
-        url: "https://artriot.com/Art_Riot_Banner.jpg",
-        width: 1641,
-        height: 857,
+        url: "https://artriot.com/social-share.png",
+        width: 1200,
+        height: 630,
         alt: "ArtRiot - Where Creativity Rebels Against the Ordinary - Art Meditation Events",
-        type: "image/jpeg",
+        type: "image/png",
       },
       {
         url: "https://artriot.com/Art_Riot_Horizontal.png",
@@ -71,7 +71,7 @@ export const metadata: Metadata = {
     description: "Experience transformative art meditation events combining creativity, movement, and healing. Join our community of artists and dreamers.",
     images: [
       {
-        url: "https://artriot.com/Art_Riot_Banner.jpg",
+        url: "https://artriot.com/social-share.png",
         alt: "ArtRiot - Art Meditation Events",
       }
     ],
@@ -111,10 +111,10 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Explicit Open Graph meta tags for better social media compatibility */}
-        <meta property="og:image" content="https://artriot.com/Art_Riot_Banner.jpg" />
-        <meta property="og:image:width" content="1641" />
-        <meta property="og:image:height" content="857" />
-        <meta property="og:image:type" content="image/jpeg" />
+        <meta property="og:image" content="https://artriot.com/social-share.png" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta property="og:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta property="og:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
@@ -122,7 +122,7 @@ export default function RootLayout({
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="ArtRiot" />
         <meta property="fb:app_id" content="123456789012345" />
-        <meta name="twitter:image" content="https://artriot.com/Art_Riot_Banner.jpg" />
+        <meta name="twitter:image" content="https://artriot.com/social-share.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta name="twitter:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
