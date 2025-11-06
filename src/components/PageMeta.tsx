@@ -72,13 +72,30 @@ export default function PageMeta({
     updateMeta('twitter:title', fullTitle, false);
     updateMeta('twitter:description', description, false);
     updateMeta('twitter:image', imageUrl, false);
+    updateMeta('twitter:image:src', imageUrl, false);
     updateMeta('twitter:image:alt', title, false);
 
-    // Additional Meta Tags
+    // Additional Meta Tags for messaging apps
+    updateMeta('image', imageUrl, false);
     updateMeta('theme-color', '#ec4899', false);
     updateMeta('robots', 'index, follow', false);
     updateMeta('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1', false);
     updateMeta('author', 'ArtRiot', false);
+
+    // Schema.org structured data properties
+    const updateItemprop = (property: string, content: string) => {
+      let meta = document.querySelector(`meta[itemprop="${property}"]`);
+      if (!meta) {
+        meta = document.createElement('meta');
+        meta.setAttribute('itemprop', property);
+        document.head.appendChild(meta);
+      }
+      meta.setAttribute('content', content);
+    };
+
+    updateItemprop('name', fullTitle);
+    updateItemprop('description', description);
+    updateItemprop('image', imageUrl);
 
   }, [fullTitle, description, imageUrl, url, type, title]);
 
