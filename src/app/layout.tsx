@@ -81,6 +81,18 @@ export const metadata: Metadata = {
   verification: {
     google: 'your-google-verification-code', // Replace with actual verification code when available
   },
+  icons: {
+    icon: [
+      { url: '/icon?size=32', sizes: '32x32', type: 'image/png' },
+      { url: '/icon?size=16', sizes: '16x16', type: 'image/png' },
+    ],
+    apple: [
+      { url: '/apple-icon', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { url: '/icon-192', sizes: '192x192', type: 'image/png', rel: 'icon' },
+    ],
+  },
 };
 
 export default function RootLayout({
@@ -110,6 +122,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Custom Favicon Links */}
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon?size=32" />
+        <link rel="icon" type="image/png" sizes="16x16" href="/icon?size=16" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon" />
+        <link rel="icon" type="image/png" sizes="192x192" href="/icon-192" />
+        
         {/* Explicit Open Graph meta tags for better social media compatibility */}
         <meta property="og:image" content="https://artriot.com/social-share.png" />
         <meta property="og:image:width" content="1200" />
