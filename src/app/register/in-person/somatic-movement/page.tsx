@@ -50,7 +50,7 @@ export default function SomaticMovementRegistration() {
     date: 'December 6, 2025',
     time: '7:00 - 8:30 PM',
     location: 'Sage Canvas, Lehi, UT',
-    price: '$35',
+    price: '$44',
     maxCapacity: availability?.availability.total || 20,
     currentRegistrations: availability?.event.soldTickets || 0,
     availableSpots: availability?.availability.available || 0,

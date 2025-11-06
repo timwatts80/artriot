@@ -50,7 +50,6 @@ const UPCOMING_SESSIONS = [
     date: "November 21, 2025",
     time: "7:00 PM - 8:30 PM",
     location: "Jade Bloom, Draper, UT",
-    price: "$35",
     description: "Experience the magic of creating art that speaks from your soul. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.",
     facilitator: "Co-facilitated by Tim Watts and Sarah McClellan",
     highlights: [
@@ -68,7 +67,6 @@ const UPCOMING_SESSIONS = [
     date: "November 23, 2025",
     time: "10:00 AM - 11:30 AM", 
     location: "Workshop SLC, Salt Lake City, UT",
-    price: "$35",
     description: "Dive deep into stillness and emerge with vibrant creativity! This immersive experience centers around extended meditation and breathwork practices, creating space for profound art creation from a place of inner calm and clarity.",
     facilitator: "Tim Watts",
     highlights: [
@@ -86,7 +84,6 @@ const UPCOMING_SESSIONS = [
     date: "December 6, 2025", 
     time: "7:00 - 8:30 PM",
     location: "Sage Canvas, Lehi, UT",
-    price: "$35",
     description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
     facilitator: "Tim Watts",
     highlights: [
@@ -814,10 +811,7 @@ export default function InPersonEventsPage() {
                       <span className="font-medium">Notice:</span> This is not therapy or medical treatment. This experience is for educational, creative, and wellness purposes only.
                     </p>
 
-                    <div className="flex justify-between items-center text-sm">
-                      <div className="text-white text-lg font-bold">
-                        {session.price}
-                      </div>
+                    <div className="flex justify-end items-center text-sm">
                       <div className="text-gray-400">
                         {availabilities[session.eventType] && !loading ? (
                           availabilities[session.eventType].availability.soldOut ? (
