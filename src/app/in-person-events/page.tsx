@@ -223,8 +223,8 @@ export default function InPersonEventsPage() {
               </div>
               <div className="flex flex-col sm:flex-row gap-4">
                 <button 
-                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                   style={{ backgroundColor: '#f11568' }}
                 >
                   View Upcoming Sessions
@@ -497,15 +497,15 @@ export default function InPersonEventsPage() {
               <p className="text-gray-300 mb-6">Explore our three unique sessions, each with its own healing modality and creative focus.</p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <button 
-                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+                  onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
                   style={{ backgroundColor: '#f11568' }}
                 >
                   View All Sessions
                 </button>
                 <button 
-                  onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300"
+                  onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="bg-transparent border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-medium py-3 px-8 rounded-lg transition-all duration-300 cursor-pointer"
                   style={{ borderColor: '#f11568', color: '#f11568' }}
                 >
                   Learn More
@@ -613,8 +613,8 @@ export default function InPersonEventsPage() {
           {/* Simple CTA */}
           <div className="mt-12 text-center">
             <button 
-              onClick={() => document.getElementById('upcoming-sessions')?.scrollIntoView({ behavior: 'smooth' })}
-              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+              onClick={() => document.getElementById('events')?.scrollIntoView({ behavior: 'smooth' })}
+              className="bg-primary-500 hover:bg-primary-600 text-white font-medium py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 cursor-pointer"
               style={{ backgroundColor: '#f11568' }}
             >
               View Our Sessions
