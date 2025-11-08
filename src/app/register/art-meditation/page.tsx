@@ -26,7 +26,7 @@ export default function ArtMeditationRegistration() {
     setIsSubmitting(true);
     
     try {
-      const response = await fetch('/api/register-meditation', {
+      const response = await fetch('/api/register-meditation-flodesk', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
