@@ -19,7 +19,6 @@ interface ParticipantInfo {
   lastName: string;
   email: string;
   phone: string;
-  experience: string;
 }
 
 interface EmergencyContact {
@@ -43,7 +42,6 @@ export default function RegistrationForm({
     lastName: '',
     email: '',
     phone: '',
-    experience: '',
   });
 
   const [emergencyContact, setEmergencyContact] = useState<EmergencyContact>({
@@ -231,24 +229,6 @@ export default function RegistrationForm({
             </div>
           </div>
 
-          <div>
-            <label htmlFor="experience" className="block text-white font-medium mb-2">
-              Previous Experience with Movement/Art Therapy
-            </label>
-            <select
-              id="experience"
-              name="experience"
-              value={participantInfo.experience}
-              onChange={handleParticipantChange}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-            >
-              <option value="">Select your experience level</option>
-              <option value="none">No prior experience</option>
-              <option value="some">Some experience</option>
-              <option value="experienced">Experienced</option>
-              <option value="professional">Professional/Practitioner</option>
-            </select>
-          </div>
         </div>
 
         {/* Emergency Contact */}
