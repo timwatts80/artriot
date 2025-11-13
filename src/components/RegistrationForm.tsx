@@ -19,9 +19,6 @@ interface ParticipantInfo {
   lastName: string;
   email: string;
   phone: string;
-  dateOfBirth: string;
-  dietaryRestrictions: string;
-  medicalConditions: string;
   experience: string;
 }
 
@@ -46,9 +43,6 @@ export default function RegistrationForm({
     lastName: '',
     email: '',
     phone: '',
-    dateOfBirth: '',
-    dietaryRestrictions: '',
-    medicalConditions: '',
     experience: '',
   });
 
@@ -203,23 +197,23 @@ export default function RegistrationForm({
             </div>
           </div>
 
-          <div>
-            <label htmlFor="email" className="block text-white font-medium mb-2">
-              Email Address *
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={participantInfo.email}
-              onChange={handleParticipantChange}
-              required
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="your@email.com"
-            />
-          </div>
-
           <div className="grid md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="email" className="block text-white font-medium mb-2">
+                Email Address *
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={participantInfo.email}
+                onChange={handleParticipantChange}
+                required
+                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                placeholder="your@email.com"
+              />
+            </div>
+
             <div>
               <label htmlFor="phone" className="block text-white font-medium mb-2">
                 Phone Number *
@@ -233,21 +227,6 @@ export default function RegistrationForm({
                 required
                 className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
                 placeholder="(555) 123-4567"
-              />
-            </div>
-
-            <div>
-              <label htmlFor="dateOfBirth" className="block text-white font-medium mb-2">
-                Date of Birth *
-              </label>
-              <input
-                type="date"
-                id="dateOfBirth"
-                name="dateOfBirth"
-                value={participantInfo.dateOfBirth}
-                onChange={handleParticipantChange}
-                required
-                className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
           </div>
@@ -269,36 +248,6 @@ export default function RegistrationForm({
               <option value="experienced">Experienced</option>
               <option value="professional">Professional/Practitioner</option>
             </select>
-          </div>
-
-          <div>
-            <label htmlFor="dietaryRestrictions" className="block text-white font-medium mb-2">
-              Allergies
-            </label>
-            <textarea
-              id="dietaryRestrictions"
-              name="dietaryRestrictions"
-              value={participantInfo.dietaryRestrictions}
-              onChange={handleParticipantChange}
-              rows={2}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="Please list any allergies we should be aware of..."
-            />
-          </div>
-
-          <div>
-            <label htmlFor="medicalConditions" className="block text-white font-medium mb-2">
-              Medical Conditions or Physical Limitations
-            </label>
-            <textarea
-              id="medicalConditions"
-              name="medicalConditions"
-              value={participantInfo.medicalConditions}
-              onChange={handleParticipantChange}
-              rows={2}
-              className="w-full px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              placeholder="Please describe any medical conditions we should be aware of..."
-            />
           </div>
         </div>
 
