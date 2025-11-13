@@ -55,7 +55,7 @@ export default function FrequenciesFlowRegistration() {
     currentRegistrations: availability?.event.soldTickets || 0,
     availableSpots: availability?.availability.available || 0,
     soldOut: availability?.availability.soldOut || false,
-    description: 'Experience the magic of creating art that speaks from your soul. Each brushstroke flows with the rhythm as music, meditation, and art creation unite in perfect harmony.',
+    description: 'Experience the magic of creating art that speaks from your soul through guided creative expression.',
     highlights: [
       'Musical performance throughout',
       'Guided meditation and breathwork',
