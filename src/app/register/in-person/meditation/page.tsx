@@ -106,6 +106,23 @@ export default function MeditationRegistration() {
                   <span className="ml-2">{eventData.price}</span>
                 </div>
               </div>
+
+              {/* Venue Logo */}
+              <div className="mt-4 pt-4 border-t border-gray-700">
+                <p className="text-gray-400 text-xs mb-3">Hosted at:</p>
+                <a 
+                  href="https://www.workshopslc.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="bg-white rounded-lg p-4 inline-block hover:shadow-lg transition-shadow duration-300"
+                >
+                  <img 
+                    src="/WorkshopSLCLogo.webp" 
+                    alt="Workshop SLC" 
+                    className="h-28 object-contain hover:scale-105 transition-transform duration-300"
+                  />
+                </a>
+              </div>
             </div>
 
             <div>
