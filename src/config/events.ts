@@ -21,8 +21,8 @@ export interface EventConfig {
 
 export const ART_MEDITATION_EVENT: EventConfig = {
   name: 'Art Meditation',
-  date: 'Saturday, November 9, 2025',
-  isoDateTime: '2025-11-09T10:00:00-07:00', // 10 AM MST (UTC-7)
+  date: 'Saturday, November 16, 2025',
+  isoDateTime: '2025-11-16T10:00:00-07:00', // 10 AM MST (UTC-7)
   time: '10:00 AM MST',
   timezone: 'MST',
   duration: '60 minutes',
