@@ -53,6 +53,11 @@ export default function RegistrationForm({
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
+  
+  // Sold out waitlist form state
+  const [notifyEmail, setNotifyEmail] = useState('');
+  const [isNotifySubmitting, setIsNotifySubmitting] = useState(false);
+  const [notifySubmitted, setNotifySubmitted] = useState(false);
 
   const spotsRemaining = availableSpots > 0 ? availableSpots : maxCapacity - currentRegistrations;
   const isSoldOut = soldOut || spotsRemaining <= 0;
@@ -120,18 +125,98 @@ export default function RegistrationForm({
     }
   };
 
+  const handleNotifySubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsNotifySubmitting(true);
+    
+    try {
+      // Use Brevo for frequencies-flow waitlist, Flodesk for others
+      const apiEndpoint = eventType === 'frequencies-flow' 
+        ? '/api/waitlist-brevo'
+        : '/api/register-meditation-flodesk';
+
+      const requestBody = eventType === 'frequencies-flow'
+        ? {
+            email: notifyEmail,
+            eventType: 'waitlist-' + eventType,
+            name: notifyEmail.split('@')[0],
+            // listId will be determined from environment variables in the API
+          }
+        : {
+            name: notifyEmail.split('@')[0],
+            email: notifyEmail,
+            eventType: 'waitlist-' + eventType,
+          };
+
+      const response = await fetch(apiEndpoint, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(requestBody),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setNotifySubmitted(true);
+      } else {
+        alert(data.error || 'Failed to join waitlist. Please try again.');
+      }
+    } catch (error) {
+      console.error('Waitlist signup error:', error);
+      alert('Failed to join waitlist. Please check your connection and try again.');
+    } finally {
+      setIsNotifySubmitting(false);
+    }
+  };
+
   if (isSoldOut) {
+
+
+
     return (
       <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
         <div className="text-center">
           <h3 className="text-2xl font-bold text-white mb-4">{eventName}</h3>
-          <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6">
+          <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-6">
             <p className="text-red-400 font-medium text-lg">🎫 Event Sold Out</p>
             <p className="text-red-300 mt-2">All {maxCapacity} spots have been filled.</p>
           </div>
-          <p className="text-gray-400 mt-4">
-            Join our mailing list to be notified of future events!
-          </p>
+          
+          {!notifySubmitted ? (
+            <div className="bg-gray-800/50 rounded-lg p-6">
+              <h4 className="text-white font-semibold mb-3">Get Notified of Future Events</h4>
+              <p className="text-gray-300 text-sm mb-4">
+                Be the first to know when we schedule the next {eventName.toLowerCase()} session!
+              </p>
+              <form onSubmit={handleNotifySubmit} className="space-y-4">
+                <input
+                  type="email"
+                  value={notifyEmail}
+                  onChange={(e) => setNotifyEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                  className="w-full px-4 py-3 bg-gray-700 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+                <button
+                  type="submit"
+                  disabled={isNotifySubmitting}
+                  className="w-full bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300"
+                  style={{ backgroundColor: '#f11568' }}
+                >
+                  {isNotifySubmitting ? 'Joining Waitlist...' : 'Notify Me of Next Event'}
+                </button>
+              </form>
+            </div>
+          ) : (
+            <div className="bg-green-900/30 border border-green-500/30 rounded-lg p-6">
+              <p className="text-green-400 font-medium">✅ You&apos;re on the list!</p>
+              <p className="text-green-300 mt-2 text-sm">
+                We&apos;ll email you as soon as the next {eventName.toLowerCase()} session is scheduled.
+              </p>
+            </div>
+          )}
         </div>
       </div>
     );

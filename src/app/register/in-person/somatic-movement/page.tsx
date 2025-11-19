@@ -1,6 +1,5 @@
 'use client';
 
-import RegistrationForm from '@/components/RegistrationForm';
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 
@@ -22,7 +21,6 @@ interface EventAvailability {
 
 export default function SomaticMovementRegistration() {
   const [availability, setAvailability] = useState<EventAvailability | null>(null);
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchAvailability() {
@@ -36,8 +34,6 @@ export default function SomaticMovementRegistration() {
         }
       } catch (err) {
         console.error('Error fetching availability:', err);
-      } finally {
-        setLoading(false);
       }
     }
 
@@ -212,17 +208,25 @@ export default function SomaticMovementRegistration() {
           </div>
         </div>
 
-        <RegistrationForm
-          eventType={eventData.id}
-          eventName={eventData.name}
-          eventDate={eventData.date}
-          price={eventData.price}
-          maxCapacity={eventData.maxCapacity}
-          currentRegistrations={eventData.currentRegistrations}
-          availableSpots={eventData.availableSpots}
-          soldOut={eventData.soldOut}
-          loading={loading}
-        />
+        {/* External Registration Button */}
+        <div className="bg-gray-900/50 rounded-2xl p-8 border border-gray-800 text-center">
+          <h2 className="text-2xl font-bold text-white mb-4">Ready to Join Us?</h2>
+          <p className="text-gray-300 mb-6">
+            Register for this transformative somatic art journey and discover the wisdom of your body through movement and creativity.
+          </p>
+          <a
+            href="https://sagecanvas.com/events"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-primary-500 hover:bg-primary-600 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105"
+            style={{ backgroundColor: '#f11568' }}
+          >
+            Register Now on Sage Canvas
+          </a>
+          <p className="text-gray-400 text-sm mt-4">
+            You&apos;ll be redirected to Sage Canvas to complete your registration
+          </p>
+        </div>
       </div>
     </main>
   );
