@@ -60,7 +60,7 @@ export default function ContactPage() {
       <PageMeta
         title="Contact ArtRiot"
         description="Get in touch with ArtRiot. Questions about events, workshops, or collaborations? We'd love to hear from you. Contact us today."
-        image="/Art_Riot_Horizontal.png"
+        image="/Art_Riot_Banner.png"
         url="https://artriot.com/contact"
         type="website"
       />

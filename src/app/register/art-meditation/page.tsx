@@ -92,7 +92,7 @@ export default function ArtMeditationRegistration() {
       <PageMeta
         title="Art Meditation Registration - Virtual Event"
         description="Join our transformative virtual art meditation event. Experience guided meditation combined with creative expression from the comfort of your home. All materials included."
-        image="/Art_Riot_Horizontal.png"
+        image="/Art_Riot_Banner.png"
         url="https://artriot.com/register/art-meditation"
         type="website"
       />
