@@ -63,7 +63,7 @@ export default function PageMeta({
     updateMeta('og:image:height', '857');
     updateMeta('og:image:alt', title);
     updateMeta('og:locale', 'en_US');
-    updateMeta('fb:app_id', '123456789012345');
+    // updateMeta('fb:app_id', '123456789012345'); // Commented out - no valid Facebook App ID
 
     // Twitter Card Meta Tags
     updateMeta('twitter:card', 'summary_large_image', false);
