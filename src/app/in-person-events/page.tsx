@@ -782,10 +782,10 @@ export default function InPersonEventsPage() {
                       </div>
                     )}
 
-                    {/* Facilitator for Breathe & Create */}
+                    {/* Co-Facilitators for Breathe & Create */}
                     {session.eventType === 'meditation' && (
                       <div className="flex items-center gap-3 mb-4 p-3 bg-gray-800/30 rounded-lg">
-                        <span className="text-gray-400 text-xs font-medium">Facilitated by:</span>
+                        <span className="text-gray-400 text-xs font-medium">Co-facilitated by:</span>
                         <div className="flex items-center gap-3">
                           <div className="flex items-center gap-2">
                             <a 
@@ -802,6 +802,22 @@ export default function InPersonEventsPage() {
                               />
                             </a>
                             <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.instagram.com/sarahgirlstrong/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/Sarah-Headshot.jpg" 
+                                alt="Sarah McClellan" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Sarah McClellan</span>
                           </div>
                         </div>
                       </div>
