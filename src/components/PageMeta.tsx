@@ -81,6 +81,7 @@ export default function PageMeta({
     updateMeta('robots', 'index, follow', false);
     updateMeta('googlebot', 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1', false);
     updateMeta('author', 'ArtRiot', false);
+    updateMeta('facebook-domain-verification', 'plkzd256cdnv1r0dn8gcfefkl41i2l', false);
 
     // Schema.org structured data properties
     const updateItemprop = (property: string, content: string) => {
