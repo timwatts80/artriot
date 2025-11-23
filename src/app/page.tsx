@@ -60,27 +60,14 @@ export default function ArtRiotHomePage() {
     const mockEvents: Event[] = [
       {
         id: '1',
-        name: ART_MEDITATION_EVENT.name,
-        start_time: ART_MEDITATION_EVENT.isoDateTime,
-        description: ART_MEDITATION_EVENT.description,
+        name: 'Body Wisdom: Somatic Art Journey',
+        start_time: '2025-12-05T19:00:00',
+        description: 'Move, feel, create! This gentle somatic experience invites you to listen to your body\'s wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.',
         place: {
-          name: ART_MEDITATION_EVENT.format,
-          location: {
-            street: "Virtual",
-            city: "Online"
-          }
-        }
-      },
-      {
-        id: '2',
-        name: 'In Person Art Meditation',
-        start_time: '2025-11-21T19:00:00',
-        description: 'Experience transformative in-person sessions combining art, movement, meditation, and music. Nurture your creative spirit and promote deep healing in beautiful Utah venues.',
-        place: {
-          name: 'Various Locations',
+          name: 'Sage Canvas',
           location: {
             street: '',
-            city: 'Salt Lake City Area'
+            city: 'Lehi, UT'
           }
         }
       }
@@ -415,6 +402,14 @@ export default function ArtRiotHomePage() {
                     >
                       Register Now
                     </a>
+                  ) : event.name === 'Body Wisdom: Somatic Art Journey' ? (
+                    <a 
+                      href="/register/in-person/somatic-movement"
+                      className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                      style={{ backgroundColor: '#f11568' }}
+                    >
+                      Learn More
+                    </a>
                   ) : event.name === 'In Person Art Meditation' ? (
                     <a 
                       href="/in-person-events"
@@ -424,7 +419,8 @@ export default function ArtRiotHomePage() {
                       View Events
                     </a>
                   ) : !event.name.includes('Coming Soon') ? (
-                    <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300">
+                    <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                         style={{ backgroundColor: '#f11568' }}>
                       Learn More
                     </button>
                   ) : null}

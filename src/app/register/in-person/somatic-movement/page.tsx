@@ -43,7 +43,7 @@ export default function SomaticMovementRegistration() {
   const eventData = {
     id: 'somatic-movement',
     name: 'Body Wisdom: Somatic Art Journey',
-    date: 'December 6, 2025',
+    date: 'December 5, 2025',
     time: '7:00 - 8:30 PM',
     location: 'Sage Canvas, Lehi, UT',
     price: '$44',

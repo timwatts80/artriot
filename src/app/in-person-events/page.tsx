@@ -81,7 +81,7 @@ const UPCOMING_SESSIONS = [
     id: 3,
     eventType: "somatic-movement",
     title: "Body Wisdom: Somatic Art Journey",
-    date: "December 6, 2025", 
+    date: "December 5, 2025", 
     time: "7:00 - 8:30 PM",
     location: "Sage Canvas, Lehi, UT",
     description: "Move, feel, create! This gentle somatic experience invites you to listen to your body's wisdom through mindful movement, meditation, and intuitive art creation. Let your body lead the way to creative discovery.",
