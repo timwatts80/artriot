@@ -179,15 +179,15 @@ export default function RegistrationForm({
     setIsNotifySubmitting(true);
     
     try {
-      // Use Brevo for frequencies-flow waitlist, Flodesk for others
-      const apiEndpoint = eventType === 'frequencies-flow' 
+      // Use Brevo for frequencies-flow and meditation (Workshop SLC) waitlists, Flodesk for others
+      const apiEndpoint = (eventType === 'frequencies-flow' || eventType === 'meditation') 
         ? '/api/waitlist-brevo'
         : '/api/register-meditation-flodesk';
 
-      const requestBody = eventType === 'frequencies-flow'
+      const requestBody = (eventType === 'frequencies-flow' || eventType === 'meditation')
         ? {
             email: notifyEmail,
-            eventType: 'waitlist-' + eventType,
+            eventType: eventType === 'meditation' ? 'workshop_slc_upcoming' : 'waitlist-' + eventType,
             name: notifyEmail.split('@')[0],
             // listId will be determined from environment variables in the API
           }

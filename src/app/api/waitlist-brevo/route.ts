@@ -21,6 +21,18 @@ export async function POST(request: NextRequest) {
         return envValue ? parseInt(envValue) : 15;
       }
       
+      // Map homepage notifications to Art Riot interest list
+      if (eventType === 'homepage_notifications' || eventType === 'art_riot_interest') {
+        const envValue = process.env.BREVO_ART_RIOT_INTEREST_LIST_ID;
+        return envValue ? parseInt(envValue) : 16;
+      }
+      
+      // Map workshop SLC to workshop SLC upcoming interest list
+      if (eventType === 'workshop_slc' || eventType === 'workshop_slc_upcoming') {
+        const envValue = process.env.BREVO_WORKSHOP_SLC_UPCOMING_INTEREST_LIST_ID;
+        return envValue ? parseInt(envValue) : 17;
+      }
+      
       const envKey = `BREVO_${eventType.toUpperCase().replace('-', '_')}_LIST_ID`;
       const envValue = process.env[envKey];
       return envValue ? parseInt(envValue) : 15; // Default to 15 if not found

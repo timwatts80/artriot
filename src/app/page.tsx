@@ -28,6 +28,10 @@ interface Event {
 export default function ArtRiotHomePage() {
   const [events, setEvents] = useState<Event[]>([])
   const [loading, setLoading] = useState(true)
+  const [email, setEmail] = useState('')
+  const [isSubmittingEmail, setIsSubmittingEmail] = useState(false)
+  const [emailSubmitted, setEmailSubmitted] = useState(false)
+  const [emailError, setEmailError] = useState('')
 
   // Newsletter highlights data (currently hidden)
   /*
@@ -81,34 +85,47 @@ export default function ArtRiotHomePage() {
     }, 1000);
   }, []);
 
-  // Email submission handler (currently not used since newsletter is hidden)
-  /*
+  // Email notification signup handler
   const handleEmailSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    if (!email || !email.includes('@')) {
+      setEmailError('Please enter a valid email address');
+      return;
+    }
+
+    setIsSubmittingEmail(true);
+    setEmailError('');
+    
     try {
-      const response = await fetch('/api/newsletter-signup', {
+      const response = await fetch('/api/waitlist-brevo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ email }),
+        body: JSON.stringify({ 
+          email,
+          eventType: 'art_riot_interest',
+          name: email.split('@')[0] // Use email prefix as default name
+        }),
       });
-
-      const data = await response.json();
 
       if (response.ok) {
         setEmail('');
-        // Could add success notification here if needed
+        setEmailSubmitted(true);
+        setTimeout(() => setEmailSubmitted(false), 5000);
       } else {
-        alert(data.error || 'Signup failed. Please try again.');
+        const errorData = await response.text();
+        setEmailError('Something went wrong. Please try again.');
+        console.error('Email signup error:', errorData);
       }
     } catch (error) {
-      console.error('Newsletter signup error:', error);
-      alert('Signup failed. Please check your connection and try again.');
+      setEmailError('Something went wrong. Please try again.');
+      console.error('Email signup error:', error);
+    } finally {
+      setIsSubmittingEmail(false);
     }
   };
-  */
 
   const formatEventDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
@@ -345,6 +362,60 @@ export default function ArtRiotHomePage() {
         </div>
       </section>
 
+      {/* Event Notifications Signup Section */}
+      <section id="signup" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+            Never Miss an <span className="text-primary-500" style={{ color: '#f11568' }}>ArtRiot</span> Event
+          </h2>
+          <p className="text-lg text-gray-300 mb-8 max-w-2xl mx-auto leading-relaxed">
+            Be the first to know about new workshops, special events, and creative gatherings. 
+            Join our notification list and stay connected with the ArtRiot community.
+          </p>
+          
+          {emailSubmitted ? (
+            <div className="bg-green-900/30 border border-green-500/50 rounded-lg p-6 max-w-md mx-auto">
+              <div className="flex items-center justify-center space-x-2 text-green-400">
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                </svg>
+                <span className="font-semibold">You&apos;re all set!</span>
+              </div>
+              <p className="text-green-300 mt-2">We&apos;ll notify you about upcoming events.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleEmailSubmit} className="max-w-md mx-auto">
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  placeholder="Enter your email address"
+                  required
+                  className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500"
+                  disabled={isSubmittingEmail}
+                />
+                <button
+                  type="submit"
+                  disabled={isSubmittingEmail}
+                  className="bg-primary-500 hover:bg-primary-600 disabled:bg-gray-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 transform hover:scale-105 disabled:transform-none disabled:cursor-not-allowed whitespace-nowrap"
+                  style={{ backgroundColor: isSubmittingEmail ? undefined : '#f11568' }}
+                >
+                  {isSubmittingEmail ? 'Joining...' : 'Get Notified'}
+                </button>
+              </div>
+              {emailError && (
+                <p className="text-red-400 text-sm mt-3 text-center">{emailError}</p>
+              )}
+            </form>
+          )}
+          
+          <p className="text-gray-500 text-sm mt-4">
+            ✨ No spam, just creative inspiration. Unsubscribe anytime.
+          </p>
+        </div>
+      </section>
+
       {/* Events Calendar Section */}
       <section id="events" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
@@ -465,7 +536,7 @@ export default function ArtRiotHomePage() {
       */}
 
       {/* Newsletter Signup Section */}
-      <section id="signup" className="py-16 px-4 sm:px-6 lg:px-8">
+      <section id="signup" className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--color-gray-900)' }}>
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-4xl lg:text-5xl font-bold text-white mb-6">Ready to break free and create?</h2>
           <p className="text-xl text-gray-400 mb-8 max-w-2xl mx-auto">
@@ -540,7 +611,7 @@ export default function ArtRiotHomePage() {
       </section>
 
       {/* Art Kits Section */}
-      <section id="art-kits" className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
+      <section id="art-kits" className="py-16 px-4 sm:px-6 lg:px-8" style={{ backgroundColor: 'var(--color-black)' }}>
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-12">
             <h2 className="text-4xl lg:text-5xl font-bold text-white mb-4">Curated Art Kits</h2>
