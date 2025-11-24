@@ -6,6 +6,7 @@ interface RegistrationFormProps {
   eventType: string;
   eventName: string;
   eventDate: string;
+  eventTime?: string;
   price: string;
   maxCapacity: number;
   currentRegistrations?: number;
@@ -30,7 +31,8 @@ interface EmergencyContact {
 export default function RegistrationForm({ 
   eventType, 
   eventName, 
-  eventDate, 
+  eventDate,
+  eventTime,
   price,
   maxCapacity,
   currentRegistrations = 0,
@@ -59,8 +61,55 @@ export default function RegistrationForm({
   const [isNotifySubmitting, setIsNotifySubmitting] = useState(false);
   const [notifySubmitted, setNotifySubmitted] = useState(false);
 
+  // Helper function to check if event date and time has passed
+  const isEventPast = (eventDateString: string, eventTimeString?: string) => {
+    const currentDateTime = new Date();
+    
+    if (!eventTimeString) {
+      // If no time provided, just check date (legacy support)
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      const eventDate = new Date(eventDateString);
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate < currentDate;
+    }
+    
+    // Parse the event date (format: "November 23, 2025")
+    const eventDate = new Date(eventDateString);
+    
+    // Parse the end time from format "10:00 AM - 11:30 AM"
+    const timeMatch = eventTimeString.match(/(\d{1,2}):(\d{2})\s*(AM|PM)\s*-\s*(\d{1,2}):(\d{2})\s*(AM|PM)/);
+    if (!timeMatch) {
+      // Fallback to date-only check if time format is unexpected
+      const currentDate = new Date();
+      currentDate.setHours(0, 0, 0, 0);
+      eventDate.setHours(0, 0, 0, 0);
+      return eventDate < currentDate;
+    }
+    
+    // Extract end time (the second time in the range)
+    let endHour = parseInt(timeMatch[4]);
+    const endMinute = parseInt(timeMatch[5]);
+    const endAmPm = timeMatch[6];
+    
+    // Convert to 24-hour format
+    if (endAmPm === 'PM' && endHour !== 12) {
+      endHour += 12;
+    } else if (endAmPm === 'AM' && endHour === 12) {
+      endHour = 0;
+    }
+    
+    // Set the event end time
+    const eventEndDateTime = new Date(eventDate);
+    eventEndDateTime.setHours(endHour, endMinute, 0, 0);
+    
+    return currentDateTime > eventEndDateTime;
+  };
+
   const spotsRemaining = availableSpots > 0 ? availableSpots : maxCapacity - currentRegistrations;
   const isSoldOut = soldOut || spotsRemaining <= 0;
+  const isPastEvent = isEventPast(eventDate, eventTime);
+  const showWaitlistForm = isSoldOut || isPastEvent;
 
   const handleParticipantChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -171,24 +220,33 @@ export default function RegistrationForm({
     }
   };
 
-  if (isSoldOut) {
-
-
-
+  if (showWaitlistForm) {
     return (
       <div className="bg-gray-900 rounded-2xl p-8 border border-gray-800">
         <div className="text-center">
           <h3 className="text-2xl font-bold text-white mb-4">{eventName}</h3>
           <div className="bg-red-900/30 border border-red-500/30 rounded-lg p-6 mb-6">
-            <p className="text-red-400 font-medium text-lg">🎫 Event Sold Out</p>
-            <p className="text-red-300 mt-2">All {maxCapacity} spots have been filled.</p>
+            {isPastEvent ? (
+              <>
+                <p className="text-red-400 font-medium text-lg">📅 Event Has Ended</p>
+                <p className="text-red-300 mt-2">This event took place on {eventDate}.</p>
+              </>
+            ) : (
+              <>
+                <p className="text-red-400 font-medium text-lg">🎫 Event Sold Out</p>
+                <p className="text-red-300 mt-2">All {maxCapacity} spots have been filled.</p>
+              </>
+            )}
           </div>
           
           {!notifySubmitted ? (
             <div className="bg-gray-800/50 rounded-lg p-6">
               <h4 className="text-white font-semibold mb-3">Get Notified of Future Events</h4>
               <p className="text-gray-300 text-sm mb-4">
-                Be the first to know when we schedule the next {eventName.toLowerCase()} session!
+                {isPastEvent 
+                  ? `Join our waitlist to be notified when we schedule the next ${eventName.toLowerCase()} session!`
+                  : `Be the first to know when we schedule the next ${eventName.toLowerCase()} session!`
+                }
               </p>
               <form onSubmit={handleNotifySubmit} className="space-y-4">
                 <input
@@ -205,7 +263,7 @@ export default function RegistrationForm({
                   className="w-full bg-primary-500 hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed text-white font-medium py-3 px-6 rounded-lg transition-all duration-300"
                   style={{ backgroundColor: '#f11568' }}
                 >
-                  {isNotifySubmitting ? 'Joining Waitlist...' : 'Notify Me of Next Event'}
+                  {isNotifySubmitting ? 'Joining Waitlist...' : 'Join Waitlist for Future Events'}
                 </button>
               </form>
             </div>

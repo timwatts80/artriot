@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { ART_MEDITATION_EVENT } from '../config/events';
 import { getPagePadding, SHOW_BANNER } from '@/utils/banner';
 import PageMeta from '@/components/PageMeta';
@@ -403,21 +404,21 @@ export default function ArtRiotHomePage() {
                       Register Now
                     </a>
                   ) : event.name === 'Body Wisdom: Somatic Art Journey' ? (
-                    <a 
+                    <Link 
                       href="/register/in-person/somatic-movement"
                       className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                       style={{ backgroundColor: '#f11568' }}
                     >
                       Learn More
-                    </a>
+                    </Link>
                   ) : event.name === 'In Person Art Meditation' ? (
-                    <a 
+                    <Link 
                       href="/in-person-events"
                       className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                       style={{ backgroundColor: '#f11568' }}
                     >
                       View Events
-                    </a>
+                    </Link>
                   ) : !event.name.includes('Coming Soon') ? (
                     <button className="mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                          style={{ backgroundColor: '#f11568' }}>

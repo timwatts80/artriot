@@ -216,6 +216,7 @@ export default function FrequenciesFlowRegistration() {
           eventType={eventData.id}
           eventName={eventData.name}
           eventDate={eventData.date}
+          eventTime={eventData.time}
           price={eventData.price}
           maxCapacity={eventData.maxCapacity}
           currentRegistrations={eventData.currentRegistrations}

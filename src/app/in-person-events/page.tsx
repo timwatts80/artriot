@@ -114,6 +114,37 @@ export default function InPersonEventsPage() {
     }
   };
 
+  // Function to check if an event has past
+  const isEventPast = (dateStr: string, timeStr: string) => {
+    const currentDate = new Date();
+    const eventDate = new Date(dateStr);
+    
+    // If event is on a different date, just compare dates
+    if (eventDate.toDateString() !== currentDate.toDateString()) {
+      return eventDate < currentDate;
+    }
+    
+    // If event is today, check the end time
+    // Extract end time from time string like "10:00 AM - 11:30 AM"
+    const timeMatch = timeStr.match(/(\d+):(\d+)\s*(AM|PM)\s*-\s*(\d+):(\d+)\s*(AM|PM)/i);
+    if (!timeMatch) return false;
+    
+    const [, , , endHour, endMinute, endPeriod] = timeMatch;
+    let hour = parseInt(endHour);
+    
+    // Convert to 24-hour format
+    if (endPeriod.toUpperCase() === 'PM' && hour !== 12) {
+      hour += 12;
+    } else if (endPeriod.toUpperCase() === 'AM' && hour === 12) {
+      hour = 0;
+    }
+    
+    const endTime = new Date(eventDate);
+    endTime.setHours(hour, parseInt(endMinute), 0, 0);
+    
+    return currentDate > endTime;
+  };
+
   useEffect(() => {
     async function fetchAllAvailabilities() {
       try {
@@ -636,7 +667,22 @@ export default function InPersonEventsPage() {
           </div>
 
           <div className="space-y-6">
-            {UPCOMING_SESSIONS.map((session) => (
+            {(() => {
+              // Sort sessions by date
+              const sortedSessions = [...UPCOMING_SESSIONS].sort((a, b) => {
+                const dateA = new Date(a.date);
+                const dateB = new Date(b.date);
+                return dateA.getTime() - dateB.getTime();
+              });
+
+              // Separate upcoming and past events
+              const upcomingEvents = sortedSessions.filter(session => !isEventPast(session.date, session.time));
+              const pastEvents = sortedSessions.filter(session => isEventPast(session.date, session.time));
+              
+              return (
+                <>
+                  {/* Upcoming Events */}
+                  {upcomingEvents.map((session) => (
               <div 
                 key={session.id}
                 className="bg-gray-900 rounded-2xl overflow-hidden border border-gray-800 hover:border-primary-500/50 transition-all duration-300"
@@ -850,6 +896,88 @@ export default function InPersonEventsPage() {
                 </div>
               </div>
             ))}
+                  
+                  {/* Past Events Section */}
+                  {pastEvents.length > 0 && (
+                    <>
+                      <div className="pt-8 mt-8 border-t border-gray-700">
+                        <h3 className="text-xl font-semibold text-gray-400 mb-6">Past Events</h3>
+                      </div>
+                      {pastEvents.map((session) => (
+                        <div 
+                          key={`past-${session.id}`}
+                          className="bg-gray-900/50 rounded-2xl overflow-hidden border border-gray-700 opacity-75"
+                        >
+                          <div className="grid lg:grid-cols-3 gap-0">
+                            {/* Venue Logo & Past Event Icon */}
+                            <div className="min-h-[200px] lg:min-h-full bg-gray-800/50 relative overflow-hidden">
+                              {getVenueLogo(session.eventType) ? (
+                                <div className="relative w-full h-full">
+                                  {/* Full background logo */}
+                                  <div className={`absolute inset-0 ${session.eventType === 'meditation' ? 'bg-white' : ''}`}>
+                                    <img 
+                                      src={getVenueLogo(session.eventType)!}
+                                      alt={`${session.location} logo`}
+                                      className="absolute inset-0 w-full h-full object-cover opacity-50"
+                                    />
+                                  </div>
+                                  {/* Dark overlay for text readability */}
+                                  <div className="absolute inset-0 bg-black/70"></div>
+                                  {/* Overlay content */}
+                                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                                    <svg className="w-8 h-8 mb-2 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <p className="text-gray-400 text-xs font-medium drop-shadow-lg">Past Event</p>
+                                  </div>
+                                </div>
+                              ) : (
+                                <div className="flex items-center justify-center h-full">
+                                  <div className="text-center">
+                                    <svg className="w-12 h-12 mx-auto mb-1 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                                    </svg>
+                                    <p className="text-gray-500 text-xs font-medium">Past Event</p>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+
+                            {/* Session Details */}
+                            <div className="lg:col-span-2 p-6">
+                              <div className="flex justify-between items-start mb-4">
+                                <div>
+                                  <h3 className="text-xl font-bold text-gray-300 mb-2">{session.title}</h3>
+                                  <div className="flex flex-wrap gap-4 text-sm text-gray-500 mb-3">
+                                    <span>📅 {session.date}</span>
+                                    <span>🕐 {session.time}</span>
+                                    <span>📍 {session.location}</span>
+                                  </div>
+                                </div>
+                                <Link 
+                                  href={`/register/in-person/${session.eventType}`}
+                                  className="bg-gray-600 hover:bg-gray-500 text-white font-medium py-2 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 whitespace-nowrap"
+                                >
+                                  See Event
+                                </Link>
+                              </div>
+                              
+                              <p className="text-gray-400 text-sm leading-relaxed mb-4">
+                                {session.description}
+                              </p>
+
+                              <div className="text-sm text-gray-500">
+                                Event completed on {session.date}
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </>
+                  )}
+                </>
+              );
+            })()}
           </div>
         </div>
       </section>
