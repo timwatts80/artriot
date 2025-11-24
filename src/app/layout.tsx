@@ -48,33 +48,11 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://artriot.com",
     siteName: "ArtRiot",
-    images: [
-      {
-        url: "https://artriot.com/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ArtRiot - Where Creativity Rebels Against the Ordinary - Art Meditation Events",
-        type: "image/png",
-      },
-      {
-        url: "https://artriot.com/opengraph-image.png",
-        width: 1200,
-        height: 630,
-        alt: "ArtRiot Community - Creative Events and Workshops",
-        type: "image/png",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "ArtRiot - Where Creativity Rebels Against the Ordinary",
     description: "Experience transformative art meditation events combining creativity, movement, and healing. Join our community of artists and dreamers.",
-    images: [
-      {
-        url: "https://artriot.com/opengraph-image.png",
-        alt: "ArtRiot - Art Meditation Events",
-      }
-    ],
     creator: "@artriot",
     site: "@artriot",
   },
