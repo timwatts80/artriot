@@ -26,9 +26,9 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://artriot.com'),
+  metadataBase: new URL('https://artriot.live'),
   alternates: {
-    canonical: 'https://artriot.com',
+    canonical: 'https://artriot.live',
   },
   robots: {
     index: true,
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     description: "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite. Experience transformative art meditation events combining creativity, movement, and healing.",
     type: "website",
     locale: "en_US",
-    url: "https://artriot.com",
+    url: "https://artriot.live",
     siteName: "ArtRiot",
   },
   twitter: {
@@ -82,8 +82,8 @@ export default function RootLayout({
     "@type": "Organization",
     "name": "ArtRiot",
     "description": "Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite.",
-    "url": "https://artriot.com",
-    "logo": "https://artriot.com/Art_Riot_Banner.jpg",
+    "url": "https://artriot.live",
+    "logo": "https://artriot.live/Art_Riot_Banner.jpg",
     "sameAs": [
       "https://twitter.com/artriot",
       "https://instagram.com/artriot",
@@ -92,7 +92,7 @@ export default function RootLayout({
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "customer service",
-      "url": "https://artriot.com"
+      "url": "https://artriot.live"
     }
   };
 
@@ -110,23 +110,23 @@ export default function RootLayout({
         <meta name="facebook-domain-verification" content="plkzd256cdnv1r0dn8gcfefkl41i2l" />
         
         {/* Additional meta tags for messaging apps */}
-        <meta property="og:image:secure_url" content="https://artriot.com/opengraph-image.png" />
-        <meta name="twitter:image:src" content="https://artriot.com/opengraph-image.png" />
-        <meta name="image" content="https://artriot.com/opengraph-image.png" />
-        <meta itemProp="image" content="https://artriot.com/opengraph-image.png" />
+        <meta property="og:image:secure_url" content="https://artriot.live/opengraph-image.png" />
+        <meta name="twitter:image:src" content="https://artriot.live/opengraph-image.png" />
+        <meta name="image" content="https://artriot.live/opengraph-image.png" />
+        <meta itemProp="image" content="https://artriot.live/opengraph-image.png" />
         
         {/* Explicit Open Graph meta tags for better social media compatibility */}
-        <meta property="og:image" content="https://artriot.com/opengraph-image.png" />
+        <meta property="og:image" content="https://artriot.live/opengraph-image.png" />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
         <meta property="og:image:type" content="image/png" />
         <meta property="og:image:alt" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta property="og:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta property="og:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
-        <meta property="og:url" content="https://artriot.com" />
+        <meta property="og:url" content="https://artriot.live" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="ArtRiot" />
-        <meta name="twitter:image" content="https://artriot.com/opengraph-image.png" />
+        <meta name="twitter:image" content="https://artriot.live/opengraph-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
         <meta name="twitter:description" content="Join our community of artists, makers, and dreamers who believe art should disrupt, inspire, and unite." />
