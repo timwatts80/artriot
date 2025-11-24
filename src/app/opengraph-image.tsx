@@ -11,7 +11,7 @@ export const contentType = 'image/png'
  
 export default async function Image() {
   // Read the logo file from the public directory
-  const logoPath = join(process.cwd(), 'public', 'Art_Riot_Horizontal.png')
+  const logoPath = join(process.cwd(), 'public', 'Art_Riot_Banner.png')
   const logoBuffer = readFileSync(logoPath)
   const logoBase64 = `data:image/png;base64,${logoBuffer.toString('base64')}`
 
@@ -29,33 +29,18 @@ export default async function Image() {
           fontFamily: 'system-ui',
         }}
       >
-        {/* Art Riot Logo */}
+        {/* Art Riot Banner */}
         <img
           src={logoBase64}
-          alt="Art Riot Logo"
-          width="600"
-          height="445"
+          alt="Art Riot Banner"
+          width="1200"
+          height="628"
           style={{
-            maxWidth: '600px',
-            maxHeight: '300px',
-            objectFit: 'contain',
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
           }}
         />
-        
-        {/* Tagline */}
-        <div
-          style={{
-            fontSize: '32px',
-            fontWeight: '600',
-            color: '#1a1a1a',
-            marginTop: '40px',
-            textAlign: 'center',
-            maxWidth: '800px',
-            lineHeight: 1.3,
-          }}
-        >
-          Where Creativity Rebels Against the Ordinary
-        </div>
       </div>
     ),
     {
