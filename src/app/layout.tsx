@@ -126,7 +126,6 @@ export default function RootLayout({
         <meta property="og:url" content="https://artriot.com" />
         <meta property="og:type" content="website" />
         <meta property="og:site_name" content="ArtRiot" />
-        <meta property="fb:app_id" content="123456789012345" />
         <meta name="twitter:image" content="https://artriot.com/opengraph-image.png" />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="ArtRiot - Where Creativity Rebels Against the Ordinary" />
