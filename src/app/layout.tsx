@@ -128,6 +128,9 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/favicon.png" />
         <link rel="shortcut icon" href="/favicon.png" />
         
+        {/* Facebook Domain Verification */}
+        <meta name="facebook-domain-verification" content="plkzd256cdnv1r0dn8gcfefkl41i2l" />
+        
         {/* Additional meta tags for messaging apps */}
         <meta property="og:image:secure_url" content="https://artriot.com/opengraph-image.png" />
         <meta name="twitter:image:src" content="https://artriot.com/opengraph-image.png" />
