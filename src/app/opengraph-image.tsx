@@ -1,4 +1,6 @@
 import { ImageResponse } from 'next/og'
+import { readFileSync } from 'fs'
+import { join } from 'path'
  
 export const alt = 'ArtRiot - Where Creativity Rebels Against the Ordinary'
 export const size = {
@@ -8,6 +10,11 @@ export const size = {
 export const contentType = 'image/png'
  
 export default async function Image() {
+  // Read the logo file from the public directory
+  const logoPath = join(process.cwd(), 'public', 'Art_Riot_Horizontal.png')
+  const logoBuffer = readFileSync(logoPath)
+  const logoBase64 = `data:image/png;base64,${logoBuffer.toString('base64')}`
+
   return new ImageResponse(
     (
       <div
@@ -24,8 +31,10 @@ export default async function Image() {
       >
         {/* Art Riot Logo */}
         <img
-          src="https://artriot.com/Art_Riot_Horizontal.png"
+          src={logoBase64}
           alt="Art Riot Logo"
+          width="600"
+          height="445"
           style={{
             maxWidth: '600px',
             maxHeight: '300px',
