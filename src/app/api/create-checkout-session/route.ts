@@ -4,6 +4,7 @@ import { checkTicketAvailability } from '@/lib/db';
 import { STRIPE_CONFIG } from '@/lib/stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   apiVersion: '2025-10-29.clover' as any,
 });
 
