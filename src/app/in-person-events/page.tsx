@@ -93,6 +93,23 @@ const UPCOMING_SESSIONS = [
       "Body-centered creative exploration",
       "Safe space for authentic expression"
     ]
+  },
+  {
+    id: 4,
+    eventType: "breathwork",
+    title: "Advanced Breathwork & Creative Expression",
+    date: "December 19, 2025",
+    time: "6:30 PM - 8:30 PM",
+    location: "1373 W 3040 N, Pleasant Grove, UT",
+    description: "Experience the transformative power of advanced breathwork techniques combined with intuitive art creation. This immersive session guides you through profound breathwork practices that open pathways to deeper self-expression and creative flow.",
+    facilitator: "Tim Watts, Brock Warden, and Sarah McClellan",
+    highlights: [
+      "Advanced breathwork techniques",
+      "Guided meditation and somatic practices",
+      "Prompted art creation with supplies included",
+      "Multi-facilitator expertise and support",
+      "Deep creative exploration and healing"
+    ]
   }
 ];
 
@@ -109,6 +126,8 @@ export default function InPersonEventsPage() {
         return '/SageCanvasLogo.webp';
       case 'meditation':
         return '/WorkshopSLCLogo.webp';
+      case 'breathwork':
+        return '/art-meditation-001.jpg';
       default:
         return null;
     }
@@ -148,7 +167,7 @@ export default function InPersonEventsPage() {
   useEffect(() => {
     async function fetchAllAvailabilities() {
       try {
-        const eventTypes = ['frequencies-flow', 'somatic-movement', 'meditation'];
+        const eventTypes = ['frequencies-flow', 'somatic-movement', 'meditation', 'breathwork'];
         const promises = eventTypes.map(async (eventType) => {
           const response = await fetch(`/api/events/availability?eventType=${eventType}`);
           if (response.ok) {
@@ -848,6 +867,63 @@ export default function InPersonEventsPage() {
                               />
                             </a>
                             <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.instagram.com/sarahgirlstrong/" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/Sarah-Headshot.jpg" 
+                                alt="Sarah McClellan" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Sarah McClellan</span>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Co-Facilitators for Advanced Breathwork */}
+                    {session.eventType === 'breathwork' && (
+                      <div className="flex items-center gap-3 mb-4 p-3 bg-gray-800/30 rounded-lg">
+                        <span className="text-gray-400 text-xs font-medium">Co-facilitated by:</span>
+                        <div className="flex items-center gap-3 flex-wrap">
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.facebook.com/TimWattsArt" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/SLC_Trish_Headshot_250919 1.jpg" 
+                                alt="Tim Watts" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Tim Watts</span>
+                          </div>
+                          <div className="flex items-center gap-2">
+                            <a 
+                              href="https://www.facebook.com/brock.warden" 
+                              target="_blank" 
+                              rel="noopener noreferrer"
+                              className="hover:scale-105 transition-transform duration-200"
+                            >
+                              <img 
+                                src="/Brock_Headshot.png" 
+                                alt="Brock Warden" 
+                                className="w-8 h-8 rounded-full object-cover border-2 border-primary-500/50 hover:border-primary-400"
+                                style={{ borderColor: '#f11568' }}
+                              />
+                            </a>
+                            <span className="text-gray-300 text-xs font-medium">Brock Warden</span>
                           </div>
                           <div className="flex items-center gap-2">
                             <a 

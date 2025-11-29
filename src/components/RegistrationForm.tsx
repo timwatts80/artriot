@@ -179,12 +179,12 @@ export default function RegistrationForm({
     setIsNotifySubmitting(true);
     
     try {
-      // Use Brevo for frequencies-flow and meditation (Workshop SLC) waitlists, Flodesk for others
-      const apiEndpoint = (eventType === 'frequencies-flow' || eventType === 'meditation') 
+      // Use Brevo for frequencies-flow, meditation (Workshop SLC), and breathwork waitlists, Flodesk for others
+      const apiEndpoint = (eventType === 'frequencies-flow' || eventType === 'meditation' || eventType === 'breathwork') 
         ? '/api/waitlist-brevo'
         : '/api/register-meditation-flodesk';
 
-      const requestBody = (eventType === 'frequencies-flow' || eventType === 'meditation')
+      const requestBody = (eventType === 'frequencies-flow' || eventType === 'meditation' || eventType === 'breathwork')
         ? {
             email: notifyEmail,
             eventType: eventType === 'meditation' ? 'workshop_slc_upcoming' : 'waitlist-' + eventType,

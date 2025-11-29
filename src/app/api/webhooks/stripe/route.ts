@@ -21,10 +21,23 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
     case 'meditation':
       listId = 10; // Breathe & Create list
       break;
+    case 'breathwork':
+      listId = 19; // Advanced Breathwork list
+      break;
     default:
+      // Check if it's a waitlist event type
+      if (eventType.startsWith('waitlist-')) {
+        // For waitlist events, we don't add to the main list here
+        // The waitlist logic is handled separately
+        console.log(`Waitlist event type: ${eventType}, skipping main list addition`);
+        return;
+      }
+      
       listId = 8; // Default to list #8 for unknown event types
       console.warn(`Unknown event type: ${eventType}, defaulting to list #8`);
   }
+
+  console.log(`Determined Brevo list ID: ${listId} for event type: ${eventType}`);
 
   try {
     const contactData: {
@@ -144,7 +157,7 @@ async function addToBrevoList(email: string, firstName: string, lastName: string
 }
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-09-30.clover',
+  apiVersion: '2025-10-29.clover' as any,
 });
 
 const endpointSecret = process.env.STRIPE_WEBHOOK_SECRET!;

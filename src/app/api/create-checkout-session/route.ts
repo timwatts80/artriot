@@ -4,7 +4,7 @@ import { checkTicketAvailability } from '@/lib/db';
 import { STRIPE_CONFIG } from '@/lib/stripe';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
-  apiVersion: '2025-09-30.clover',
+  apiVersion: '2025-10-29.clover' as any,
 });
 
 export async function POST(request: NextRequest) {
@@ -41,6 +41,10 @@ export async function POST(request: NextRequest) {
       case 'meditation':
         priceId = STRIPE_CONFIG.MEDITATION_PRICE_ID;
         eventName = 'Breathe & Create: Deep Meditation Studio';
+        break;
+      case 'breathwork':
+        priceId = STRIPE_CONFIG.BREATHWORK_PRICE_ID;
+        eventName = 'Advanced Breathwork & Creative Expression';
         break;
       default:
         return NextResponse.json(

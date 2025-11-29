@@ -117,7 +117,7 @@ function SuccessPageContent() {
                 <h3 className="text-white font-semibold mb-2">We&apos;ll Provide:</h3>
                 <ul className="text-gray-300 text-sm space-y-1">
                   <li>• All art supplies</li>
-                  <li>• Yoga mats and props</li>
+                  <li>• Yoga mats</li>
                   <li>• Professional guidance</li>
                 </ul>
               </div>
