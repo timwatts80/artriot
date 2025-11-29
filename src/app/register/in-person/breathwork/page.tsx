@@ -203,7 +203,7 @@ export default function BreathworkRegistration() {
                 </a>
               </h3>
               <p className="text-gray-300 text-sm leading-relaxed">
-                Experienced breathwork facilitator guiding you through transformative breathing techniques to unlock deep emotional release and clarity.
+                Brock guides transformative breathwork journeys that break limits, release old weight, and awaken the strength already inside you—helping you rise, reconnect, and remember who you are.
               </p>
             </div>
 
