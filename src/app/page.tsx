@@ -6,6 +6,7 @@ import { ART_MEDITATION_EVENT } from '../config/events';
 import { getPagePadding, SHOW_BANNER } from '@/utils/banner';
 import PageMeta from '@/components/PageMeta';
 import StructuredData from '@/components/StructuredData';
+import Testimonials from '@/components/Testimonials';
 
 // Types for components
 interface Event {
@@ -73,6 +74,19 @@ export default function ArtRiotHomePage() {
           location: {
             street: '',
             city: 'Lehi, UT'
+          }
+        }
+      },
+      {
+        id: '2',
+        name: 'Advanced Breathwork & Creative Expression',
+        start_time: '2025-12-19T18:30:00',
+        description: 'Experience the transformative power of advanced breathwork techniques combined with intuitive art creation. Hosted by Tim Watts, Brock Warden, and Sarah McClellan.',
+        place: {
+          name: '',
+          location: {
+            street: '1373 W 3040 N',
+            city: 'Pleasant Grove, UT'
           }
         }
       }
@@ -318,21 +332,6 @@ export default function ArtRiotHomePage() {
             </div>
           </div>
 
-          <div className="bg-gray-900/50 rounded-2xl p-8 mb-12 border border-gray-800">
-            <div className="text-center max-w-4xl mx-auto">
-              <h3 className="text-2xl font-bold text-white mb-4">What Participants Are Saying</h3>
-              <blockquote className="text-lg text-gray-300 italic mb-6 leading-relaxed">
-                &ldquo;I&apos;ve never felt so free to express myself. The combination of music, movement, and art created this magical space where I could just... be. It&apos;s not therapy, but it&apos;s deeply healing in its own way.&rdquo;
-              </blockquote>
-              <div className="flex justify-center space-x-8 text-sm text-gray-400">
-                <span>✨ Non-judgmental space</span>
-                <span>🎨 All skill levels welcome</span>
-                <span>🧘‍♀️ Mindful & meditative</span>
-                <span>🎵 Music experience</span>
-              </div>
-            </div>
-          </div>
-
           <div className="text-center">
             <a 
               href="/in-person-events"
@@ -344,6 +343,9 @@ export default function ArtRiotHomePage() {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <Testimonials />
 
       {/* About Section */}
       <section className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-900">
@@ -477,6 +479,14 @@ export default function ArtRiotHomePage() {
                   ) : event.name === 'Body Wisdom: Somatic Art Journey' ? (
                     <Link 
                       href="/register/in-person/somatic-movement"
+                      className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
+                      style={{ backgroundColor: '#f11568' }}
+                    >
+                      Learn More
+                    </Link>
+                  ) : event.name === 'Advanced Breathwork & Creative Expression' ? (
+                    <Link 
+                      href="/register/in-person/breathwork"
                       className="inline-block mt-4 bg-primary-500 hover:bg-primary-600 text-white px-6 py-2 rounded-lg text-sm font-medium transition-all duration-300"
                       style={{ backgroundColor: '#f11568' }}
                     >

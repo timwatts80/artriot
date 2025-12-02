@@ -133,8 +133,7 @@ export default function AdminReviewsPage() {
               <div key={review.id} className="bg-gray-900 rounded-2xl p-6 border border-gray-800">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-xl font-bold mb-2">{review.reviewer_name}</h3>
-                    <p className="text-gray-400 text-sm mb-2">{review.reviewer_email}</p>
+                    <h3 className="text-xl font-bold mb-2">{review.reviewer_name.split(' ')[0]}</h3>
                     {renderStars(review.rating)}
                   </div>
                   <div className="text-right">
@@ -155,18 +154,6 @@ export default function AdminReviewsPage() {
                 
                 <div className="mb-4">
                   <p className="text-gray-200 leading-relaxed">{review.review_text}</p>
-                </div>
-
-                <div className="flex items-center justify-between pt-4 border-t border-gray-700">
-                  <div className="text-sm text-gray-400">
-                    Review ID: #{review.id}
-                  </div>
-                  <div className="text-sm">
-                    <span className="text-gray-400">Discount Code: </span>
-                    <span className="font-mono bg-gray-800 px-2 py-1 rounded text-primary-400" style={{ color: '#f11568' }}>
-                      {review.discount_code}
-                    </span>
-                  </div>
                 </div>
               </div>
             ))}

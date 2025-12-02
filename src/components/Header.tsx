@@ -68,14 +68,6 @@ export default function Header() {
               Home
             </Link>
             <Link 
-              href="/register/art-meditation" 
-              className={`transition-colors ${
-                pathname.includes('/register') && !pathname.includes('/in-person') ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
-              }`}
-            >
-              Virtual Events
-            </Link>
-            <Link 
               href="/in-person-events" 
               className={`transition-colors ${
                 pathname === '/in-person-events' || pathname.includes('/register/in-person') ? 'text-white font-medium' : 'text-gray-300 hover:text-white'
@@ -118,15 +110,6 @@ export default function Header() {
               onClick={closeMobileMenu}
             >
               Home
-            </Link>
-            <Link 
-              href="/register/art-meditation" 
-              className={`block py-2 px-4 rounded transition-colors ${
-                pathname.includes('/register') && !pathname.includes('/in-person') ? 'text-white font-medium bg-gray-800' : 'text-gray-300 hover:text-white hover:bg-gray-800'
-              }`}
-              onClick={closeMobileMenu}
-            >
-              Virtual Events
             </Link>
             <Link 
               href="/in-person-events" 
