@@ -49,6 +49,14 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://artriot.live",
     siteName: "ArtRiot",
+    images: [
+      {
+        url: '/Art_Riot_Banner.png',
+        width: 1200,
+        height: 630,
+        alt: 'ArtRiot',
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -56,6 +64,7 @@ export const metadata: Metadata = {
     description: "Experience transformative art meditation events combining creativity, movement, and healing. Join our community of artists and dreamers.",
     creator: "@artriot",
     site: "@artriot",
+    images: ['/Art_Riot_Banner.png'],
   },
   verification: {
     google: 'your-google-verification-code', // Replace with actual verification code when available

@@ -1,6 +1,8 @@
 import { ImageResponse } from 'next/og'
 import { readFileSync } from 'fs'
 import { join } from 'path'
+
+export const runtime = 'nodejs'
  
 export const alt = 'ArtRiot - Where Creativity Rebels Against the Ordinary'
 export const size = {
