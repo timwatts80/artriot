@@ -80,6 +80,9 @@ export const metadata: Metadata = {
     ],
     shortcut: '/favicon.png',
   },
+  other: {
+    'fb:app_id': 'your-facebook-app-id', // Replace with your actual Facebook App ID
+  },
 };
 
 export default function RootLayout({
