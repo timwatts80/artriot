@@ -17,7 +17,9 @@ export default function ReviewPage() {
     { value: 'frequencies-flow', label: 'Jade Bloom Wellness' },
     { value: 'meditation', label: 'Workshop SLC' },
     { value: 'somatic-movement', label: 'Sage Canvas Studio' },
-    { value: 'art-meditation', label: 'Art & Meditation (Virtual)' }
+    { value: 'art-meditation', label: 'Art & Meditation (Virtual)' },
+    { value: 'breath-work-pleasant-grove', label: 'Breath Work in Pleasant Grove' },
+    { value: 'other', label: 'Other' }
   ];
 
   const handleStarClick = (starRating: number) => {
