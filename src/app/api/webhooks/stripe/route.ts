@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import { recordRegistration, reserveTicket } from '@/lib/db';
+import { recordRegistration, reserveTicket, createVoucher } from '@/lib/db';
+import { generateVoucherCode } from '@/utils/voucher';
+import { generateVoucherEmailHTML } from '@/utils/voucher-email';
 
 // Function to add contact to Brevo list
 async function addToBrevoList(email: string, firstName: string, lastName: string = '', confirmationNumber: string = '', phone: string = '', eventType: string = '') {
@@ -200,6 +202,7 @@ async function sendBrevoEmail(to: string, subject: string, htmlContent: string, 
 }
 
 export async function POST(request: NextRequest) {
+  console.log('Webhook received!');
   const body = await request.text();
   const sig = request.headers.get('stripe-signature')!;
 
@@ -217,6 +220,48 @@ export async function POST(request: NextRequest) {
     case 'checkout.session.completed':
       const session = event.data.object as Stripe.Checkout.Session;
       
+      // Handle Voucher Purchase
+      if (session.metadata?.type === 'voucher') {
+        try {
+          console.log('Processing voucher purchase for session:', session.id);
+          const { purchaserEmail, recipientEmail, message, purchaserName, recipientName } = session.metadata;
+          const code = generateVoucherCode();
+          
+          await createVoucher({
+            code,
+            purchaserEmail: purchaserEmail || session.customer_details?.email || '',
+            recipientEmail,
+            message,
+            orderId: session.id,
+            valueType: 'single_ticket'
+          });
+
+          console.log('Voucher created:', code);
+
+          // Send Email
+          const emailHtml = generateVoucherEmailHTML({
+            purchaserName: purchaserName || 'A Friend',
+            recipientName,
+            code,
+            amount: session.amount_total! / 100,
+            message
+          });
+
+          // Determine target email: Recipient if provided, otherwise Purchaser
+          const targetEmail = recipientEmail || session.customer_details?.email || purchaserEmail;
+          
+          if (targetEmail) {
+             await sendBrevoEmail(targetEmail, `You've received an Art Riot Gift Voucher! 🎁`, emailHtml);
+          } else {
+             console.error('No email found to send voucher to');
+          }
+          
+        } catch (error) {
+           console.error('Error processing voucher:', error);
+        }
+        break; 
+      }
+
       try {
         // Extract registration data from metadata
         const {

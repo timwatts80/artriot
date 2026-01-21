@@ -1,18 +1,81 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import PageMeta from '@/components/PageMeta';
+import Script from 'next/script';
+
+declare global {
+  interface Window {
+    turnstile?: {
+      render: (element: string | HTMLElement, options: {
+        sitekey: string;
+        callback: (token: string) => void;
+        'error-callback'?: () => void;
+        'expired-callback'?: () => void;
+        theme?: 'light' | 'dark' | 'auto';
+      }) => string;
+      reset: (widgetId: string) => void;
+      remove: (widgetId: string) => void;
+    };
+  }
+}
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     subject: '',
-    message: ''
+    message: '',
+    website: '' // Honeypot field
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
   const [errorMessage, setErrorMessage] = useState('');
+  const [turnstileToken, setTurnstileToken] = useState<string>('');
+  const [turnstileLoaded, setTurnstileLoaded] = useState(false);
+  const turnstileWidgetId = useRef<string>('');
+  const formStartTime = useRef<number>(0);
+
+  // Initialize form start time and Turnstile
+  useEffect(() => {
+    formStartTime.current = Date.now();
+  }, []);
+
+  useEffect(() => {
+    // Check if Turnstile site key is configured
+    const siteKey = process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY;
+    
+    if (!siteKey || siteKey === 'your-turnstile-site-key-here') {
+      // Development mode: auto-set token to allow testing
+      console.warn('⚠️ Turnstile not configured. Using development mode.');
+      setTurnstileToken('development-mode');
+      return;
+    }
+
+    if (turnstileLoaded && window.turnstile && !turnstileWidgetId.current) {
+      try {
+        turnstileWidgetId.current = window.turnstile.render('#turnstile-widget', {
+          sitekey: siteKey,
+          callback: (token: string) => {
+            setTurnstileToken(token);
+          },
+          'error-callback': () => {
+            console.error('Turnstile verification failed. Please refresh and try again.');
+            setTurnstileToken('');
+          },
+          'expired-callback': () => {
+            console.warn('Turnstile expired, please verify again.');
+            setTurnstileToken('');
+          },
+          theme: 'dark',
+        });
+      } catch (error) {
+        console.error('Turnstile initialization error:', error);
+        // Fallback to development mode if initialization fails
+        setTurnstileToken('development-mode');
+      }
+    }
+  }, [turnstileLoaded]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -28,28 +91,71 @@ export default function ContactPage() {
     setSubmitStatus('idle');
     setErrorMessage('');
 
+    // Client-side validation (skip if in development mode)
+    if (!turnstileToken && process.env.NEXT_PUBLIC_TURNSTILE_SITE_KEY !== 'your-turnstile-site-key-here') {
+      setSubmitStatus('error');
+      setErrorMessage('Please complete the security verification.');
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Check honeypot (should be empty)
+    if (formData.website) {
+      // Silent fail for bots
+      setSubmitStatus('success');
+      setFormData({ name: '', email: '', subject: '', message: '', website: '' });
+      setIsSubmitting(false);
+      return;
+    }
+
+    // Calculate submission time
+    const submissionTime = Date.now() - formStartTime.current;
+
     try {
       const response = await fetch('/api/contact', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          turnstileToken,
+          submissionTime
+        }),
       });
 
       const data = await response.json();
 
       if (response.ok) {
         setSubmitStatus('success');
-        setFormData({ name: '', email: '', subject: '', message: '' });
+        setFormData({ name: '', email: '', subject: '', message: '', website: '' });
+        
+        // Reset Turnstile
+        if (window.turnstile && turnstileWidgetId.current) {
+          window.turnstile.reset(turnstileWidgetId.current);
+        }
+        setTurnstileToken('');
+        formStartTime.current = Date.now();
       } else {
         setSubmitStatus('error');
         setErrorMessage(data.error || 'Something went wrong. Please try again.');
+        
+        // Reset Turnstile on error
+        if (window.turnstile && turnstileWidgetId.current) {
+          window.turnstile.reset(turnstileWidgetId.current);
+        }
+        setTurnstileToken('');
       }
     } catch (error) {
       console.error('Contact form error:', error);
       setSubmitStatus('error');
       setErrorMessage('Network error. Please check your connection and try again.');
+      
+      // Reset Turnstile on error
+      if (window.turnstile && turnstileWidgetId.current) {
+        window.turnstile.reset(turnstileWidgetId.current);
+      }
+      setTurnstileToken('');
     } finally {
       setIsSubmitting(false);
     }
@@ -57,6 +163,11 @@ export default function ContactPage() {
 
   return (
     <main className="min-h-screen bg-black pt-36">
+      <Script 
+        src="https://challenges.cloudflare.com/turnstile/v0/api.js" 
+        onLoad={() => setTurnstileLoaded(true)}
+        strategy="lazyOnload"
+      />
       <PageMeta
         title="Contact ArtRiot"
         description="Get in touch with ArtRiot. Questions about events, workshops, or collaborations? We'd love to hear from you. Contact us today."
@@ -171,6 +282,25 @@ export default function ContactPage() {
                   className="w-full px-4 py-3 bg-gray-800 text-white border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-colors resize-vertical"
                   placeholder="Tell us more about your inquiry..."
                 />
+              </div>
+
+              {/* Honeypot Field - Hidden from users */}
+              <div className="hidden" aria-hidden="true">
+                <label htmlFor="website">Website</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  value={formData.website}
+                  onChange={handleChange}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              {/* Cloudflare Turnstile */}
+              <div>
+                <div id="turnstile-widget"></div>
               </div>
 
               {/* Submit Button */}

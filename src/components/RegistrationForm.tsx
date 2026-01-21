@@ -56,6 +56,12 @@ export default function RegistrationForm({
   const [error, setError] = useState('');
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   
+  // Voucher State
+  const [voucherCode, setVoucherCode] = useState('');
+  const [voucherStatus, setVoucherStatus] = useState<'idle' | 'validating' | 'valid' | 'invalid'>('idle');
+  const [voucherMessage, setVoucherMessage] = useState('');
+  const [discountAmount, setDiscountAmount] = useState(0);
+
   // Sold out waitlist form state
   const [notifyEmail, setNotifyEmail] = useState('');
   const [isNotifySubmitting, setIsNotifySubmitting] = useState(false);
@@ -127,6 +133,37 @@ export default function RegistrationForm({
     }));
   };
 
+  const handleVoucherValidation = async () => {
+    if (!voucherCode) return;
+    
+    setVoucherStatus('validating');
+    setVoucherMessage('');
+    
+    try {
+      const response = await fetch('/api/vouchers/validate', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ code: voucherCode }),
+      });
+      
+      const data = await response.json();
+      
+      if (data.valid) {
+        setVoucherStatus('valid');
+        setVoucherMessage('Voucher applied successfully!');
+        setDiscountAmount(55); // Assuming fixed price for now
+      } else {
+        setVoucherStatus('invalid');
+        setVoucherMessage(data.message || 'Invalid voucher code');
+        setDiscountAmount(0);
+      }
+    } catch (error) {
+      setVoucherStatus('invalid');
+      setVoucherMessage('Error validating voucher');
+      setDiscountAmount(0);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
@@ -139,6 +176,31 @@ export default function RegistrationForm({
     setError('');
 
     try {
+      // If voucher is valid and covers the cost
+      if (voucherStatus === 'valid') {
+        const response = await fetch('/api/register-with-voucher', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            eventType,
+            participantInfo,
+            emergencyContact,
+            eventDate,
+            voucherCode
+          }),
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+          throw new Error(data.error || 'Registration failed');
+        }
+
+        // Redirect to success page
+        window.location.href = `/register/in-person/success?session_id=${data.sessionId}`;
+        return;
+      }
+
       // Create checkout session
       const response = await fetch('/api/create-checkout-session', {
         method: 'POST',
@@ -435,6 +497,38 @@ export default function RegistrationForm({
           </div>
         </div>
 
+        {/* Voucher / Promo Code */}
+        <div className="space-y-4 border-t border-gray-800 pt-6">
+          <h4 className="text-lg font-semibold text-white">Gift Voucher / Promo Code</h4>
+          <div className="flex gap-2">
+            <input
+              type="text"
+              value={voucherCode}
+              onChange={(e) => {
+                setVoucherCode(e.target.value.toUpperCase());
+                setVoucherStatus('idle');
+                setVoucherMessage('');
+              }}
+              placeholder="Enter code (e.g. ART-XXXX)"
+              className="flex-1 px-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent uppercase"
+              disabled={voucherStatus === 'valid'}
+            />
+            <button
+              type="button"
+              onClick={handleVoucherValidation}
+              disabled={!voucherCode || voucherStatus === 'valid' || voucherStatus === 'validating'}
+              className="px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {voucherStatus === 'validating' ? 'Checking...' : 'Apply'}
+            </button>
+          </div>
+          {voucherMessage && (
+            <p className={`text-sm ${voucherStatus === 'valid' ? 'text-green-400' : 'text-red-400'}`}>
+              {voucherMessage}
+            </p>
+          )}
+        </div>
+
         {/* Important Disclaimer */}
         <div className="mb-4">
           <p className="text-gray-400 text-sm leading-relaxed">
@@ -482,7 +576,7 @@ export default function RegistrationForm({
               Processing...
             </span>
           ) : (
-            `Register & Pay ${price}`
+            voucherStatus === 'valid' ? 'Complete Registration (Free)' : `Register & Pay ${price}`
           )}
         </button>
       </form>

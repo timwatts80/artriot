@@ -119,3 +119,45 @@ export async function recordRegistration(data: {
     ]
   );
 }
+// Voucher management functions
+export async function createVoucher(data: {
+  code: string;
+  purchaserEmail: string;
+  recipientEmail?: string;
+  message?: string;
+  orderId: string;
+  valueType?: string;
+}) {
+  await query(
+    `INSERT INTO vouchers 
+     (code, purchaser_email, recipient_email, message, order_id, value_type, status, created_at)
+     VALUES ($1, $2, $3, $4, $5, $6, 'active', NOW())`,
+    [
+      data.code,
+      data.purchaserEmail,
+      data.recipientEmail || null,
+      data.message || null,
+      data.orderId,
+      data.valueType || 'single_ticket'
+    ]
+  );
+}
+
+export async function getVoucher(code: string) {
+  const result = await query(
+    'SELECT * FROM vouchers WHERE code = $1',
+    [code]
+  );
+  return result.rows[0];
+}
+
+export async function redeemVoucher(code: string, eventId: string) {
+  const result = await query(
+    `UPDATE vouchers 
+     SET status = 'redeemed', redeemed_at = NOW(), redeemed_for_event_id = $2
+     WHERE code = $1 AND status = 'active'
+     RETURNING *`,
+    [code, eventId]
+  );
+  return result.rows[0];
+}

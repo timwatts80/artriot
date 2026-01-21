@@ -15,10 +15,60 @@ export async function POST(request: NextRequest) {
       eventType, 
       participantInfo,
       emergencyContact,
-      eventDate 
+      eventDate,
+      isVoucher,
+      voucherData
     } = body;
 
-    // Validate required fields
+    // Handle Voucher Purchase
+    if (isVoucher) {
+      if (!voucherData) {
+        return NextResponse.json(
+          { error: 'Missing voucher data' },
+          { status: 400 }
+        );
+      }
+
+      console.log('Creating voucher session with Price ID:', STRIPE_CONFIG.VOUCHER_PRICE_ID);
+
+      if (!STRIPE_CONFIG.VOUCHER_PRICE_ID) {
+        console.error('Missing STRIPE_VOUCHER_PRICE_ID environment variable');
+        return NextResponse.json(
+          { error: 'Server configuration error: Missing Voucher Price ID' },
+          { status: 500 }
+        );
+      }
+
+      const session = await stripe.checkout.sessions.create({
+        payment_method_types: ['card'],
+        line_items: [
+          {
+            price: STRIPE_CONFIG.VOUCHER_PRICE_ID,
+            quantity: 1,
+          },
+        ],
+        mode: 'payment',
+        allow_promotion_codes: true,
+        success_url: `${request.nextUrl.origin}/gift/success?session_id={CHECKOUT_SESSION_ID}`,
+        cancel_url: `${request.nextUrl.origin}/gift`,
+        metadata: {
+          type: 'voucher',
+          purchaserName: voucherData.purchaserName,
+          purchaserEmail: voucherData.purchaserEmail,
+          recipientName: voucherData.recipientName,
+          recipientEmail: voucherData.recipientEmail,
+          message: voucherData.message,
+        },
+        customer_email: voucherData.purchaserEmail, // Pre-fill email in Stripe
+      });
+
+      return NextResponse.json({ 
+        sessionId: session.id,
+        url: session.url 
+      });
+    }
+
+    // Validate required fields for Event Registration
     if (!eventType || !participantInfo || !emergencyContact) {
       return NextResponse.json(
         { error: 'Missing required fields' },
